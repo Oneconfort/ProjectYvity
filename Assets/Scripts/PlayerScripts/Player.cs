@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private LayerMask Default;
 
-    public float speed, jumpForce, gravityScale, rotateSpeed;
+    public float speed, jumpForce, rotateSpeed;
     private float gravity = -9.81f;
     Rigidbody rb;
     public GameObject playerModel;
@@ -54,9 +54,32 @@ public class Player : MonoBehaviour
                 Vector3 move = transform.forward * moveDirection.magnitude;
                 rb.MovePosition(rb.position + move * speed * Time.deltaTime);
             }
-            moveSpeed.y += gravity * 10 * Time.deltaTime;
         }
+        Pular();
         UsarEscada();
+    }
+
+    void Pular()
+    {
+        if (isGrounded)
+        {
+            if (rb.velocity.y < 0)
+            {
+                rb.velocity += new Vector3(0, -0.1f * Time.deltaTime, 0);
+            }
+        }
+        else
+        {
+            bool falling = rb.velocity.y < 0;
+            if (falling)
+            {
+                rb.velocity += new Vector3(0, gravity * 3 * Time.deltaTime, 0);
+            }
+            else
+            {
+                rb.velocity += new Vector3(0, gravity * Time.deltaTime, 0);
+            }
+        }
     }
 
     void UsarEscada()
@@ -87,8 +110,7 @@ public class Player : MonoBehaviour
     {
         if (ctxt.performed && isGrounded)
         {
-            rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
-            isGrounded = false;
+            rb.velocity = new Vector3(rb.velocity.x, 10, rb.velocity.z);
         }
     }
     public void OnInteraction(InputAction.CallbackContext ctxt)
