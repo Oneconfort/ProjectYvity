@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.XR;
 using UnityEngine.UIElements;
 
 public class InteracaoComItem : MonoBehaviour
 {
     public static InteracaoComItem interacaoComItem;
+
     float dropForce = 1.0f;
     public GameObject holdPosition;
     GameObject heldItem;
@@ -21,18 +23,18 @@ public class InteracaoComItem : MonoBehaviour
     bool isZipping = false;
 
 
-
     void Awake()
     {
         if (interacaoComItem == null)
         {
             interacaoComItem = this;
         }
+
     }
 
     public void InteracaoCenario()
     {
-        string[] tags = { "ObjetoI", "Tirolesa", "Lanterna", "Fogueira", "Caixa" };
+        string[] tags = { "ObjetoI", "Tirolesa", "Lanterna", "Fogueira", "Caixa", "Alavanca" };
         List<GameObject> todosOsObjetos = new List<GameObject>();
 
         foreach (string tag in tags)
@@ -43,7 +45,7 @@ public class InteracaoComItem : MonoBehaviour
 
         foreach (GameObject alvo in todosOsObjetos)
         {
-            if (EstaNaFrenteEProximo(alvo.transform.position))
+            if (EstaNaFrenteEProximo(alvo.transform.position, alvo))
             {
                 ProcessarInteracao(alvo);
             }
@@ -55,20 +57,20 @@ public class InteracaoComItem : MonoBehaviour
         switch (alvo.tag)
         {
             case "ObjetoI":
-                interacaoComItem.PegarItem(alvo);
+                PegarItem(alvo);
                 break;
             case "Caixa":
+                LanternaPlayer.lanternaPlayer.ReposicionarLanterna(alvo);
                 if (LanternaPlayer.lanternaPlayer.caixaDetectada == true)
                 {
-                    interacaoComItem.PegarItem(alvo);
+                    PegarItem(alvo);
                     pegouCaixa = true;
                 }
                 break;
             case "Lanterna":
-                interacaoComItem.PegarItem(alvo);
+                PegarItem(alvo);
                 pegouLanterna = true;
-                LanternaPlayer.lanternaPlayer.lanterna.SetActive(LanternaPlayer.lanternaPlayer.ligar);
-                LanternaPlayer.lanternaPlayer.luminaria.SetActive(false);
+                LanternaPlayer.lanternaPlayer.LigarLanterna();
                 break;
             case "Tirolesa":
                 if (!isZipping)
@@ -81,21 +83,23 @@ public class InteracaoComItem : MonoBehaviour
             case "Fogueira":
                 LanternaPlayer.lanternaPlayer.RecargaBateria(100);
                 break;
+            case "Alavanca":
+               
+                break;
         }
     }
 
-    bool EstaNaFrenteEProximo(Vector3 posicaoAlvo)
+    bool EstaNaFrenteEProximo(Vector3 posicaoAlvo, GameObject alvo)
     {
         Vector3 dir = posicaoAlvo - transform.position;
         float dot = Vector3.Dot(dir.normalized, transform.forward);
-        return dot > 0.5f && dir.magnitude < 2;
+        return dot > 0.5f && dir.magnitude < 6.5f;
     }
 
     public void PegarItem(GameObject item)
     {
         if (heldItem == null)
         {
-           
             heldItem = item;
             pegouItem = true;
             heldItemRigidbody = heldItem.GetComponent<Rigidbody>();
@@ -111,24 +115,36 @@ public class InteracaoComItem : MonoBehaviour
         if (heldItem != null)
         {
             heldItem.transform.SetParent(null);
-            if(pegouCaixa == false)
+            if (pegouCaixa == false)
             {
                 heldItemRigidbody.isKinematic = false;
-            }    
+            }
             heldItemRigidbody.AddForce(holdPosition.transform.forward * dropForce, ForceMode.Impulse);
             pegouItem = false;
-            pegouCaixa = false;
+
             heldItem = null;
 
             if (pegouLanterna == true)
             {
-                LanternaPlayer.lanternaPlayer.lanterna.SetActive(false);
-                LanternaPlayer.lanternaPlayer.luminaria.SetActive(LanternaPlayer.lanternaPlayer.ligar);
+                LanternaPlayer.lanternaPlayer.LigarLuminaria();
                 pegouLanterna = false;
+            }
+
+            if (pegouCaixa)
+            {
+                pegouCaixa = false;
+
+                if (LanternaPlayer.lanternaPlayer.naCaixa == true)
+                {
+                    PegarItem(LanternaPlayer.lanternaPlayer.lanterna);
+                    pegouLanterna = true;
+                    LanternaPlayer.lanternaPlayer.LigarLanterna();
+                    LanternaPlayer.lanternaPlayer.naCaixa = false;
+                }
             }
         }
     }
-
+   
     IEnumerator ZiplineMovement()
     {
         if (!heldItem)

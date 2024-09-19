@@ -5,22 +5,27 @@ using UnityEngine;
 public class LanternaPlayer : MonoBehaviour
 {
     public static LanternaPlayer lanternaPlayer;
-    public GameObject lanterna, luminaria, bauInteracao, caixa;
+    public GameObject lanterna, luzSpot, luzPoint, bauInteracao, caixa;
+    Rigidbody rb;
     public bool ligar = false;
     float maxBateria = 100f, drenagemBateria = 1f;
     public float bateriaAtual;
 
     bool caixaDetectadaNaIteracao = false;
-    public bool caixaDetectada = false, paredeDetectada = false;
+    public bool caixaDetectada = false, paredeDetectada = false, naCaixa = false;
+
     void Awake()
     {
         if (lanternaPlayer == null)
         {
             lanternaPlayer = this;
         }
+
     }
+
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         bateriaAtual = maxBateria;
         if (GameController.controller.uiController.batterySlider != null)
         {
@@ -31,6 +36,7 @@ public class LanternaPlayer : MonoBehaviour
 
     private void Update()
     {
+        if (GameController.controller.uiController.visivelpause == true) return;
         InteragirLanterna();
         Bateria();
     }
@@ -40,11 +46,21 @@ public class LanternaPlayer : MonoBehaviour
         if (InteracaoComItem.interacaoComItem.pegouLanterna == true)
         {
             ligar = !ligar;
-            lanterna.SetActive(ligar);
+            luzSpot.SetActive(ligar);
         }
     }
 
+    public void LigarLuminaria()
+    {
+        luzSpot.SetActive(false);
+        luzPoint.SetActive(ligar);
+    }
 
+    public void LigarLanterna()
+    {
+        luzSpot.SetActive(ligar);
+        luzPoint.SetActive(false);
+    }
 
     void InteragirLanterna()
     {
@@ -61,7 +77,7 @@ public class LanternaPlayer : MonoBehaviour
 
         foreach (var alvoLanterna in alvos)
         {
-            if (EstaNaFrenteEProximo(alvoLanterna.transform.position))
+            if (EstaNaFrenteEProximo(alvoLanterna.transform.position, alvoLanterna))
             {
                 ProcessarAlvo(alvoLanterna);
             }
@@ -87,20 +103,31 @@ public class LanternaPlayer : MonoBehaviour
                 break;
             case "Caixa":
                 caixaDetectadaNaIteracao = true;
-                break; 
+                break;
             case "ParedeFalsa":
-                paredeDetectada= true;
+                paredeDetectada = true;
                 break;
         }
     }
 
-    bool EstaNaFrenteEProximo(Vector3 posicaoAlvo)
+    bool EstaNaFrenteEProximo(Vector3 posicaoAlvo, GameObject alvo)
     {
         if (ligar && InteracaoComItem.interacaoComItem.pegouLanterna)
         {
-            Vector3 dir = posicaoAlvo - transform.position;
-            float dot = Vector3.Dot(dir.normalized, transform.forward);
-            return dot > 0.5f && dir.magnitude < 6.5f;
+            float lightRange = 1f; // How far the light should detect for colliders
+            Collider[] colliders = new Collider[2]; // We probably should cache this rather than creating it every time it enters the 'if' statement
+
+            int hits = Physics.OverlapSphereNonAlloc(transform.position + transform.forward * lightRange, lightRange, colliders);
+            if (hits > 0)
+            {
+                for (int i = 0; i < hits; i++) // Checking all game objects hit by the OverlapSphere. We could remove this 'for' if we add a layer for objects that can be catched by the light - such as the wall that hides a treasure. But for now this is a work around.
+                {
+                    if (colliders[i].gameObject == alvo) // Checking if the OverlapSphere hit the game object we want
+                    {
+                        return true;
+                    }
+                }
+            }
         }
         if (ligar && InteracaoComItem.interacaoComItem.pegouLanterna == false)
         {
@@ -125,8 +152,8 @@ public class LanternaPlayer : MonoBehaviour
         if (bateriaAtual <= 0)
         {
             ligar = false;
-            lanterna.SetActive(false);
-            luminaria.SetActive(false);
+            luzSpot.SetActive(false);
+            luzSpot.SetActive(false);
         }
     }
 
@@ -144,4 +171,26 @@ public class LanternaPlayer : MonoBehaviour
             bateriaAtual = Mathf.Clamp(bateriaAtual, 0, maxBateria);
         }
     }
+
+    public void ReposicionarLanterna(GameObject caixa)
+    {
+        if (InteracaoComItem.interacaoComItem.pegouLanterna == true)
+        {
+            InteracaoComItem.interacaoComItem.DerrubarItem();
+            naCaixa = true;
+            rb.isKinematic = true;
+            lanterna.transform.SetParent(caixa.transform);
+            lanterna.transform.localPosition = new Vector3(0, 2, 0.5F);
+            lanterna.transform.localRotation = Quaternion.identity;
+        }
+    }
+
+
+    private void OnDrawGizmos()
+    {
+        float lightRange = 1f;
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position + transform.forward * lightRange, lightRange);
+    }
 }
+
