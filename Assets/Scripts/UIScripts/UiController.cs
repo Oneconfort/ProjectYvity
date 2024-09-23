@@ -14,22 +14,22 @@ public class UiController : MonoBehaviour
     public GameObject painelVitoria, painelDerrota, painelInicio, uiPause, painelOptions;
     bool visivel;
     public bool visivelpause = false;
-    public TextMeshProUGUI lifePlayer;
+    public TextMeshProUGUI lifePlayer, numFosforo;
 
     public Slider batterySlider;
-
 
     private void Start()
     {
         GameController.controller.uiController = this;
     }
+
     private void Update()
     {
         UiPause();
     }
+
     void UiPause()
     {
-
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             visivel = !visivel;
@@ -67,7 +67,11 @@ public class UiController : MonoBehaviour
     {
         lifePlayer.text = $"Life: {life}";
     }
-   
+    public void UpdateFosforo(int fosforo)
+    {
+        numFosforo.text = $"Match: {fosforo}";
+    }
+
     public void PainelOptions()
     {
         GameController.controller.ControlCursor(false);

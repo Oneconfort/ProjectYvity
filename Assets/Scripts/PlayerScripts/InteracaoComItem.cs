@@ -9,7 +9,6 @@ using UnityEngine.UIElements;
 public class InteracaoComItem : MonoBehaviour
 {
     public static InteracaoComItem interacaoComItem;
-
     float dropForce = 1.0f;
     public GameObject holdPosition;
     GameObject heldItem;
@@ -29,12 +28,13 @@ public class InteracaoComItem : MonoBehaviour
         {
             interacaoComItem = this;
         }
-
     }
 
     public void InteracaoCenario()
     {
-        string[] tags = { "ObjetoI", "Tirolesa", "Lanterna", "Fogueira", "Caixa", "Alavanca" };
+        if (GameController.controller.uiController.visivelpause == true || pegouCaixa == true) return;
+
+        string[] tags = { "ObjetoI", "Tirolesa", "Lanterna", "Fogueira", "Caixa", "Alavanca", "Mecanismo" };
         List<GameObject> todosOsObjetos = new List<GameObject>();
 
         foreach (string tag in tags)
@@ -45,7 +45,7 @@ public class InteracaoComItem : MonoBehaviour
 
         foreach (GameObject alvo in todosOsObjetos)
         {
-            if (EstaNaFrenteEProximo(alvo.transform.position, alvo))
+            if (EstaNaFrenteEProximo(alvo.transform.position))
             {
                 ProcessarInteracao(alvo);
             }
@@ -60,7 +60,10 @@ public class InteracaoComItem : MonoBehaviour
                 PegarItem(alvo);
                 break;
             case "Caixa":
-                LanternaPlayer.lanternaPlayer.ReposicionarLanterna(alvo);
+                if (LanternaPlayer.lanternaPlayer.ligar)
+                {
+                    LanternaPlayer.lanternaPlayer.ReposicionarLanterna(alvo);
+                }
                 if (LanternaPlayer.lanternaPlayer.caixaDetectada == true)
                 {
                     PegarItem(alvo);
@@ -84,16 +87,31 @@ public class InteracaoComItem : MonoBehaviour
                 LanternaPlayer.lanternaPlayer.RecargaBateria(100);
                 break;
             case "Alavanca":
-               
+                var buttonScript = alvo.GetComponent<ButtonScript>();
+                if (buttonScript != null)
+                {
+                    buttonScript.AlternarBotao();
+                }
+                break;
+            case "Mecanismo":
+                if (LanternaPlayer.lanternaPlayer.naPosicao == false)
+                {
+                    LanternaPlayer.lanternaPlayer.ReposicionarLanterna(alvo);
+                }
+                else
+                {
+                    PegarItem(alvo);
+                    LanternaPlayer.lanternaPlayer.naPosicao = false;
+                }
                 break;
         }
     }
 
-    bool EstaNaFrenteEProximo(Vector3 posicaoAlvo, GameObject alvo)
+    bool EstaNaFrenteEProximo(Vector3 posicaoAlvo)
     {
         Vector3 dir = posicaoAlvo - transform.position;
         float dot = Vector3.Dot(dir.normalized, transform.forward);
-        return dot > 0.5f && dir.magnitude < 6.5f;
+        return dot > 0.5f && dir.magnitude < 3.5f;
     }
 
     public void PegarItem(GameObject item)
@@ -121,7 +139,7 @@ public class InteracaoComItem : MonoBehaviour
             }
             heldItemRigidbody.AddForce(holdPosition.transform.forward * dropForce, ForceMode.Impulse);
             pegouItem = false;
-
+            pegouCaixa = false;
             heldItem = null;
 
             if (pegouLanterna == true)
@@ -130,21 +148,16 @@ public class InteracaoComItem : MonoBehaviour
                 pegouLanterna = false;
             }
 
-            if (pegouCaixa)
+            if (LanternaPlayer.lanternaPlayer.naPosicao == true)
             {
-                pegouCaixa = false;
-
-                if (LanternaPlayer.lanternaPlayer.naCaixa == true)
-                {
-                    PegarItem(LanternaPlayer.lanternaPlayer.lanterna);
-                    pegouLanterna = true;
-                    LanternaPlayer.lanternaPlayer.LigarLanterna();
-                    LanternaPlayer.lanternaPlayer.naCaixa = false;
-                }
+                PegarItem(LanternaPlayer.lanternaPlayer.lanterna);
+                pegouLanterna = true;
+                LanternaPlayer.lanternaPlayer.LigarLanterna();
+                LanternaPlayer.lanternaPlayer.naPosicao = false;
             }
         }
     }
-   
+
     IEnumerator ZiplineMovement()
     {
         if (!heldItem)
@@ -162,5 +175,6 @@ public class InteracaoComItem : MonoBehaviour
             }
         }
     }
+  
 }
 

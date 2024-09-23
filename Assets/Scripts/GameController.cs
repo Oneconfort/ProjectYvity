@@ -8,7 +8,7 @@ public class GameController : MonoBehaviour
     public static GameController controller;
     public UiController uiController;
     public Player Player;
-    public int lifeMax, lifePlayer;
+    public int lifeMax, lifePlayer, fosforo = 0;
     void Awake()
     {
         if (controller == null)

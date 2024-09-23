@@ -9,10 +9,10 @@ public class LanternaPlayer : MonoBehaviour
     Rigidbody rb;
     public bool ligar = false;
     float maxBateria = 100f, drenagemBateria = 1f;
-    public float bateriaAtual;
+    public float bateriaAtual = 0;
 
     bool caixaDetectadaNaIteracao = false;
-    public bool caixaDetectada = false, paredeDetectada = false, naCaixa = false;
+    public bool caixaDetectada = false, paredeDetectada = false, naPosicao = false;
 
     void Awake()
     {
@@ -26,7 +26,6 @@ public class LanternaPlayer : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        bateriaAtual = maxBateria;
         if (GameController.controller.uiController.batterySlider != null)
         {
             GameController.controller.uiController.batterySlider.maxValue = maxBateria;
@@ -172,17 +171,18 @@ public class LanternaPlayer : MonoBehaviour
         }
     }
 
-    public void ReposicionarLanterna(GameObject caixa)
+    public void ReposicionarLanterna(GameObject alvo)
     {
-        if (InteracaoComItem.interacaoComItem.pegouLanterna == true)
+        if (InteracaoComItem.interacaoComItem.pegouLanterna == true )
         {
             InteracaoComItem.interacaoComItem.DerrubarItem();
-            naCaixa = true;
+            naPosicao = true;
             rb.isKinematic = true;
-            lanterna.transform.SetParent(caixa.transform);
+            lanterna.transform.SetParent(alvo.transform);
             lanterna.transform.localPosition = new Vector3(0, 2, 0.5F);
             lanterna.transform.localRotation = Quaternion.identity;
         }
+       
     }
 
 

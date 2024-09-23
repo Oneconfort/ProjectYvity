@@ -155,6 +155,15 @@ public class Player : MonoBehaviour
             LanternaPlayer.lanternaPlayer.Lanterna();
         }
     }
+    public void OnRecharge(InputAction.CallbackContext ctxt)
+    {
+        if (ctxt.performed && GameController.controller.fosforo != 0 && LanternaPlayer.lanternaPlayer.bateriaAtual < 100)
+        {
+            GameController.controller.fosforo--;
+            GameController.controller.uiController.UpdateFosforo(GameController.controller.fosforo);
+            LanternaPlayer.lanternaPlayer.RecargaBateria(100);
+        }
+    }
     public void OnDropItem(InputAction.CallbackContext ctxt)
     {
         if (ctxt.performed)
@@ -197,7 +206,14 @@ public class Player : MonoBehaviour
                 gameObject.SetActive(false);
                 TomaDano(collider.gameObject.GetComponent<Inimigo>().GetDamage());
                 break;
-
+            case"Cabana":
+                GameController.controller.Vitoria();
+                break;
+            case "Fosforo":
+                GameController.controller.fosforo++;
+                GameController.controller.uiController.UpdateFosforo(GameController.controller.fosforo);
+                Destroy(collider.gameObject);
+                break;
         }
     }
 
@@ -214,11 +230,5 @@ public class Player : MonoBehaviour
     public void Morrer()
     {
         GameController.controller.PararJogo();
-    }
-    private void OnDrawGizmos()
-    {
-        float lightRange = 1f;
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position + transform.forward * lightRange, lightRange);
     }
 }

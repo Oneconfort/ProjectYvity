@@ -67,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Recharge",
+                    "type": "Button",
+                    "id": "6abc9236-7f25-45b0-9b91-b30c276ecdce",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -331,6 +340,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Flashlight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4d173810-45b6-4acc-9b37-bd474ad22f5b",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Recharge",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
