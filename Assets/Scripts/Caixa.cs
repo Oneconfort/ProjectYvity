@@ -20,13 +20,13 @@ public class Caixa : MonoBehaviour
 
     private void AtualizarAparenciaCaixa()
     {
-        if (LanternaPlayer.lanternaPlayer.caixaDetectada == true)
+        if (LanternaPlayer.lanternaPlayer.caixaDetectada)
         {
             rendererCaixa.material.color = Color.green;
         }
         else
         {
-            rendererCaixa.material.color = Color.gray;
+            rendererCaixa.material.color = Color.white;
         }
     }
 }

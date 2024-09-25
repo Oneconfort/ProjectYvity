@@ -175,6 +175,5 @@ public class InteracaoComItem : MonoBehaviour
             }
         }
     }
-  
 }
 

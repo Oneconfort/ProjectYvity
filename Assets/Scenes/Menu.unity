@@ -13411,6 +13411,7 @@ MonoBehaviour:
   painelOptions: {fileID: 114170116}
   visivelpause: 0
   lifePlayer: {fileID: 0}
+  numFosforo: {fileID: 0}
   batterySlider: {fileID: 0}
 --- !u!114 &1910518474
 MonoBehaviour:

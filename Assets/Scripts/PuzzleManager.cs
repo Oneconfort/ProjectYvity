@@ -1,23 +1,143 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using static Mecanismo;
 
 public class PuzzleManager : MonoBehaviour
 {
-    [System.Serializable]
-    public class puzzleManager
-    {
-        public GameObject plataforma;
-        public float velocidade = 2.0f;
-        public int[] ordemCorreta;
-        public List<ButtonScript> botoesAtivados = new List<ButtonScript>();
-        public int passoAtual = 0;
-        public bool plataformaAtiva = false;
-        public Vector3 posicaoInicial;
-        public Vector3 posicaoFinal;
-    }
+    /* [System.Serializable]
+     public class puzzleManager
+     {
+         public GameObject plataforma;
+         public float velocidade = 2.0f;
+         public int[] ordemCorreta;
+         public List<ButtonScript> botoesAtivados = new List<ButtonScript>();
+         public int passoAtual = 0;
+         public bool plataformaAtiva = false;
+         public Vector3 posicaoInicial;
+         public Vector3 posicaoFinal;
+         public bool movendoParaPosicaoFinal = true;
+         public int tipo;
 
-    public puzzleManager[] plataformasPuzzle;
+     }
+
+     public puzzleManager[] plataformasPuzzle;
+
+     void Start()
+     {
+         foreach (var puzzle in plataformasPuzzle)
+         {
+             puzzle.posicaoInicial = puzzle.plataforma.transform.position;
+         }
+     }
+     private void Update()
+     {
+         Mover();
+     }
+
+     public void BotaoPressionado(int ordemDoBotao, ButtonScript scriptBotao, int indicePlataforma)
+     {
+         var puzzle = plataformasPuzzle[indicePlataforma];
+         if (ordemDoBotao == puzzle.ordemCorreta[puzzle.passoAtual] && LanternaPlayer.lanternaPlayer.naPosicao)
+         {
+             puzzle.passoAtual++;
+             puzzle.botoesAtivados.Add(scriptBotao);
+             if (puzzle.passoAtual == puzzle.ordemCorreta.Length)
+             {
+                 AtivarPlataforma(indicePlataforma);
+             }
+         }
+         else
+         {
+             ResetarPuzzle(indicePlataforma);
+             scriptBotao.AtivarEEsperar();
+         }
+     }
+
+     private void AtivarPlataforma(int indicePlataforma)
+     {
+         var puzzle = plataformasPuzzle[indicePlataforma];
+         puzzle.plataformaAtiva = true;
+     }
+
+     private void ResetarPuzzle(int indicePlataforma)
+     {
+         var puzzle = plataformasPuzzle[indicePlataforma];
+         puzzle.passoAtual = 0;
+         foreach (ButtonScript botao in puzzle.botoesAtivados)
+         {
+             botao.DesativarBotao();
+         }
+         puzzle.botoesAtivados.Clear();
+     }
+
+     private void ResetarTodosOsPuzzles()
+     {
+         foreach (var puzzle in plataformasPuzzle)
+         {
+             puzzle.passoAtual = 0;
+             foreach (ButtonScript botao in puzzle.botoesAtivados)
+             {
+                 botao.DesativarBotao();
+             }
+             puzzle.botoesAtivados.Clear();
+             puzzle.plataforma.transform.position = Vector3.MoveTowards(puzzle.plataforma.transform.position, puzzle.posicaoInicial, puzzle.velocidade * Time.deltaTime);
+         }
+     }
+
+     void Mover()
+     {
+         foreach (var puzzle in plataformasPuzzle)
+         {
+             switch (puzzle.tipo)
+             {
+                 case 1: // Tipo de movimento 1: ida e volta
+                     if (puzzle.plataformaAtiva)
+                     {
+                         Vector3 destino = puzzle.movendoParaPosicaoFinal ? puzzle.posicaoFinal : puzzle.posicaoInicial;
+                         puzzle.plataforma.transform.position = Vector3.MoveTowards(
+                             puzzle.plataforma.transform.position,
+                             destino,
+                             puzzle.velocidade * Time.deltaTime
+                         );
+
+                         if (Vector3.Distance(puzzle.plataforma.transform.position, destino) < 0.01f)
+                         {
+                             puzzle.movendoParaPosicaoFinal = !puzzle.movendoParaPosicaoFinal;
+                         }
+                     }
+                     break;
+
+                 case 2: // Tipo de movimento 2: mover apenas para a posição final
+                     if (puzzle.plataformaAtiva)
+                     {
+                         puzzle.plataforma.transform.position = Vector3.MoveTowards(
+                             puzzle.plataforma.transform.position,
+                             puzzle.posicaoFinal,
+                             puzzle.velocidade * Time.deltaTime
+                         );
+
+                         if (Vector3.Distance(puzzle.plataforma.transform.position, puzzle.posicaoFinal) < 0.01f)
+                         {
+                             puzzle.plataformaAtiva = false;
+                         }
+                     }
+                     break;
+
+                 default:
+                     break;
+             }
+
+             if (!LanternaPlayer.lanternaPlayer.naPosicao)
+             {
+                 ResetarTodosOsPuzzles();
+             }
+         }
+     }
+ }*/
+
+    public Mecanismo[] plataformasPuzzle;
 
     void Start()
     {
@@ -26,8 +146,10 @@ public class PuzzleManager : MonoBehaviour
             puzzle.posicaoInicial = puzzle.plataforma.transform.position;
         }
     }
+
     private void Update()
     {
+
         Mover();
     }
 
@@ -37,7 +159,7 @@ public class PuzzleManager : MonoBehaviour
         if (ordemDoBotao == puzzle.ordemCorreta[puzzle.passoAtual] && LanternaPlayer.lanternaPlayer.naPosicao)
         {
             puzzle.passoAtual++;
-            puzzle.botoesAtivados.Add(scriptBotao);
+            puzzle.alavancasAtivadas.Add(scriptBotao);
             if (puzzle.passoAtual == puzzle.ordemCorreta.Length)
             {
                 AtivarPlataforma(indicePlataforma);
@@ -60,11 +182,11 @@ public class PuzzleManager : MonoBehaviour
     {
         var puzzle = plataformasPuzzle[indicePlataforma];
         puzzle.passoAtual = 0;
-        foreach (ButtonScript botao in puzzle.botoesAtivados)
+        foreach (ButtonScript botao in puzzle.alavancasAtivadas)
         {
             botao.DesativarBotao();
         }
-        puzzle.botoesAtivados.Clear();
+        puzzle.alavancasAtivadas.Clear();
     }
 
     private void ResetarTodosOsPuzzles()
@@ -72,37 +194,56 @@ public class PuzzleManager : MonoBehaviour
         foreach (var puzzle in plataformasPuzzle)
         {
             puzzle.passoAtual = 0;
-            foreach (ButtonScript botao in puzzle.botoesAtivados)
+            foreach (ButtonScript botao in puzzle.alavancasAtivadas)
             {
                 botao.DesativarBotao();
             }
-            puzzle.botoesAtivados.Clear();
-            puzzle.plataforma.transform.position = Vector3.MoveTowards( puzzle.plataforma.transform.position,puzzle.posicaoInicial, puzzle.velocidade * Time.deltaTime );
+            puzzle.alavancasAtivadas.Clear();
+            puzzle.plataforma.transform.position = Vector3.MoveTowards(puzzle.plataforma.transform.position, puzzle.posicaoInicial, puzzle.velocidade * Time.deltaTime);
         }
     }
 
     void Mover()
     {
+        if (GameController.controller.uiController.visivelpause == true) return;
+
         foreach (var puzzle in plataformasPuzzle)
         {
-            if (puzzle.plataformaAtiva)
+            switch (puzzle.tipo)
             {
-                if (puzzle.plataformaAtiva)
-                {
-                    puzzle.plataforma.transform.position = Vector3.MoveTowards( puzzle.plataforma.transform.position,puzzle.posicaoFinal,puzzle.velocidade * Time.deltaTime);
-
-                    if (Vector3.Distance(puzzle.plataforma.transform.position, puzzle.posicaoFinal) < 0.01f)
+                case 1:
+                    if (puzzle.plataformaAtiva)
                     {
-                        puzzle.plataformaAtiva = false;
+                        Vector3 destino = puzzle.movendoParaPosicaoFinal ? puzzle.posicaoFinal : puzzle.posicaoInicial;
+                        puzzle.plataforma.transform.position = Vector3.MoveTowards( puzzle.plataforma.transform.position,destino, puzzle.velocidade * Time.deltaTime);
+
+                        if (Vector3.Distance(puzzle.plataforma.transform.position, destino) < 0.01f)
+                        {
+                            puzzle.movendoParaPosicaoFinal = !puzzle.movendoParaPosicaoFinal;
+                        }
                     }
-                }
+                    break;
+
+                case 2:
+                    if (puzzle.plataformaAtiva)
+                    {
+                        puzzle.plataforma.transform.position = Vector3.MoveTowards( puzzle.plataforma.transform.position,puzzle.posicaoFinal,puzzle.velocidade * Time.deltaTime);
+
+                        if (Vector3.Distance(puzzle.plataforma.transform.position, puzzle.posicaoFinal) < 0.01f)
+                        {
+                            puzzle.plataformaAtiva = false;
+                        }
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+
+            if (!LanternaPlayer.lanternaPlayer.naPosicao)
+            {
+                ResetarTodosOsPuzzles();
             }
         }
-
-        if (!LanternaPlayer.lanternaPlayer.naPosicao)
-        {
-            ResetarTodosOsPuzzles();
-        }
-
     }
 }

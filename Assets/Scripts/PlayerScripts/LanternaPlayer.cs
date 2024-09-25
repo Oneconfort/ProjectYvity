@@ -11,8 +11,13 @@ public class LanternaPlayer : MonoBehaviour
     float maxBateria = 100f, drenagemBateria = 1f;
     public float bateriaAtual = 0;
 
-    bool caixaDetectadaNaIteracao = false;
-    public bool caixaDetectada = false, paredeDetectada = false, naPosicao = false;
+    enum DetectedType { None, Caixa, Plataforma }
+    DetectedType detectedInIteration = DetectedType.None;
+
+    public bool caixaDetectada = false, plataformaDetectada = false, paredeDetectada = false, naPosicao = false;
+    public List<GameObject> detectedPlataformas = new List<GameObject>(); 
+
+
 
     void Awake()
     {
@@ -20,7 +25,6 @@ public class LanternaPlayer : MonoBehaviour
         {
             lanternaPlayer = this;
         }
-
     }
 
     void Start()
@@ -63,7 +67,7 @@ public class LanternaPlayer : MonoBehaviour
 
     void InteragirLanterna()
     {
-        string[] tags = { "Inimigo1", "Bau", "Caixa", "ParedeFalsa" };
+        string[] tags = { "Inimigo1", "Bau", "Caixa", "ParedeFalsa", "Plataforma" };
         List<GameObject> alvos = new List<GameObject>();
 
         foreach (string tag in tags)
@@ -72,7 +76,8 @@ public class LanternaPlayer : MonoBehaviour
             alvos.AddRange(objetosComTag);
         }
 
-        caixaDetectadaNaIteracao = false;
+        detectedInIteration = DetectedType.None;
+        detectedPlataformas.Clear(); // Clear previous detections
 
         foreach (var alvoLanterna in alvos)
         {
@@ -81,9 +86,9 @@ public class LanternaPlayer : MonoBehaviour
                 ProcessarAlvo(alvoLanterna);
             }
         }
-        caixaDetectada = caixaDetectadaNaIteracao;
+        caixaDetectada = detectedInIteration == DetectedType.Caixa;
+        plataformaDetectada = detectedInIteration == DetectedType.Plataforma;
     }
-
 
     void ProcessarAlvo(GameObject alvo)
     {
@@ -101,7 +106,11 @@ public class LanternaPlayer : MonoBehaviour
                 }
                 break;
             case "Caixa":
-                caixaDetectadaNaIteracao = true;
+                detectedInIteration = DetectedType.Caixa;
+                break;
+            case "Plataforma":
+                detectedInIteration = DetectedType.Plataforma;
+                detectedPlataformas.Add(alvo);
                 break;
             case "ParedeFalsa":
                 paredeDetectada = true;
@@ -131,7 +140,7 @@ public class LanternaPlayer : MonoBehaviour
         if (ligar && InteracaoComItem.interacaoComItem.pegouLanterna == false)
         {
             Vector3 dir = posicaoAlvo - transform.position;
-            bool isInSphere = dir.magnitude < 3;
+            bool isInSphere = dir.magnitude < 3.5f;
             return isInSphere;
         }
         return false;
@@ -173,7 +182,7 @@ public class LanternaPlayer : MonoBehaviour
 
     public void ReposicionarLanterna(GameObject alvo)
     {
-        if (InteracaoComItem.interacaoComItem.pegouLanterna == true )
+        if (InteracaoComItem.interacaoComItem.pegouLanterna == true)
         {
             InteracaoComItem.interacaoComItem.DerrubarItem();
             naPosicao = true;
@@ -182,9 +191,8 @@ public class LanternaPlayer : MonoBehaviour
             lanterna.transform.localPosition = new Vector3(0, 2, 0.5F);
             lanterna.transform.localRotation = Quaternion.identity;
         }
-       
-    }
 
+    }
 
     private void OnDrawGizmos()
     {
