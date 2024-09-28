@@ -22,6 +22,15 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         moveDirection = Vector3.zero;
+
+        GameController.controller.lifePlayer = SaveGame.data.playerLives;
+        lastSavePointReached = GameController.controller.campFires[SaveGame.data.lastSavePointReached];
+        if (GameController.controller.lifePlayer < GameController.controller.lifeMax)
+        {
+            Respawn(lastSavePointReached);
+        }
+
+        GameController.controller.uiController.UpdateVida(GameController.controller.lifePlayer);
     }
 
 

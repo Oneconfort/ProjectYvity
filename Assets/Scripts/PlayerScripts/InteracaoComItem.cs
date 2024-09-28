@@ -30,6 +30,14 @@ public class InteracaoComItem : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        if (SaveGame.data.hasFlashlight)
+        {
+            ProcessarInteracao(LanternaPlayer.lanternaPlayer.gameObject);
+        }
+    }
+
     public void InteracaoCenario()
     {
         if (GameController.controller.uiController.visivelpause == true || pegouCaixa == true) return;

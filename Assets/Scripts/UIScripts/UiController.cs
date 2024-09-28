@@ -102,6 +102,8 @@ public class UiController : MonoBehaviour
     public void Reset(int num)
     {
         Time.timeScale = 1.0f;
+        SaveGame.ResetRunData();
+        SaveGame.Save();
         SceneManager.LoadScene(num);
     }
 

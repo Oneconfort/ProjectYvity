@@ -9,6 +9,15 @@ public class GameController : MonoBehaviour
     public UiController uiController;
     public Player Player;
     public int lifeMax, lifePlayer, fosforo = 0;
+    public CampFire[] campFires;
+    public string currentLevel;
+
+    [ContextMenu("Find All Camp Fires")]
+    public void FindAllCampFires()
+    {
+        campFires = FindObjectsOfType<CampFire>();
+    }
+
     void Awake()
     {
         if (controller == null)
@@ -16,11 +25,7 @@ public class GameController : MonoBehaviour
             controller = this;
         }
 
-    }
-
-    private void Start()
-    {
-        lifePlayer = lifeMax;
+        currentLevel = SceneManager.GetActiveScene().name;
     }
 
     public void PararJogo()
@@ -46,5 +51,10 @@ public class GameController : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
+    }
+
+    void OnApplicationQuit()
+    {
+        SaveGame.Save();
     }
 }

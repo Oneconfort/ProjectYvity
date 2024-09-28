@@ -25,6 +25,8 @@ public class LanternaPlayer : MonoBehaviour
         {
             lanternaPlayer = this;
         }
+
+        bateriaAtual = SaveGame.data.flashlightBattery;
     }
 
     void Start()
