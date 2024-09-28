@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
         if (GameController.controller.uiController.visivelpause == true) return;
 
         Mover();
+        CheckCheatInput();
     }
 
     void Mover()
@@ -56,6 +57,23 @@ public class Player : MonoBehaviour
         Gravidade();
         UsarEscada();
 
+    }
+
+    void CheckCheatInput()
+    {
+        if (!Debug.isDebugBuild) // Returns 'true' in the Editor as well
+        {
+            return; 
+        }
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            Cheats.GoToPreviousCampFire();
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Cheats.GoToNextCampFire();
+        }
     }
 
     void VerificarSeEstaNoChao()
@@ -205,10 +223,9 @@ public class Player : MonoBehaviour
                 break;
             case "ParedeFim":
                 TomaDano(collider.gameObject.GetComponent<Inimigo>().GetDamage());
-                if (GameController.controller.lifePlayer > 0 && lastSavePointReached != null) // Respawn
+                if (GameController.controller.lifePlayer > 0) // Respawn
                 {
-                    transform.position = lastSavePointReached.spawnPoint.position;
-                    transform.rotation = lastSavePointReached.spawnPoint.rotation;
+                    Respawn(lastSavePointReached);
                 }
                 else // Death
                 {
@@ -239,5 +256,17 @@ public class Player : MonoBehaviour
     public void Morrer()
     {
         GameController.controller.PararJogo();
+    }
+
+    public void Respawn(CampFire savePoint)
+    {
+        if (!savePoint)
+        {
+            Debug.Assert(false, "Save Point is null.");
+            return;
+        }
+
+        transform.position = savePoint.spawnPoint.position;
+        transform.rotation = savePoint.spawnPoint.rotation;
     }
 }
