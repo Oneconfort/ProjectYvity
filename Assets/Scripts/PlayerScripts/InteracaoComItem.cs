@@ -85,6 +85,7 @@ public class InteracaoComItem : MonoBehaviour
                 break;
             case "Fogueira":
                 LanternaPlayer.lanternaPlayer.RecargaBateria(100);
+                GameController.controller.Player.lastSavePointReached = alvo.GetComponent<CampFire>();
                 break;
             case "Alavanca":
                 var buttonScript = alvo.GetComponent<ButtonScript>();

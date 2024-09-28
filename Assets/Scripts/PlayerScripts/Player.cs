@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     public Transform pivot;
     public bool isGrounded = true;
     bool insideLadder = false;
+    public CampFire lastSavePointReached;
 
     void Start()
     {
@@ -203,8 +204,16 @@ public class Player : MonoBehaviour
                 TomaDano(collider.gameObject.GetComponent<Inimigo>().GetDamage());
                 break;
             case "ParedeFim":
-                gameObject.SetActive(false);
                 TomaDano(collider.gameObject.GetComponent<Inimigo>().GetDamage());
+                if (GameController.controller.lifePlayer > 0 && lastSavePointReached != null) // Respawn
+                {
+                    transform.position = lastSavePointReached.spawnPoint.position;
+                    transform.rotation = lastSavePointReached.spawnPoint.rotation;
+                }
+                else // Death
+                {
+                    gameObject.SetActive(false);
+                }
                 break;
             case"Cabana":
                 GameController.controller.Vitoria();
