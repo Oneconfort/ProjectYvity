@@ -94,7 +94,7 @@ public static class SaveGame
         GameController.controller.lifePlayer = GameController.controller.lifeMax;
         GameController.controller.Player.lastSavePointReached = GameController.controller.campFires[0];
         InteracaoComItem.interacaoComItem.pegouLanterna = false;
-        LanternaPlayer.lanternaPlayer.bateriaAtual = 100f;
+        LanternaPlayer.lanternaPlayer.bateriaAtual = 0f;
     }
 
     public static void DeleteSave()

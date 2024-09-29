@@ -8,8 +8,8 @@ public class CameraController : MonoBehaviour
     public static CameraController cameraController;
     public Vector3 offset;
 
-    public Vector3 fixedPosition;
-
+    Vector3 offsetCamCaverna = new Vector3(-1.36f, 12.69f, 14.31f);
+    public Camera cam;
     bool useOffsetValues, invertY;
     public float rotateSpeed, maxViewAngle, minViewAngle;
     public Transform pivot;
@@ -24,12 +24,8 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate()
     {
-        /* if (!isFixedPosition)
-         {
-             transform.position = GameController.controller.Player.transform.position + offset;
-         }*/
-        if (GameController.controller.uiController.visivelpause == true) return;
-        Move();
+        MoveMainCamera();
+        MoveCameraCaverna();
     }
 
 
@@ -43,15 +39,17 @@ public class CameraController : MonoBehaviour
         pivot.transform.position = GameController.controller.Player.transform.position;
 
         pivot.transform.parent = null;
+
+        cam = GetComponent<Camera>();
     }
 
 
 
 
-    private void Move()
+    private void MoveMainCamera()
     {
-        if (GameController.controller.uiController.visivelpause) return;
-
+        if (GameController.controller.uiController.visivelpause || GameController.controller.Player.caverna == false) return;
+        cam.orthographic = false;
         pivot.transform.position = GameController.controller.Player.transform.position;
 
         float h = Input.GetAxis("Mouse X") * rotateSpeed;
@@ -88,5 +86,14 @@ public class CameraController : MonoBehaviour
         }
 
         transform.LookAt(GameController.controller.Player.transform.position);
+    }
+
+    void MoveCameraCaverna()
+    {
+        if (GameController.controller.uiController.visivelpause || GameController.controller.Player.caverna == true) return;
+
+        Vector3 novaPosicao = GameController.controller.Player.transform.position + offsetCamCaverna;
+        novaPosicao.y = 7.489f;
+        transform.position = novaPosicao;
     }
 }

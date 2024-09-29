@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     public GameObject playerModel;
     Vector3 moveDirection, moveSpeed;
     public Transform pivot;
-    public bool isGrounded = true;
+    public bool isGrounded = true, caverna = true;
     bool insideLadder = false;
     public CampFire lastSavePointReached;
 
@@ -58,12 +58,19 @@ public class Player : MonoBehaviour
                 RotacionarJogador();
                 MoverJogador();
             }
-            else
+            if (!InteracaoComItem.interacaoComItem.pegouCaixa && caverna == true)
             {
-                MoverJogadorComObjeto();
+                RotacionarJogador();
+                MoverJogador();
             }
+
+            MoverJogadorComObjeto();
+
+
+            MoverJogadorEm2D();
         }
-        Gravidade();
+
+            Gravidade();
         UsarEscada();
 
     }
@@ -120,10 +127,33 @@ public class Player : MonoBehaviour
 
     void MoverJogadorComObjeto()
     {
-        Vector3 moveComObj = transform.TransformDirection(moveDirection) * speed * Time.deltaTime;
-        rb.MovePosition(rb.position + moveComObj);
+        if (InteracaoComItem.interacaoComItem.pegouCaixa)
+        {
+            Vector3 moveComObj = transform.TransformDirection(moveDirection) * speed * Time.deltaTime;
+            rb.MovePosition(rb.position + moveComObj);
+        }
     }
 
+    void MoverJogadorEm2D()
+    {
+        if (caverna == false)
+        {
+            Vector3 move = new Vector3(-moveDirection.x, 0, 0) * speed * Time.deltaTime;
+            rb.MovePosition(rb.position + move);
+            if (move.x != 0)
+            {
+                if (move.x > 0)
+                {
+                    transform.rotation = Quaternion.Euler(0, 90, 0);
+                }
+                else
+                {
+                    transform.rotation = Quaternion.Euler(0, -90, 0);
+                }
+            }
+        }
+
+    }
     void Gravidade()
     {
         bool falling = rb.velocity.y < 0;
@@ -232,6 +262,8 @@ public class Player : MonoBehaviour
                 break;
             case "ParedeFim":
                 TomaDano(collider.gameObject.GetComponent<Inimigo>().GetDamage());
+                CameraController.cameraController.cam.orthographic = false;
+                caverna = true;
                 if (GameController.controller.lifePlayer > 0) // Respawn
                 {
                     Respawn(lastSavePointReached);
@@ -247,6 +279,25 @@ public class Player : MonoBehaviour
             case "Fosforo":
                 GameController.controller.fosforo++;
                 GameController.controller.uiController.UpdateFosforo(GameController.controller.fosforo);
+                Destroy(collider.gameObject);
+                break;
+            case "Caverna":
+                if (caverna == false)
+                {
+                    transform.position = new Vector3(222.5f, 1.1f, 395.8f);
+                    CameraController.cameraController.cam.orthographic = false;
+                    caverna = true;
+                }
+                else
+                {
+                    transform.position = new Vector3(62.17f, 0.79f, 702.57f);
+                    CameraController.cameraController.cam.orthographic = true;
+                    CameraController.cameraController.transform.rotation = Quaternion.Euler(0, -180, 0);
+                    caverna = false;
+                }
+                break;
+            case "Estalactite":
+                TomaDano(collider.gameObject.GetComponent<Inimigo>().GetDamage());
                 Destroy(collider.gameObject);
                 break;
         }
