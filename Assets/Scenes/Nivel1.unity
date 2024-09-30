@@ -360,7 +360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drops:
-  - {fileID: 7848034741481188106, guid: 50302fc5e9fa2034da70779398ee2955, type: 3}
+  - {fileID: 7848034741481188106, guid: fae1e0264e5755548b96b101c03a1d85, type: 3}
   spawnDrop: {fileID: 496761610}
   functionActivated: 1
 --- !u!65 &24187244
@@ -3057,7 +3057,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.587
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -37443,7 +37443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drops:
-  - {fileID: 7848034741481188106, guid: 50302fc5e9fa2034da70779398ee2955, type: 3}
+  - {fileID: 7848034741481188106, guid: fae1e0264e5755548b96b101c03a1d85, type: 3}
   spawnDrop: {fileID: 710243564}
   functionActivated: 1
 --- !u!65 &1524651295
@@ -42102,7 +42102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drops:
-  - {fileID: 7848034741481188106, guid: 50302fc5e9fa2034da70779398ee2955, type: 3}
+  - {fileID: 7848034741481188106, guid: fae1e0264e5755548b96b101c03a1d85, type: 3}
   spawnDrop: {fileID: 211299488621518036}
   functionActivated: 1
 --- !u!4 &4910964491451772142
