@@ -3,7 +3,24 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Fosforo
+  - Parede
+  - Bau
+  - Plataforma
+  - Fogueira
+  - Mecanismo
+  - Alavanca
+  - Escada
+  - ParedeFim
+  - Cabana
+  - Caixa
+  - ParedeFalsa
+  - Ground
+  - Tirolesa
+  - Lanterna
+  - Inimigo1
+  - ObjetoI
   layers:
   - Default
   - TransparentFX
