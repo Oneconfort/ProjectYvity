@@ -257,10 +257,7 @@ public class Player : MonoBehaviour
             case "Inimigo":
                 TomaDano(collider.gameObject.GetComponent<Inimigo>().GetDamage());
                 break;
-            case "Inimigo1":
-                TomaDano(collider.gameObject.GetComponent<Inimigo>().GetDamage());
-                break;
-            case "ParedeFim":
+              case "ParedeFim":
                 TomaDano(collider.gameObject.GetComponent<Inimigo>().GetDamage());
                 CameraController.cameraController.cam.orthographic = false;
                 caverna = true;

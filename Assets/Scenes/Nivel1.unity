@@ -2691,6 +2691,7 @@ MonoBehaviour:
   maxViewAngle: 65
   minViewAngle: -40
   pivot: {fileID: 1656437257}
+  cave: 0
 --- !u!1 &335993939
 GameObject:
   m_ObjectHideFlags: 0
@@ -3480,8 +3481,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65f50ae32c9a89a48b3026f5060fcd31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 12
-  rotateSpeed: 10
   playerModel: {fileID: 1827310821}
   pivot: {fileID: 1656437257}
   isGrounded: 1
