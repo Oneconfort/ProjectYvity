@@ -166,6 +166,7 @@ MonoBehaviour:
   darknessTime: 5
   dayTime: 10
   timeToDamagePlayer: 2
+  damageToDealToPlayerInDarkness: -1
   distanceFromCampfireToNotTakeDarknessDamage: 4
   playerLight: {fileID: 8929162145884977500}
   directionalLight: {fileID: 0}

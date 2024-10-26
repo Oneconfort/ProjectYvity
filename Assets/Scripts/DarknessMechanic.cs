@@ -7,6 +7,7 @@ public class DarknessMechanic : MonoBehaviour
     public float darknessTime;
     public float dayTime;
     public float timeToDamagePlayer;
+    public int damageToDealToPlayerInDarkness;
     public float distanceFromCampfireToNotTakeDarknessDamage;
 
     [Header("References")]
@@ -130,7 +131,7 @@ public class DarknessMechanic : MonoBehaviour
                 damagePlayer_t -= dt;
                 if (damagePlayer_t <= 0f)
                 {
-                    GameController.controller.Player.TomaDano(-1);
+                    GameController.controller.Player.TomaDano(damageToDealToPlayerInDarkness);
                     damagePlayer_t += timeToDamagePlayer;
                 }
             }
