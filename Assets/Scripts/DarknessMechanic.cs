@@ -10,6 +10,7 @@ public class DarknessMechanic : MonoBehaviour
     public float distanceFromCampfireToNotTakeDarknessDamage;
 
     [Header("References")]
+    public Light playerLight;
     public Light directionalLight;
     public Volume globalVolume;
     public RectTransform clockPointer;
@@ -20,6 +21,7 @@ public class DarknessMechanic : MonoBehaviour
     public float directionalLightIntensityInDarkness;
     public float vignetteIntensityInDarkness;
     public float skyboxExposureInDarkness;
+    public float playerLightIntensityInDarkness;
 
     [Header("Internal - Don't Mess")]
     public Vignette globalVolumeVignette;
@@ -31,6 +33,7 @@ public class DarknessMechanic : MonoBehaviour
     public float baseDirectionalLightIntensity;
     public float darknessAnimation_t;
     public bool playingDarknessAnimation;
+    public float basePlayerLightIntensity;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +44,7 @@ public class DarknessMechanic : MonoBehaviour
         baseDirectionalLightIntensity = directionalLight.intensity;
         globalVolume.profile.TryGet(out globalVolumeVignette);
         baseVignetteIntensity = globalVolumeVignette.intensity.value;
+        basePlayerLightIntensity = playerLight.intensity;
     }
 
     // Update is called once per frame
@@ -92,7 +96,7 @@ public class DarknessMechanic : MonoBehaviour
                 }
                 playingDarknessAnimation = darknessAnimation_t > 0f && darknessAnimation_t < 1f;
                 darknessAnimation_t = Mathf.Clamp(darknessAnimation_t, 0f, 1f);
-                UpdateAnimation();
+                UpdateDarknessAnimation();
             }
         }
 
@@ -131,6 +135,13 @@ public class DarknessMechanic : MonoBehaviour
                 }
             }
         }
+
+        { // Light following player
+            if (isDark)
+            {
+                playerLight.transform.position = GameController.controller.Player.transform.position;
+            }
+        }
     }
 
     private void OnDestroy()
@@ -138,10 +149,11 @@ public class DarknessMechanic : MonoBehaviour
         RenderSettings.skybox.SetFloat("_Exposure", baseSkyboxExposure);
     }
 
-    void UpdateAnimation()
+    void UpdateDarknessAnimation()
     {
         directionalLight.intensity = Mathf.Lerp(baseDirectionalLightIntensity, directionalLightIntensityInDarkness, darknessAnimation_t);
         globalVolumeVignette.intensity.value = Mathf.Lerp(baseVignetteIntensity, vignetteIntensityInDarkness, darknessAnimation_t);
         RenderSettings.skybox.SetFloat("_Exposure", Mathf.Lerp(baseSkyboxExposure, skyboxExposureInDarkness, darknessAnimation_t));
+        playerLight.intensity = Mathf.Lerp(basePlayerLightIntensity, playerLightIntensityInDarkness, darknessAnimation_t);
     }
 }
