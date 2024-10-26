@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4494068899993873521
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6688288372083303954}
+  - component: {fileID: 5974313629804808415}
+  m_Layer: 0
+  m_Name: Darkness Mechanic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6688288372083303954
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4494068899993873521}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5974313629804808415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4494068899993873521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3c00c0d536da8d4f9273086b61d97af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  darknessTime: 5
+  dayTime: 10
+  timeToDamagePlayer: 2
+  distanceFromCampfireToNotTakeDarknessDamage: 3
+  directionalLight: {fileID: 0}
+  globalVolume: {fileID: 0}
+  clockPointer: {fileID: 0}
+  clockPanel: {fileID: 0}
+  baseSkyboxExposure: 1.3
+  directionalLightIntensityInDarkness: 0.2
+  vignetteIntensityInDarkness: 0.5
+  skyboxExposureInDarkness: 0.2
+  globalVolumeVignette: {fileID: 0}
+  darkness_t: 0
+  damagePlayer_t: 0
+  isDark: 0
+  isPlayerCloseToLightSource: 0
+  baseVignetteIntensity: 0
+  baseDirectionalLightIntensity: 0
+  darknessAnimation_t: 0
+  playingDarknessAnimation: 0

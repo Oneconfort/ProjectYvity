@@ -72,6 +72,7 @@ public static class SaveGame
         data.level = "Nivel1";
         data.lastSavePointReached = 0;
         data.hasFlashlight = false;
+        data.flashlightBattery = 100f;
 
         // Saves the data
         Save();
@@ -94,7 +95,7 @@ public static class SaveGame
         GameController.controller.lifePlayer = GameController.controller.lifeMax;
         GameController.controller.Player.lastSavePointReached = GameController.controller.campFires[0];
         InteracaoComItem.interacaoComItem.pegouLanterna = false;
-        LanternaPlayer.lanternaPlayer.bateriaAtual = 0f;
+        LanternaPlayer.lanternaPlayer.bateriaAtual = 100f;
     }
 
     public static void DeleteSave()
