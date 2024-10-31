@@ -29,9 +29,9 @@ public static class SaveGame
         // Update saved data
         if (GameController.controller) // Gameplay data
         {
-            data.playerLives = GameController.controller.lifePlayer;
-            data.level = GameController.controller.currentLevel;
-            data.flashlightBattery = LanternaPlayer.lanternaPlayer.bateriaAtual;
+            //data.playerLives = GameController.controller.lifePlayer;
+           data.level = GameController.controller.currentLevel;
+           data.flashlightBattery = LanternaPlayer.lanternaPlayer.bateriaAtual;
 
             if (InteracaoComItem.interacaoComItem)
             {

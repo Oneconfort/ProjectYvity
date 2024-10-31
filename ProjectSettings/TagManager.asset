@@ -24,11 +24,12 @@ TagManager:
   - Caverna2
   - Estalactite
   - Caverna
+  - Inimigo1
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - 

@@ -1,30 +1,54 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     // [SerializeField] private LayerMask Default;
 
-     float speed = 10, rotateSpeed;
+    [SerializeField] private Transform spherePoint;
+    [SerializeField] private Transform point2;
+
+    [SerializeField] private float speed;
+    [SerializeField] private float maxJumpTime;
+    [SerializeField] private float maxJumpHeight;
+    [SerializeField] private float fallMultiplier;
+    [SerializeField] private float hangTime;
+    [SerializeField] private float  rotateSpeed;
+
+    [SerializeField] private bool isGrounded = true;
+    [SerializeField] public bool caverna = true;
+    
     private float gravity = -9.81f;
-    Rigidbody rb;
+    private float initialJumpSpeed;
+    private float hangCounter;
+
+
+    private Vector3 dir = Vector3.zero;
+    private Vector3 moveDir = Vector3.zero;
+
+    private Rigidbody rb;
+    
     public GameObject playerModel;
-    Vector3 moveDirection, moveSpeed;
+  
     public Transform pivot;
-    public bool isGrounded = true, caverna = true;
+    
     bool insideLadder = false;
     public CampFire lastSavePointReached;
+
+    public LayerMask mask;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        moveDirection = Vector3.zero;
+        SetJumpVar();
 
-        GameController.controller.lifePlayer = SaveGame.data.playerLives;
-        lastSavePointReached = GameController.controller.campFires[SaveGame.data.lastSavePointReached];
+        //GameController.controller.lifePlayer = SaveGame.data.playerLives;
+        //lastSavePointReached = GameController.controller.campFires[SaveGame.data.lastSavePointReached];
         if (GameController.controller.lifePlayer < GameController.controller.lifeMax)
         {
             Respawn(lastSavePointReached);
@@ -38,20 +62,24 @@ public class Player : MonoBehaviour
     {
         if (GameController.controller.uiController.visivelpause == true) return;
 
-        Mover();
+        //Mover();
         CheckCheatInput();
+
     }
 
+    private void FixedUpdate()
+    {
+        MoverJogador();
+
+    }
     void Mover()
     {
         if (InteracaoComItem.interacaoComItem.pegouCaixa == true && LanternaPlayer.lanternaPlayer.caixaDetectada == false) return;
 
-        VerificarSeEstaNoChao();
+        IsGrunded();
 
-        if (!insideLadder && moveDirection != Vector3.zero)
+        if (!insideLadder && dir != Vector3.zero)
         {
-            rb.useGravity = true;
-            rb.isKinematic = false;
 
             if (!InteracaoComItem.interacaoComItem.pegouCaixa)
             {
@@ -70,7 +98,7 @@ public class Player : MonoBehaviour
             MoverJogadorEm2D();
         }
 
-            Gravidade();
+        //Gravidade();
         UsarEscada();
 
     }
@@ -92,44 +120,48 @@ public class Player : MonoBehaviour
         }
     }
 
-    void VerificarSeEstaNoChao()
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, -transform.up, out hit, 1.1f))
-        {
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
-        }
-    }
 
     void RotacionarJogador()
     {
-        if (moveDirection.z != 0)
-        {
-            transform.rotation = Quaternion.Euler(0f, pivot.rotation.eulerAngles.y, 0f);
-            Quaternion newRotation = Quaternion.LookRotation(new Vector3(moveDirection.x, 0f, moveDirection.z));
-        }
+        Vector3 dirRot = new Vector3(dir.x, 0, dir.z);
+        Quaternion rot = Quaternion.LookRotation(dirRot);
+
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, 1);
     }
 
     void MoverJogador()
     {
-        Vector3 cameraForward = CameraController.cameraController.transform.forward;
-        cameraForward.y = 0;
-        cameraForward.Normalize();
+        rb.AddForce(dir, ForceMode.Acceleration);
+        if (IsGrunded())
+        {
+            hangCounter = hangTime;
+        }
+        else
+        {
+            hangCounter -= Time.deltaTime;
+            dir.y += gravity * Time.deltaTime;
+        }
+        Debug.Log(dir.z);
+    }
+    void Jump()
+    {
+        if ( hangCounter > 0)
+        {
+            dir.y = initialJumpSpeed;
+        }
+        else
+        {
+            dir.y += -0.1f * Time.deltaTime;
+        }
 
-        Vector3 move = cameraForward * moveDirection.z + CameraController.cameraController.transform.right * moveDirection.x;
 
-        rb.MovePosition(rb.position + move * speed * Time.deltaTime);
     }
 
     void MoverJogadorComObjeto()
     {
         if (InteracaoComItem.interacaoComItem.pegouCaixa)
         {
-            Vector3 moveComObj = transform.TransformDirection(moveDirection) * speed * Time.deltaTime;
+            Vector3 moveComObj = transform.TransformDirection(moveDir) * speed * Time.deltaTime;
             rb.MovePosition(rb.position + moveComObj);
         }
     }
@@ -138,7 +170,7 @@ public class Player : MonoBehaviour
     {
         if (caverna == false)
         {
-            Vector3 move = new Vector3(-moveDirection.x, 0, 0) * speed * Time.deltaTime;
+            Vector3 move = new Vector3(-moveDir.x, 0, 0) * speed * Time.deltaTime;
             rb.MovePosition(rb.position + move);
             if (move.x != 0)
             {
@@ -154,7 +186,7 @@ public class Player : MonoBehaviour
         }
 
     }
-    void Gravidade()
+    /*void Gravidade()
     {
         bool falling = rb.velocity.y < 0;
         if (falling)
@@ -166,16 +198,16 @@ public class Player : MonoBehaviour
             rb.velocity += new Vector3(0, gravity * Time.deltaTime, 0);
         }
 
-    }
+    }*/
 
     void UsarEscada()
     {
-        if (insideLadder && moveDirection.z > 0)
+        if (insideLadder && moveDir.z > 0)
         {
             GameController.controller.Player.transform.position += Vector3.up / 10;
             isGrounded = false;
         }
-        else if (insideLadder && moveDirection.z < 0)
+        else if (insideLadder && moveDir.z < 0)
         {
             GameController.controller.Player.transform.position += Vector3.down / 10;
 
@@ -189,14 +221,16 @@ public class Player : MonoBehaviour
     public void OnMove(InputAction.CallbackContext ctxt)
     {
         Vector2 NewMoveDir = ctxt.ReadValue<Vector2>();
-        moveDirection.x = NewMoveDir.x;
-        moveDirection.z = NewMoveDir.y;
+        moveDir.x = NewMoveDir.x * -1;
+        moveDir.z = NewMoveDir.y * -1;
+        dir = new Vector3(moveDir.x * speed, rb.velocity.y, moveDir.z * speed * -1);
+
     }
     public void OnJump(InputAction.CallbackContext ctxt)
     {
         if (ctxt.performed && isGrounded && InteracaoComItem.interacaoComItem.pegouCaixa == false)
         {
-            rb.velocity = new Vector3(rb.velocity.x, 13, rb.velocity.z);
+            Jump();
         }
     }
     public void OnInteraction(InputAction.CallbackContext ctxt)
@@ -368,5 +402,15 @@ public class Player : MonoBehaviour
 
         transform.position = savePoint.spawnPoint.position;
         transform.rotation = savePoint.spawnPoint.rotation;
+    }
+    public bool IsGrunded()
+    {
+        return Physics.CheckSphere(spherePoint.position, 0.5f, mask);
+    }
+    void SetJumpVar()
+    {
+        float timeApex = maxJumpTime / 2.0f;
+        gravity = (-2.0f * maxJumpHeight) / Mathf.Pow(timeApex, 2.0f);
+        initialJumpSpeed = (2.0f * maxJumpHeight) / timeApex;
     }
 }

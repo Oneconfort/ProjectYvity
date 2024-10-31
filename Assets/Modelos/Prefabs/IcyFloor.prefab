@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8648636932151922710
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4132087241981548644}
+  m_Layer: 0
+  m_Name: IcyFloor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4132087241981548644
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8648636932151922710}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6930419905407471351}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &8186677909745585819
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4132087241981548644}
+    m_Modifications:
+    - target: {fileID: 1274835355018166380, guid: 4eef322c307b9c14c925ae0bf083780d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1274835355018166380, guid: 4eef322c307b9c14c925ae0bf083780d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1274835355018166380, guid: 4eef322c307b9c14c925ae0bf083780d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1274835355018166380, guid: 4eef322c307b9c14c925ae0bf083780d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1274835355018166380, guid: 4eef322c307b9c14c925ae0bf083780d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1274835355018166380, guid: 4eef322c307b9c14c925ae0bf083780d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1274835355018166380, guid: 4eef322c307b9c14c925ae0bf083780d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1274835355018166380, guid: 4eef322c307b9c14c925ae0bf083780d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1274835355018166380, guid: 4eef322c307b9c14c925ae0bf083780d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1274835355018166380, guid: 4eef322c307b9c14c925ae0bf083780d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1504985173122977891, guid: 4eef322c307b9c14c925ae0bf083780d,
+        type: 3}
+      propertyPath: m_Name
+      value: IcyBlock
+      objectReference: {fileID: 0}
+    - target: {fileID: 1766564941563567848, guid: 4eef322c307b9c14c925ae0bf083780d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f804f33faa57af942a2f354838f47c0e, type: 2}
+    - target: {fileID: 1995624788368956956, guid: 4eef322c307b9c14c925ae0bf083780d,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: b3535479261ab3e45b41637ffdf74ce0,
+        type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4eef322c307b9c14c925ae0bf083780d, type: 3}
+--- !u!4 &6930419905407471351 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1274835355018166380, guid: 4eef322c307b9c14c925ae0bf083780d,
+    type: 3}
+  m_PrefabInstance: {fileID: 8186677909745585819}
+  m_PrefabAsset: {fileID: 0}
