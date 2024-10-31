@@ -57,4 +57,8 @@ public class GameController : MonoBehaviour
     {
         SaveGame.Save();
     }
+
+    public void TomarDano(){
+        lifePlayer = lifePlayer - 1;
+    }
 }

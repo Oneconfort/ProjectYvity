@@ -77,11 +77,6 @@ public class Player : MonoBehaviour
 
     void CheckCheatInput()
     {
-        if (!Debug.isDebugBuild) // Returns 'true' in the Editor as well
-        {
-            return; 
-        }
-
         if (Input.GetKeyDown(KeyCode.J))
         {
             Cheats.GoToPreviousCampFire();
