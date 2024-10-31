@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17797886, g: 0.22283816, b: 0.30495313, a: 1}
+  m_IndirectSpecularColor: {r: 0.17797856, g: 0.22283795, b: 0.3049528, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3484,7 +3484,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spherePoint: {fileID: 1064718833}
   point2: {fileID: 0}
-  speed: 5
+  speed: 50
+  maxSpeed: 10
   maxJumpTime: 1
   maxJumpHeight: 5
   fallMultiplier: 5

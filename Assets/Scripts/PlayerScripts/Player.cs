@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform spherePoint;
     [SerializeField] private Transform point2;
 
-    [SerializeField] private float speed;
+    [SerializeField] private float speed, maxSpeed;
     [SerializeField] private float maxJumpTime;
     [SerializeField] private float maxJumpHeight;
     [SerializeField] private float fallMultiplier;
@@ -131,7 +131,9 @@ public class Player : MonoBehaviour
 
     void MoverJogador()
     {
-        rb.AddForce(dir, ForceMode.Acceleration);
+        if (rb.velocity.magnitude < maxSpeed){
+            rb.AddForce(dir, ForceMode.Acceleration);
+        }
         if (IsGrunded())
         {
             hangCounter = hangTime;
