@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17797856, g: 0.22283795, b: 0.3049528, a: 1}
+  m_IndirectSpecularColor: {r: 0.17797886, g: 0.22283816, b: 0.30495313, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3483,15 +3483,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spherePoint: {fileID: 1064718833}
-  point2: {fileID: 0}
   speed: 50
   maxSpeed: 10
-  maxJumpTime: 1
-  maxJumpHeight: 5
-  fallMultiplier: 5
+  maxJumpTime: 0.5
+  maxJumpHeight: 2.05
   hangTime: 0.5
-  rotateSpeed: 1
-  isGrounded: 1
+  rotateSpeed: 2
   caverna: 1
   playerModel: {fileID: 1827310821}
   pivot: {fileID: 1656437257}
@@ -3702,7 +3699,7 @@ Rigidbody:
   m_GameObject: {fileID: 472904341}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0.7
+  m_Drag: 0.6
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -3727,7 +3724,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 472904341}
-  m_Material: {fileID: 13400000, guid: 98427b3d5bc316749a9b09afa1d29906, type: 2}
+  m_Material: {fileID: 13400000, guid: b3535479261ab3e45b41637ffdf74ce0, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -25356,7 +25353,7 @@ Transform:
   m_GameObject: {fileID: 1064718832}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.485, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -1,30 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
-using System.Drawing;
+//using System.Drawing;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.XR;
 
 public class Player : MonoBehaviour
 {
     // [SerializeField] private LayerMask Default;
 
     [SerializeField] private Transform spherePoint;
-    [SerializeField] private Transform point2;
 
     [SerializeField] private float speed, maxSpeed;
     [SerializeField] private float maxJumpTime;
     [SerializeField] private float maxJumpHeight;
-    [SerializeField] private float fallMultiplier;
     [SerializeField] private float hangTime;
-    [SerializeField] private float  rotateSpeed;
-
-    [SerializeField] private bool isGrounded = true;
+    [SerializeField] private float rotateSpeed;
+    
     [SerializeField] public bool caverna = true;
     
     private float gravity = -9.81f;
     private float initialJumpSpeed;
+
+
     private float hangCounter;
 
 
@@ -70,7 +70,7 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         MoverJogador();
-
+        RotacionarJogador();
     }
     void Mover()
     {
@@ -124,26 +124,44 @@ public class Player : MonoBehaviour
     void RotacionarJogador()
     {
         Vector3 dirRot = new Vector3(dir.x, 0, dir.z);
-        Quaternion rot = Quaternion.LookRotation(dirRot);
+        Quaternion rot;
 
-        transform.rotation = Quaternion.Lerp(transform.rotation, rot, 1);
+        if (dirRot != Vector3.zero)
+        {
+            rot = Quaternion.LookRotation(dirRot);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rot, 1);
+
+        }
     }
 
     void MoverJogador()
     {
-        if (rb.velocity.magnitude < maxSpeed){
-            rb.AddForce(dir, ForceMode.Acceleration);
-        }
         if (IsGrunded())
         {
             hangCounter = hangTime;
         }
         else
         {
-            hangCounter -= Time.deltaTime;
-            dir.y += gravity * Time.deltaTime;
+            hangCounter -= Time.fixedDeltaTime;
+            dir.y += gravity * Time.fixedDeltaTime;
         }
-        Debug.Log(dir.z);
+        if (rb.velocity.magnitude < maxSpeed)
+        {
+            if(dir.y != initialJumpSpeed)
+            {
+                rb.AddForce(dir, ForceMode.Acceleration);
+            }
+            else
+            {
+                dir.x = rb.velocity.x;
+                dir.z = rb.velocity.z;
+                rb.velocity = dir;
+            }
+        }
+        if (hangCounter > 0)
+        {
+            dir.y += -0.1f * Time.fixedDeltaTime;
+        }
     }
     void Jump()
     {
@@ -151,12 +169,6 @@ public class Player : MonoBehaviour
         {
             dir.y = initialJumpSpeed;
         }
-        else
-        {
-            dir.y += -0.1f * Time.deltaTime;
-        }
-
-
     }
 
     void MoverJogadorComObjeto()
@@ -207,13 +219,12 @@ public class Player : MonoBehaviour
         if (insideLadder && moveDir.z > 0)
         {
             GameController.controller.Player.transform.position += Vector3.up / 10;
-            isGrounded = false;
         }
         else if (insideLadder && moveDir.z < 0)
         {
             GameController.controller.Player.transform.position += Vector3.down / 10;
 
-            if (isGrounded == true)
+            if (IsGrunded())
             {
                 insideLadder = false;
             }
@@ -223,14 +234,14 @@ public class Player : MonoBehaviour
     public void OnMove(InputAction.CallbackContext ctxt)
     {
         Vector2 NewMoveDir = ctxt.ReadValue<Vector2>();
-        moveDir.x = NewMoveDir.x * -1;
+        moveDir.x = NewMoveDir.x * 1;
         moveDir.z = NewMoveDir.y * -1;
         dir = new Vector3(moveDir.x * speed, rb.velocity.y, moveDir.z * speed * -1);
 
     }
     public void OnJump(InputAction.CallbackContext ctxt)
     {
-        if (ctxt.performed && isGrounded && InteracaoComItem.interacaoComItem.pegouCaixa == false)
+        if (ctxt.performed && IsGrunded() && InteracaoComItem.interacaoComItem.pegouCaixa == false)
         {
             Jump();
         }
@@ -414,5 +425,11 @@ public class Player : MonoBehaviour
         float timeApex = maxJumpTime / 2.0f;
         gravity = (-2.0f * maxJumpHeight) / Mathf.Pow(timeApex, 2.0f);
         initialJumpSpeed = (2.0f * maxJumpHeight) / timeApex;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(spherePoint.position, 0.5f);
     }
 }
