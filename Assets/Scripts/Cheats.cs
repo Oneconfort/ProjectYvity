@@ -14,7 +14,7 @@ public static class Cheats
         {
             return;
         }
-        
+
         if (campFireIndex >= campFires.Length)
         {
             campFireIndex = 0;

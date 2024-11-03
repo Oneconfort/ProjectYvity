@@ -8,12 +8,12 @@ public class CameraController : MonoBehaviour
     public static CameraController cameraController;
     public Vector3 offset;
 
-    Vector3 offsetCamCaverna = new Vector3(-1.36f, 12.69f, 14.31f);
+    Vector3 offsetCamCaverna = new Vector3(-1.36f, 12.69f, 17.2f);
     public Camera cam;
     bool useOffsetValues, invertY;
     public float rotateSpeed, maxViewAngle, minViewAngle;
     public Transform pivot;
-   public bool cave;
+    public bool cave;
     void Awake()
     {
         if (cameraController == null)

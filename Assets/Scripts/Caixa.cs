@@ -6,11 +6,13 @@ public class Caixa : MonoBehaviour
 {
 
     private Renderer rendererCaixa;
+    private BoxCollider box;
 
     void Start()
     {
-        rendererCaixa = GetComponent<Renderer>();
-        rendererCaixa.material.color = Color.magenta;
+        rendererCaixa = GetComponentInChildren<Renderer>();
+
+        box = GetComponent<BoxCollider>();
     }
 
     private void Update()
@@ -27,6 +29,14 @@ public class Caixa : MonoBehaviour
         else
         {
             rendererCaixa.material.color = Color.white;
+        }
+        if (InteracaoComItem.interacaoComItem.pegouCaixa)
+        {
+            box.enabled = false;
+        }
+        else
+        {
+            box.enabled = true;
         }
     }
 }

@@ -52,7 +52,6 @@ public static class SaveGame
 
         // Saves the data
         string s = JsonUtility.ToJson(data, true);
-        Debug.Log(s);
         File.WriteAllText(path, s);
     }
 
@@ -61,7 +60,11 @@ public static class SaveGame
         string path = Application.dataPath + "/save.txt";
         string s = File.ReadAllText(path);
         data = JsonUtility.FromJson<SaveData>(s);
-        Debug.Log(JsonUtility.ToJson(data, true));
+        if (data == null) // Prevents the save file from being empty
+        {
+            Debug.Assert(false, "Save file is empty. A new one will be created. Note that this is an unexpected behaviour and should not happen.");
+            CreateSave();
+        }
     }
 
     static void CreateSave()
@@ -72,6 +75,7 @@ public static class SaveGame
         data.level = "Nivel1";
         data.lastSavePointReached = 0;
         data.hasFlashlight = false;
+        data.flashlightBattery = 0f;
 
         // Saves the data
         Save();

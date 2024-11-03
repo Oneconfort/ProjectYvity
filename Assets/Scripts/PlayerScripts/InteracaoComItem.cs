@@ -10,6 +10,7 @@ public class InteracaoComItem : MonoBehaviour
 {
     public static InteracaoComItem interacaoComItem;
     float dropForce = 1.0f;
+    private BoxCollider boxCollider;
     public GameObject holdPosition;
     GameObject heldItem;
     private Rigidbody heldItemRigidbody;
@@ -36,6 +37,7 @@ public class InteracaoComItem : MonoBehaviour
         {
             ProcessarInteracao(LanternaPlayer.lanternaPlayer.gameObject);
         }
+        boxCollider = GetComponent<BoxCollider>();
     }
 
     public void InteracaoCenario()
@@ -76,6 +78,7 @@ public class InteracaoComItem : MonoBehaviour
                 {
                     PegarItem(alvo);
                     pegouCaixa = true;
+                    boxCollider.enabled = true;
                 }
                 break;
             case "Lanterna":
@@ -149,6 +152,8 @@ public class InteracaoComItem : MonoBehaviour
             heldItemRigidbody.AddForce(holdPosition.transform.forward * dropForce, ForceMode.Impulse);
             pegouItem = false;
             pegouCaixa = false;
+            boxCollider.enabled = false;
+
             heldItem = null;
 
             if (pegouLanterna == true)
