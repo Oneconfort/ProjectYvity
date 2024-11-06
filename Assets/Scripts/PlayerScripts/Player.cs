@@ -16,9 +16,6 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform spherePoint;
 
     [SerializeField] private float speed, maxSpeed;
-    // [SerializeField] private float maxJumpTime;
-    // [SerializeField] private float maxJumpHeight;
-    //[SerializeField] private float hangTime;
     [SerializeField] private float rotateSpeed;
 
     [SerializeField] public bool caverna = true, isGrounded = true;
@@ -26,18 +23,13 @@ public class Player : MonoBehaviour
     private float gravity = -9.81f;
     private float initialJumpSpeed;
 
-
-    // private float hangCounter;
-
-
-    private Vector3 moveDirection = Vector3.zero;
+   
+    private Vector3 dir = Vector3.zero;
     private Vector3 moveDir = Vector3.zero;
 
     private Rigidbody rb;
 
     private Animator animator;
-
-    public GameObject playerModel;
 
     public Transform pivot;
 
@@ -50,7 +42,6 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-        moveDirection = Vector3.zero;
 
         GameController.controller.lifePlayer = SaveGame.data.playerLives;
         lastSavePointReached = GameController.controller.campFires[SaveGame.data.lastSavePointReached];
@@ -75,9 +66,9 @@ public class Player : MonoBehaviour
     {
         if (InteracaoComItem.interacaoComItem.pegouCaixa == true && LanternaPlayer.lanternaPlayer.caixaDetectada == false) return;
 
-        VerificarSeEstaNoChao();
+        IsGrounded();
 
-        if (!insideLadder && moveDirection != Vector3.zero)
+        if (!insideLadder && dir != Vector3.zero)
         {
             rb.useGravity = true;
             rb.isKinematic = false;
@@ -112,7 +103,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void VerificarSeEstaNoChao()
+    void IsGrounded()
     {
         RaycastHit hit;
         if (Physics.Raycast(transform.position, -transform.up, out hit, 1.1f))
@@ -127,33 +118,36 @@ public class Player : MonoBehaviour
 
     void RotacionarJogador()
     {
-        if (moveDirection.z != 0)
+        if (dir.z != 0)
         {
             transform.rotation = Quaternion.Euler(0f, pivot.rotation.eulerAngles.y, 0f);
-            Quaternion newRotation = Quaternion.LookRotation(new Vector3(moveDirection.x, 0f, moveDirection.z));
+            Quaternion newRotation = Quaternion.LookRotation(new Vector3(dir.x, 0f, dir.z));
         }
     }
 
     void MoverJogador()
-    {
+    {   //camera
         Vector3 cameraForward = CameraController.cameraController.transform.forward;
         cameraForward.y = 0;
         cameraForward.Normalize();
+        Vector3 move = (cameraForward * dir.z + CameraController.cameraController.transform.right * dir.x);
+        move.Normalize();
 
-        Vector3 move = cameraForward * moveDirection.z + CameraController.cameraController.transform.right * moveDirection.x;
+        //AddForce
+        Vector3 force = move * speed;
+        Vector3 newVelocity = new Vector3(force.x, rb.velocity.y, force.z) - rb.velocity;
 
-        Vector3 newVelocity = move * speed;
-
-        newVelocity.y = rb.velocity.y;
-
-        rb.velocity = newVelocity;
+        rb.AddForce(new Vector3(newVelocity.x, 0, newVelocity.z), ForceMode.VelocityChange);
+        
     }
+
+
 
     void MoverJogadorComObjeto()
     {
         if (InteracaoComItem.interacaoComItem.pegouCaixa)
         {
-            Vector3 moveComObj = transform.TransformDirection(moveDirection) * speed;
+            Vector3 moveComObj = transform.TransformDirection(dir) * speed;
             moveComObj.y = rb.velocity.y;
             rb.velocity = moveComObj;
         }
@@ -163,12 +157,12 @@ public class Player : MonoBehaviour
     {
         if (caverna == false)
         {
-            Vector3 move = new Vector3(-moveDirection.x, 0, -moveDirection.z) * speed;
+            Vector3 move = new Vector3(-dir.x, 0, -dir.z) * speed;
             move.y = rb.velocity.y;
 
             rb.velocity = move;
 
-            Vector3 dirRot = new Vector3(-moveDirection.x, 0, -moveDirection.z);
+            Vector3 dirRot = new Vector3(-dir.x, 0, -dir.z);
             Quaternion rot;
 
             if (dirRot != Vector3.zero)
@@ -180,25 +174,20 @@ public class Player : MonoBehaviour
     }
     void Gravidade()
     {
-        bool falling = rb.velocity.y < 0;
-        if (falling)
+       if (!isGrounded)
         {
-            rb.velocity += new Vector3(0, gravity * 3 * Time.deltaTime, 0);
-        }
-        else
-        {
-            rb.velocity += new Vector3(0, gravity * Time.deltaTime, 0);
+            rb.velocity += new Vector3(0, gravity * 2 * Time.deltaTime, 0);
         }
     }
 
     void UsarEscada()
     {
-        if (insideLadder && moveDirection.z > 0)
+        if (insideLadder && dir.z > 0)
         {
             GameController.controller.Player.transform.position += Vector3.up / 10;
             isGrounded = false;
         }
-        else if (insideLadder && moveDirection.z < 0)
+        else if (insideLadder && dir.z < 0)
         {
             GameController.controller.Player.transform.position += Vector3.down / 10;
 
@@ -212,15 +201,15 @@ public class Player : MonoBehaviour
     public void OnMove(InputAction.CallbackContext ctxt)
     {
         Vector2 NewMoveDir = ctxt.ReadValue<Vector2>();
-        moveDirection.x = NewMoveDir.x;
-        moveDirection.z = NewMoveDir.y;
-        animator.SetFloat("Speed", moveDirection.magnitude);
+        dir.x = NewMoveDir.x;
+        dir.z = NewMoveDir.y;
+        animator.SetFloat("Speed", dir.magnitude);
     }
     public void OnJump(InputAction.CallbackContext ctxt)
     {
         if (ctxt.performed && isGrounded && InteracaoComItem.interacaoComItem.pegouCaixa == false)
         {
-            rb.velocity = new Vector3(rb.velocity.x, 24, rb.velocity.z);
+            rb.velocity = new Vector3(rb.velocity.x, 24.5F, rb.velocity.z);
             animator.SetTrigger("Jump");
         }
     }

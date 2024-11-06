@@ -8,7 +8,7 @@ public class LanternaPlayer : MonoBehaviour
     public GameObject lanterna, luzSpot, luzPoint, bauInteracao, caixa;
     Rigidbody rb;
     public bool ligar = false;
-    float maxBateria = 100f, drenagemBateria = 1f;
+    private float maxBateria = 100f, drenagemBateria = 1f;
     public float bateriaAtual = 0;
 
     enum DetectedType { None, Caixa, Plataforma }

@@ -42,7 +42,8 @@ public static class SaveGame
             {
                 for (int i = 0; i < GameController.controller.campFires.Length; i++)
                 {
-                    if (GameController.controller.campFires[i] == GameController.controller.Player.lastSavePointReached)
+                    CampFire campFire = GameController.controller.campFires[i];
+                    if (campFire && campFire == GameController.controller.Player.lastSavePointReached)
                     {
                         data.lastSavePointReached = i;
                     }

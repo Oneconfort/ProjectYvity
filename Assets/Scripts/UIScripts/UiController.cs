@@ -83,7 +83,7 @@ public class UiController : MonoBehaviour
         GameController.controller.ControlCursor(true);
         SceneManager.LoadScene(scene);
         Time.timeScale = 1.0f;
-
+        Cheats.campFireIndex = 0;
     }
     public void MostrarPainelFimDeJogo()
     {
@@ -105,12 +105,14 @@ public class UiController : MonoBehaviour
         SaveGame.ResetRunData();
         SaveGame.Save();
         SceneManager.LoadScene(num);
+        Cheats.campFireIndex = 0;
     }
 
     public void ChangeScene(string levelToGo)
     {
         SceneManager.LoadScene(levelToGo);
         Time.timeScale = 1.0f;
+        Cheats.campFireIndex = 0;
     }
     public void QuitGame()
     {

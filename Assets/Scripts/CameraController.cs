@@ -10,8 +10,8 @@ public class CameraController : MonoBehaviour
 
     Vector3 offsetCamCaverna = new Vector3(-1.36f, 12.69f, 17.2f);
     public Camera cam;
-    bool useOffsetValues, invertY;
-    public float rotateSpeed, maxViewAngle, minViewAngle;
+    private bool useOffsetValues, invertY;
+    private float rotateSpeed = 2, maxViewAngle = 65, minViewAngle = -40;
     public Transform pivot;
     public bool cave;
     void Awake()
