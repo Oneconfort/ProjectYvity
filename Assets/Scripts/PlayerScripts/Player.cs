@@ -59,8 +59,12 @@ public class Player : MonoBehaviour
         if (GameController.controller.uiController.visivelpause == true) return;
 
         Mover();
+       
+
+
         CheckCheatInput();
     }
+   
 
     void Mover()
     {

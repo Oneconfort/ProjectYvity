@@ -11,12 +11,12 @@ public class InteracaoComItem : MonoBehaviour
     public static InteracaoComItem interacaoComItem;
     float dropForce = 1.0f;
     private BoxCollider boxCollider;
-    public GameObject holdPosition;
+    public GameObject holdPosition, holdPositionLanterna;
     GameObject heldItem;
     private Rigidbody heldItemRigidbody;
     public GameObject inimigo;
     public bool pegouLanterna = false, pegouItem = false, pegouCaixa = false;
-
+    Animator animator;
     //tirolesa
     public Transform startPoint;
     public Transform endPoint;
@@ -37,6 +37,7 @@ public class InteracaoComItem : MonoBehaviour
         {
             ProcessarInteracao(LanternaPlayer.lanternaPlayer.gameObject);
         }
+        animator = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider>();
     }
 
@@ -82,8 +83,9 @@ public class InteracaoComItem : MonoBehaviour
                 }
                 break;
             case "Lanterna":
-                PegarItem(alvo);
                 pegouLanterna = true;
+                PegarItem(alvo);
+                animator.SetLayerWeight(1, 1f);
                 LanternaPlayer.lanternaPlayer.LigarLanterna();
                 break;
             case "Tirolesa":
@@ -134,7 +136,15 @@ public class InteracaoComItem : MonoBehaviour
             pegouItem = true;
             heldItemRigidbody = heldItem.GetComponent<Rigidbody>();
             heldItemRigidbody.isKinematic = true;
-            heldItem.transform.SetParent(holdPosition.transform);
+            if (pegouLanterna)
+            {
+                heldItem.transform.SetParent(holdPositionLanterna.transform);
+
+            }
+            else
+            {
+                heldItem.transform.SetParent(holdPosition.transform);
+            }
             heldItem.transform.localPosition = Vector3.zero;
             heldItem.transform.localRotation = Quaternion.identity;
         }
@@ -159,6 +169,7 @@ public class InteracaoComItem : MonoBehaviour
             if (pegouLanterna == true)
             {
                 LanternaPlayer.lanternaPlayer.LigarLuminaria();
+                animator.SetLayerWeight(1, 0f);
                 pegouLanterna = false;
             }
 

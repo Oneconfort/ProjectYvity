@@ -3984,6 +3984,7 @@ Transform:
   - {fileID: 1656437257}
   - {fileID: 1229346623}
   - {fileID: 2315090245600086446}
+  - {fileID: 593149300}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &472904346
@@ -4194,6 +4195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holdPosition: {fileID: 1229346622}
+  holdPositionLanterna: {fileID: 593149299}
   inimigo: {fileID: 0}
   pegouLanterna: 0
   pegouItem: 0
@@ -4246,10 +4248,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.38
+  m_Radius: 0.29713455
   m_Height: 2.0002666
   m_Direction: 1
-  m_Center: {x: 0, y: 0.26067472, z: 0.06}
+  m_Center: {x: 0, y: 0.26067472, z: -0.022865444}
 --- !u!65 &472904353
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5387,6 +5389,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &593149299
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 593149300}
+  m_Layer: 0
+  m_Name: HoldPositionLanterna
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &593149300
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593149299}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.22, y: -0.001, z: 0.458}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 472904345}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &598007660
 GameObject:
   m_ObjectHideFlags: 0
@@ -43134,8 +43167,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.80212253, z: 1}
-  m_Center: {x: 0, y: 0.098938726, z: 0}
+  m_Size: {x: 1, y: 0.80212253, z: 0.74295646}
+  m_Center: {x: 0, y: 0.09893873, z: 0.12852208}
 --- !u!4 &2125047191
 Transform:
   m_ObjectHideFlags: 0
@@ -43145,8 +43178,8 @@ Transform:
   m_GameObject: {fileID: 2125047185}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.24, y: 0.7, z: -90.85}
-  m_LocalScale: {x: 0.44315, y: 1.14589, z: 0.44315}
+  m_LocalPosition: {x: 2.24, y: 0.71774, z: -90.85}
+  m_LocalScale: {x: 0.44315, y: 0.9880895, z: 0.44315}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5693033212173373740}
