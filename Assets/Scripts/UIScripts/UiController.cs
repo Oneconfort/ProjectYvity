@@ -18,12 +18,20 @@ public class UiController : MonoBehaviour
 
     public Slider batterySlider;
 
+    public Image[] hearts; // Array de imagens dos corações
+   // public Sprite fullHeart; // Sprite do coração cheio
+
+
     private void Start()
     {
         GameController.controller.uiController = this;
     }
 
-    private void Update()
+    
+
+
+
+private void Update()
     {
         UiPause();
     }
@@ -83,7 +91,7 @@ public class UiController : MonoBehaviour
         GameController.controller.ControlCursor(true);
         SceneManager.LoadScene(scene);
         Time.timeScale = 1.0f;
-
+        Cheats.campFireIndex = 0;
     }
     public void MostrarPainelFimDeJogo()
     {
@@ -105,12 +113,14 @@ public class UiController : MonoBehaviour
         SaveGame.ResetRunData();
         SaveGame.Save();
         SceneManager.LoadScene(num);
+        Cheats.campFireIndex = 0;
     }
 
     public void ChangeScene(string levelToGo)
     {
         SceneManager.LoadScene(levelToGo);
         Time.timeScale = 1.0f;
+        Cheats.campFireIndex = 0;
     }
     public void QuitGame()
     {

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
@@ -11,6 +13,8 @@ public class GameController : MonoBehaviour
     public int lifeMax, lifePlayer, fosforo = 0;
     public CampFire[] campFires;
     public string currentLevel;
+
+
 
     [ContextMenu("Find All Camp Fires")]
     public void FindAllCampFires()
@@ -26,6 +30,31 @@ public class GameController : MonoBehaviour
         }
 
         currentLevel = SceneManager.GetActiveScene().name;
+    }
+  
+
+    public void UpdateHearts()
+    {
+        for (int i = 0; i < uiController.hearts.Length; i++)
+        {
+            uiController.hearts[i].enabled = i < lifePlayer;
+        }
+    }
+
+
+
+    public void TomaDano(int damage)
+    {
+        lifePlayer += damage;
+        UpdateHearts();
+        if (lifePlayer <= 0)
+        {
+            controller.Player.Morrer();
+        }
+        if (lifePlayer >= lifeMax)
+        {
+            lifePlayer = lifeMax;
+        }
     }
 
     public void PararJogo()
@@ -57,4 +86,11 @@ public class GameController : MonoBehaviour
     {
         SaveGame.Save();
     }
+
+
+
+   /* public void TomarDano()
+    {
+        lifePlayer = lifePlayer - 1;
+    }*/
 }

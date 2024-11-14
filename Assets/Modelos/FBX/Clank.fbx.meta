@@ -1,0 +1,385 @@
+fileFormatVersion: 2
+guid: 7b7162be6b2839647af326ce60b144c1
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ClankAtlas_1
+    second: {fileID: 2100000, guid: 6d2578433189a854fbd852709942836c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Clank_Coat
+    second: {fileID: 2100000, guid: 6d2578433189a854fbd852709942836c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Clank_Hat
+    second: {fileID: 2100000, guid: af2ae60501a5ffe4fbf84fdc0004378f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Clank_Scarf
+    second: {fileID: 2100000, guid: 2b8808d749f79154ab0ce2c611f2c395, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Clank_1_Armature|Idle_Cycle
+      takeName: Clank_1_Armature|Idle_Cycle
+      internalID: 8228338166271004893
+      firstFrame: 0
+      lastFrame: 355
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Clank_1_Armature|Jump_Cycle
+      takeName: Clank_1_Armature|Jump_Cycle
+      internalID: 2575521317742248608
+      firstFrame: 0
+      lastFrame: 28
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Clank_1_Armature|Walking_Cycle
+      takeName: Clank_1_Armature|Walking_Cycle
+      internalID: 4376090783161953941
+      firstFrame: 0
+      lastFrame: 27
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Clank_1_Armature|Clank_CycleLamp
+      takeName: Clank_1_Armature|Clank_CycleLamp
+      internalID: -4972728281319211904
+      firstFrame: 0
+      lastFrame: 27
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Clank_1
+        weight: 1
+      - path: Clank_1_Armature
+        weight: 1
+      - path: Clank_1_Armature/Flower
+        weight: 1
+      - path: Clank_1_Armature/Flower/Flower_end
+        weight: 1
+      - path: Clank_1_Armature/Lantern
+        weight: 1
+      - path: Clank_1_Armature/Lantern/Lantern_end
+        weight: 1
+      - path: Clank_1_Armature/Root
+        weight: 1
+      - path: Clank_1_Armature/Root/IK_Leg.L
+        weight: 1
+      - path: Clank_1_Armature/Root/IK_Leg.L/Foot.L
+        weight: 1
+      - path: Clank_1_Armature/Root/IK_Leg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Clank_1_Armature/Root/IK_Leg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Clank_1_Armature/Root/IK_Leg.L/PoleLeg.L
+        weight: 1
+      - path: Clank_1_Armature/Root/IK_Leg.L/PoleLeg.L/PoleLeg.L_end
+        weight: 1
+      - path: Clank_1_Armature/Root/IK_Leg.R
+        weight: 1
+      - path: Clank_1_Armature/Root/IK_Leg.R/Foot.R
+        weight: 1
+      - path: Clank_1_Armature/Root/IK_Leg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Clank_1_Armature/Root/IK_Leg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Clank_1_Armature/Root/IK_Leg.R/PoleLeg.R
+        weight: 1
+      - path: Clank_1_Armature/Root/IK_Leg.R/PoleLeg.R/PoleLeg.R_end
+        weight: 1
+      - path: Clank_1_Armature/Root/Master
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.L
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.L/Arm.L
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.L/Arm.L/Elbow.L
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.L/Arm.L/Elbow.L/Hand.L
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.L/Arm.L/Elbow.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.L/Arm.L/Elbow.L/Hand.L/Fingers.L/FlowerHandler.L
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.L/Arm.L/Elbow.L/Hand.L/Fingers.L/FlowerHandler.L/FlowerHandler.L_end
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.L/Arm.L/Elbow.L/Hand.L/Tumb.L
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.L/Arm.L/Elbow.L/Hand.L/Tumb.L/Tumb.L_end
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.R
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.R/Arm.R
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.R/Arm.R/Elbow.R
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.R/Arm.R/Elbow.R/Hand.R
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.R/Arm.R/Elbow.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.R/Arm.R/Elbow.R/Hand.R/Fingers.R/FlowerHandler.R
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.R/Arm.R/Elbow.R/Hand.R/Fingers.R/FlowerHandler.R/FlowerHandler.R_end
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.R/Arm.R/Elbow.R/Hand.R/Tumb.R
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.R/Arm.R/Elbow.R/Hand.R/Tumb.R/Tumb.R_end
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest/Neck
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest/Neck/Head
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest/Neck/Head/Eye.L
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest/Neck/Head/Eye.L/Eye.L_end
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest/Neck/Head/Eye.R
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest/Neck/Head/Eye.R/Eye.R_end
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest/Neck/Head/Hat
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest/Neck/Head/Hat/Hat_end
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest/Neck/Head/Nose
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest/Neck/Head/Nose/Nose_end
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest/Neck/ScarfBack
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest/Neck/ScarfBack/ScarfBack_end
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest/Neck/ScarfFront
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest/Neck/ScarfFront/ScarfLenghtBeg
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest/Neck/ScarfFront/ScarfLenghtBeg/ScarfLenghtEnd
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Chest/Neck/ScarfFront/ScarfLenghtBeg/ScarfLenghtEnd/ScarfLenghtEnd_end
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Suspensor.L
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Suspensor.L/Suspensor.L_end
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Suspensor.R
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Belly/Suspensor.R/Suspensor.R_end
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Hips
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Hips/Tigh.L
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Hips/Tigh.L/Knee.L
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Hips/Tigh.L/Knee.L/Knee.L_end
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Hips/Tigh.R
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Hips/Tigh.R/Knee.R
+        weight: 1
+      - path: Clank_1_Armature/Root/Master/Hips/Tigh.R/Knee.R/Knee.R_end
+        weight: 1
+      - path: Clank_Hat
+        weight: 1
+      - path: Clank_Scarf
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 1
+    maxBonesPerVertex: 2
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: Root
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
