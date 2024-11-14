@@ -31,7 +31,7 @@ public class UiController : MonoBehaviour
 
 
 
-private void Update()
+    private void Update()
     {
         UiPause();
     }
@@ -77,7 +77,7 @@ private void Update()
     }
     public void UpdateFosforo(int fosforo)
     {
-        numFosforo.text = $"Match: {fosforo}";
+        numFosforo.text = $"{fosforo}";
     }
 
     public void PainelOptions()

@@ -88,9 +88,4 @@ public class GameController : MonoBehaviour
     }
 
 
-
-   /* public void TomarDano()
-    {
-        lifePlayer = lifePlayer - 1;
-    }*/
 }
