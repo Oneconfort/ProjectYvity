@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: b141c8e4f6387ef45b13a68b10c88b7f, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17797911, g: 0.22283861, b: 0.3049539, a: 1}
+  m_IndirectSpecularColor: {r: 0.33711082, g: 0.69929564, b: 0.8902725, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -34487,7 +34487,7 @@ Transform:
   m_GameObject: {fileID: 953475830}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7321529, z: -0, w: -0.6811405}
-  m_LocalPosition: {x: -137.05, y: 6.09, z: 54.05}
+  m_LocalPosition: {x: -137.05, y: 10.16, z: 54.05}
   m_LocalScale: {x: 8.314254, y: 10.026803, z: 6.4093885}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -34562,8 +34562,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.6920968, y: 1.6853094, z: 1.8399775}
-  m_Center: {x: -0.03161864, y: 0.60371304, z: 0.0016389219}
+  m_Size: {x: 1.7153941, y: 1.44559, z: 2.2845163}
+  m_Center: {x: -0.15511097, y: 0.18235493, z: -0.0110540725}
 --- !u!1001 &970028107
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -65913,8 +65913,7 @@ SkinnedMeshRenderer:
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: 6478097151759833684, guid: a0ee53c6b504fed47acadfbc8bee9635, type: 3}
   m_Bones: []
-  m_BlendShapeWeights:
-  - 0
+  m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
     m_Center: {x: -0.0316191, y: 0.60371304, z: 0.0016370118}
