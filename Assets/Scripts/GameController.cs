@@ -50,6 +50,7 @@ public class GameController : MonoBehaviour
         if (lifePlayer <= 0)
         {
             controller.Player.Morrer();
+            Invoke("PararJogo", 3.5f);
         }
         if (lifePlayer >= lifeMax)
         {

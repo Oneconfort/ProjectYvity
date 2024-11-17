@@ -18,17 +18,13 @@ public class UiController : MonoBehaviour
 
     public Slider batterySlider;
 
-    public Image[] hearts; // Array de imagens dos corações
-   // public Sprite fullHeart; // Sprite do coração cheio
+    public Image[] hearts; 
 
 
     private void Start()
     {
         GameController.controller.uiController = this;
     }
-
-    
-
 
 
     private void Update()
@@ -45,11 +41,13 @@ public class UiController : MonoBehaviour
             if (visivel == true)
             {
                 visivelpause = true;
+                Time.timeScale = 0.0f;
                 GameController.controller.ControlCursor(false);
             }
             else
             {
                 visivelpause = false;
+                Time.timeScale = 1.0f;
                 GameController.controller.ControlCursor(true);
             }
         }
@@ -63,11 +61,13 @@ public class UiController : MonoBehaviour
         if (visivel)
         {
             visivelpause = true;
+            Time.timeScale = 0.0f;
             GameController.controller.ControlCursor(false);
         }
         else
         {
             visivelpause = false;
+            Time.timeScale = 1.0f;
             GameController.controller.ControlCursor(true);
         }
     }

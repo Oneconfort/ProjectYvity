@@ -1,10 +1,7 @@
-using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.InputSystem.XR;
-using UnityEngine.UIElements;
+
 
 public class InteracaoComItem : MonoBehaviour
 {
@@ -35,7 +32,7 @@ public class InteracaoComItem : MonoBehaviour
     {
         if (SaveGame.data.hasFlashlight)
         {
-            ProcessarInteracao(LanternaPlayer.lanternaPlayer.gameObject);
+           // ProcessarInteracao(LanternaPlayer.lanternaPlayer.gameObject);
         }
         animator = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider>();
@@ -79,6 +76,7 @@ public class InteracaoComItem : MonoBehaviour
                 {
                     PegarItem(alvo);
                     pegouCaixa = true;
+                    animator.SetLayerWeight(2, 1f);
                     boxCollider.enabled = true;
                 }
                 break;
@@ -156,6 +154,7 @@ public class InteracaoComItem : MonoBehaviour
             heldItemRigidbody.AddForce(holdPosition.transform.forward * dropForce, ForceMode.Impulse);
             pegouItem = false;
             pegouCaixa = false;
+            animator.SetLayerWeight(2, 0f);
             boxCollider.enabled = false;
 
             heldItem = null;
