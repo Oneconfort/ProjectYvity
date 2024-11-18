@@ -18,10 +18,14 @@ public class UiController : MonoBehaviour
 
     public Slider batterySlider;
 
+    public Image[] hearts; 
+
+
     private void Start()
     {
         GameController.controller.uiController = this;
     }
+
 
     private void Update()
     {
@@ -37,11 +41,13 @@ public class UiController : MonoBehaviour
             if (visivel == true)
             {
                 visivelpause = true;
+                Time.timeScale = 0.0f;
                 GameController.controller.ControlCursor(false);
             }
             else
             {
                 visivelpause = false;
+                Time.timeScale = 1.0f;
                 GameController.controller.ControlCursor(true);
             }
         }
@@ -55,11 +61,13 @@ public class UiController : MonoBehaviour
         if (visivel)
         {
             visivelpause = true;
+            Time.timeScale = 0.0f;
             GameController.controller.ControlCursor(false);
         }
         else
         {
             visivelpause = false;
+            Time.timeScale = 1.0f;
             GameController.controller.ControlCursor(true);
         }
     }
@@ -69,7 +77,7 @@ public class UiController : MonoBehaviour
     }
     public void UpdateFosforo(int fosforo)
     {
-        numFosforo.text = $"Match: {fosforo}";
+        numFosforo.text = $"{fosforo}";
     }
 
     public void PainelOptions()
@@ -83,7 +91,7 @@ public class UiController : MonoBehaviour
         GameController.controller.ControlCursor(true);
         SceneManager.LoadScene(scene);
         Time.timeScale = 1.0f;
-
+        Cheats.campFireIndex = 0;
     }
     public void MostrarPainelFimDeJogo()
     {
@@ -105,12 +113,14 @@ public class UiController : MonoBehaviour
         SaveGame.ResetRunData();
         SaveGame.Save();
         SceneManager.LoadScene(num);
+        Cheats.campFireIndex = 0;
     }
 
     public void ChangeScene(string levelToGo)
     {
         SceneManager.LoadScene(levelToGo);
         Time.timeScale = 1.0f;
+        Cheats.campFireIndex = 0;
     }
     public void QuitGame()
     {

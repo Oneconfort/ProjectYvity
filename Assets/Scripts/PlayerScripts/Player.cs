@@ -1,27 +1,46 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.Tracing;
+
+
+//using System.Drawing;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+
 
 public class Player : MonoBehaviour
 {
     // [SerializeField] private LayerMask Default;
 
-     float speed = 10, rotateSpeed;
+    [SerializeField] private Transform spherePoint;
+
+    [SerializeField] private float speed, maxSpeed;
+    [SerializeField] private float rotateSpeed;
+
+    [SerializeField] public bool caverna = true, isGrounded = true;
+
     private float gravity = -9.81f;
-    Rigidbody rb;
-    public GameObject playerModel;
-    Vector3 moveDirection, moveSpeed;
+    private float initialJumpSpeed;
+
+
+    private Vector3 dir = Vector3.zero;
+    private Vector3 moveDir = Vector3.zero;
+
+    private Rigidbody rb;
+
+    private Animator animator;
+
     public Transform pivot;
-    public bool isGrounded = true, caverna = true;
+    public GameObject flor;
+
     bool insideLadder = false;
     public CampFire lastSavePointReached;
+
+    private bool isPaused = false;
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        moveDirection = Vector3.zero;
+        animator = GetComponent<Animator>();
 
         GameController.controller.lifePlayer = SaveGame.data.playerLives;
         lastSavePointReached = GameController.controller.campFires[SaveGame.data.lastSavePointReached];
@@ -30,25 +49,33 @@ public class Player : MonoBehaviour
             Respawn(lastSavePointReached);
         }
 
-        GameController.controller.uiController.UpdateVida(GameController.controller.lifePlayer);
+        GameController.controller.UpdateHearts();
     }
 
 
-    void Update()
+    void FixedUpdate()
     {
         if (GameController.controller.uiController.visivelpause == true) return;
 
         Mover();
         CheckCheatInput();
     }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P)) // Pressione "P" para pausar/retomar
+        {
+            // AnimacaoPause();
+        }
+    }
+
 
     void Mover()
     {
         if (InteracaoComItem.interacaoComItem.pegouCaixa == true && LanternaPlayer.lanternaPlayer.caixaDetectada == false) return;
 
-        VerificarSeEstaNoChao();
+        IsGrounded();
 
-        if (!insideLadder && moveDirection != Vector3.zero)
+        if (!insideLadder && dir != Vector3.zero)
         {
             rb.useGravity = true;
             rb.isKinematic = false;
@@ -63,25 +90,16 @@ public class Player : MonoBehaviour
                 RotacionarJogador();
                 MoverJogador();
             }
-
             MoverJogadorComObjeto();
-
 
             MoverJogadorEm2D();
         }
-
-            Gravidade();
+        Gravidade();
         UsarEscada();
-
     }
 
     void CheckCheatInput()
     {
-        if (!Debug.isDebugBuild) // Returns 'true' in the Editor as well
-        {
-            return; 
-        }
-
         if (Input.GetKeyDown(KeyCode.J))
         {
             Cheats.GoToPreviousCampFire();
@@ -92,7 +110,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void VerificarSeEstaNoChao()
+    void IsGrounded()
     {
         RaycastHit hit;
         if (Physics.Raycast(transform.position, -transform.up, out hit, 1.1f))
@@ -107,30 +125,38 @@ public class Player : MonoBehaviour
 
     void RotacionarJogador()
     {
-        if (moveDirection.z != 0)
+        if (dir.z != 0)
         {
             transform.rotation = Quaternion.Euler(0f, pivot.rotation.eulerAngles.y, 0f);
-            Quaternion newRotation = Quaternion.LookRotation(new Vector3(moveDirection.x, 0f, moveDirection.z));
+            Quaternion newRotation = Quaternion.LookRotation(new Vector3(dir.x, 0f, dir.z));
         }
     }
 
     void MoverJogador()
-    {
+    {   //camera
         Vector3 cameraForward = CameraController.cameraController.transform.forward;
         cameraForward.y = 0;
         cameraForward.Normalize();
+        Vector3 move = (cameraForward * dir.z + CameraController.cameraController.transform.right * dir.x);
+        move.Normalize();
 
-        Vector3 move = cameraForward * moveDirection.z + CameraController.cameraController.transform.right * moveDirection.x;
+        //AddForce
+        Vector3 force = move * speed;
+        Vector3 newVelocity = new Vector3(force.x, rb.velocity.y, force.z) - rb.velocity;
 
-        rb.MovePosition(rb.position + move * speed * Time.deltaTime);
+        rb.AddForce(new Vector3(newVelocity.x, 0, newVelocity.z), ForceMode.VelocityChange);
+
     }
+
+
 
     void MoverJogadorComObjeto()
     {
         if (InteracaoComItem.interacaoComItem.pegouCaixa)
         {
-            Vector3 moveComObj = transform.TransformDirection(moveDirection) * speed * Time.deltaTime;
-            rb.MovePosition(rb.position + moveComObj);
+            Vector3 moveComObj = transform.TransformDirection(dir) * speed;
+            moveComObj.y = rb.velocity.y;
+            rb.velocity = moveComObj;
         }
     }
 
@@ -138,44 +164,37 @@ public class Player : MonoBehaviour
     {
         if (caverna == false)
         {
-            Vector3 move = new Vector3(-moveDirection.x, 0, 0) * speed * Time.deltaTime;
-            rb.MovePosition(rb.position + move);
-            if (move.x != 0)
+            Vector3 move = new Vector3(-dir.x, 0, -dir.z) * speed;
+            move.y = rb.velocity.y;
+
+            rb.velocity = move;
+
+            Vector3 dirRot = new Vector3(-dir.x, 0, -dir.z);
+            Quaternion rot;
+
+            if (dirRot != Vector3.zero)
             {
-                if (move.x > 0)
-                {
-                    transform.rotation = Quaternion.Euler(0, 90, 0);
-                }
-                else
-                {
-                    transform.rotation = Quaternion.Euler(0, -90, 0);
-                }
+                rot = Quaternion.LookRotation(dirRot);
+                transform.rotation = Quaternion.Lerp(transform.rotation, rot, 1);
             }
         }
-
     }
     void Gravidade()
     {
-        bool falling = rb.velocity.y < 0;
-        if (falling)
+        if (!isGrounded)
         {
             rb.velocity += new Vector3(0, gravity * 3 * Time.deltaTime, 0);
         }
-        else
-        {
-            rb.velocity += new Vector3(0, gravity * Time.deltaTime, 0);
-        }
-
     }
 
     void UsarEscada()
     {
-        if (insideLadder && moveDirection.z > 0)
+        if (insideLadder && dir.z > 0)
         {
             GameController.controller.Player.transform.position += Vector3.up / 10;
             isGrounded = false;
         }
-        else if (insideLadder && moveDirection.z < 0)
+        else if (insideLadder && dir.z < 0)
         {
             GameController.controller.Player.transform.position += Vector3.down / 10;
 
@@ -184,38 +203,61 @@ public class Player : MonoBehaviour
                 insideLadder = false;
             }
         }
+        if(dir.magnitude <= 0 && insideLadder)
+        {
+            animator.speed = 0;
+        }
+        else
+        {
+            animator.speed = 1;
+        }
     }
 
+    void AnimacaoPause()
+    {
+        if (isPaused)
+        {
+            animator.speed = 1; // Retomar a animação
+        }
+        else
+        {
+            animator.speed = 0; // Pausar a animação
+        }
+        isPaused = !isPaused;
+    }
     public void OnMove(InputAction.CallbackContext ctxt)
     {
         Vector2 NewMoveDir = ctxt.ReadValue<Vector2>();
-        moveDirection.x = NewMoveDir.x;
-        moveDirection.z = NewMoveDir.y;
+        dir.x = NewMoveDir.x;
+        dir.z = NewMoveDir.y;
+        animator.SetFloat("Speed", dir.magnitude);
+
     }
     public void OnJump(InputAction.CallbackContext ctxt)
     {
-        if (ctxt.performed && isGrounded && InteracaoComItem.interacaoComItem.pegouCaixa == false)
+        if (ctxt.performed && isGrounded && InteracaoComItem.interacaoComItem?.pegouCaixa == false)
         {
-            rb.velocity = new Vector3(rb.velocity.x, 13, rb.velocity.z);
+            rb.velocity = new Vector3(rb.velocity.x, 38.5F, rb.velocity.z);
+            animator.SetTrigger("Jump");
         }
     }
     public void OnInteraction(InputAction.CallbackContext ctxt)
     {
         if (ctxt.performed)
         {
-            InteracaoComItem.interacaoComItem.InteracaoCenario();
+            InteracaoComItem.interacaoComItem?.InteracaoCenario();
         }
     }
     public void OnFlashlight(InputAction.CallbackContext ctxt)
     {
         if (ctxt.performed)
         {
-            LanternaPlayer.lanternaPlayer.Lanterna();
+            LanternaPlayer.lanternaPlayer?.Lanterna();
         }
     }
     public void OnRecharge(InputAction.CallbackContext ctxt)
     {
-        if (ctxt.performed && GameController.controller.fosforo != 0 && LanternaPlayer.lanternaPlayer.bateriaAtual < 100)
+        if (ctxt.performed && GameController.controller?.fosforo != 0 && LanternaPlayer.lanternaPlayer?.bateriaAtual < 100)
         {
             GameController.controller.fosforo--;
             GameController.controller.uiController.UpdateFosforo(GameController.controller.fosforo);
@@ -230,36 +272,29 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void TomaDano(int damage)
-    {
-        GameController.controller.lifePlayer += damage;
-        GameController.controller.uiController.UpdateVida(GameController.controller.lifePlayer);
-        if (GameController.controller.lifePlayer <= 0)
-        {
-            Morrer();
-        }
-        if (GameController.controller.lifePlayer >= GameController.controller.lifeMax)
-        {
-            GameController.controller.lifePlayer = GameController.controller.lifeMax;
-        }
-    }
+
 
     void OnTriggerEnter(Collider collider)
     {
         switch (collider.gameObject.tag)
         {
             case "Escada":
+                animator.SetLayerWeight(3, 1f);
+
                 rb.useGravity = false;
                 rb.isKinematic = true;
                 rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
                 insideLadder = !insideLadder;
                 break;
             case "Inimigo":
-                TomaDano(collider.gameObject.GetComponent<Inimigo>().GetDamage());
+                GameController.controller.TomaDano(collider.gameObject.GetComponent<Inimigo>().GetDamage());
+                animator.SetTrigger("Dano");
+                speed = 0f;
+                Invoke("Velocidade", 1.2f);
                 break;
-              case "ParedeFim":
-                TomaDano(collider.gameObject.GetComponent<Inimigo>().GetDamage());
-                CameraController.cameraController.cam.orthographic = false;
+            case "ParedeFim":
+                GameController.controller.TomaDano(collider.gameObject.GetComponent<Inimigo>().GetDamage());
+                CameraController.cameraController.cave = false;
                 caverna = true;
                 if (GameController.controller.lifePlayer > 0) // Respawn
                 {
@@ -270,7 +305,7 @@ public class Player : MonoBehaviour
                     gameObject.SetActive(false);
                 }
                 break;
-            case"Cabana":
+            case "Cabana":
                 GameController.controller.Vitoria();
                 break;
             case "Fosforo":
@@ -282,36 +317,33 @@ public class Player : MonoBehaviour
                 if (caverna == false)
                 {
                     transform.position = new Vector3(222.5f, 1.1f, 395.8f);
-                    CameraController.cameraController.cam.orthographic = false;
                     caverna = true;
                 }
                 else
                 {
                     transform.position = new Vector3(62.17f, 0.79f, 702.57f);
-                    CameraController.cameraController.cam.orthographic = true;
                     CameraController.cameraController.transform.rotation = Quaternion.Euler(0, -180, 0);
                     caverna = false;
                 }
                 break;
-            
+
             case "Caverna2":
                 if (caverna == false)
                 {
-                   CameraController.cameraController.cave = false;
-                    speed = 10;
+                    CameraController.cameraController.cave = false;
+                    speed = 11;
                     transform.position = new Vector3(246.1f, -0.11f, 355.8f);
-                    CameraController.cameraController.cam.orthographic = false;
                     caverna = true;
                 }
                 else//entra
                 {
-                    CameraController.cameraController.transform.position = new Vector3(823.47f, 7.488f, 275.77f);
+                    CameraController.cameraController.transform.position = new Vector3(812.039f, 11.930f, 284.75f);
+
 
                     CameraController.cameraController.cave = true;
-                    speed = 5;
-                    transform.position = new Vector3(855.7f, -10.189f, 262.7f);
-                    CameraController.cameraController.cam.orthographic = true;
-                    CameraController.cameraController.transform.rotation = Quaternion.Euler(0, -180, 0);
+                    speed = 6;
+                    transform.position = new Vector3(829.92f, -2.36f, 262.84f);
+                    CameraController.cameraController.transform.rotation = Quaternion.Euler(11.763f, -180, 0);
                     caverna = false;
                 }
                 break;
@@ -320,42 +352,43 @@ public class Player : MonoBehaviour
                 {
                     CameraController.cameraController.cave = false;
                     transform.position = new Vector3(291.07f, 1.25f, 429.254f);
-                    speed = 10;
-                    CameraController.cameraController.cam.orthographic = false;
+                    speed = 11;
                     caverna = true;
                 }
                 else
                 {
-                    CameraController.cameraController.transform.position = new Vector3(823.47f, 7.488f, 275.77f);
+                    CameraController.cameraController.transform.position = new Vector3(812.039f, 11.930f, 284.75f);
                     CameraController.cameraController.cave = true;
-                    speed = 5;
-                    transform.position = new Vector3(791.8f, 14.2f, 262.71f);
-                  
-                    CameraController.cameraController.cam.orthographic = true;
-                    CameraController.cameraController.transform.rotation = Quaternion.Euler(0, -180, 0);
+                    speed = 6;
+                    transform.position = new Vector3(793.53f, 11.02f, 262.84f);
+                    CameraController.cameraController.transform.rotation = Quaternion.Euler(11.763f, -180, 0);
                     caverna = false;
                 }
                 break;
             case "Estalactite":
-                TomaDano(collider.gameObject.GetComponent<Inimigo>().GetDamage());
+                GameController.controller.TomaDano(collider.gameObject.GetComponent<Inimigo>().GetDamage());
                 Destroy(collider.gameObject);
                 break;
         }
     }
 
+
+
     void OnTriggerExit(Collider collider)
     {
-        switch (collider.gameObject.tag)
+        if (collider.gameObject.CompareTag("Escada"))
         {
-            case "Escada":
-                insideLadder = !insideLadder;
-                break;
+            animator.SetLayerWeight(3, 0f);
 
+           
+            insideLadder = !insideLadder;   
         }
     }
     public void Morrer()
     {
-        GameController.controller.PararJogo();
+        animator.SetTrigger("Morrer");
+        Invoke("SpawFlor", 1.5f);
+        speed = 0;
     }
 
     public void Respawn(CampFire savePoint)
@@ -368,5 +401,15 @@ public class Player : MonoBehaviour
 
         transform.position = savePoint.spawnPoint.position;
         transform.rotation = savePoint.spawnPoint.rotation;
+    }
+
+    void SpawFlor()
+    {
+        flor.SetActive(true);
+    }
+
+    void Velocidade()
+    {
+        speed = 11;
     }
 }

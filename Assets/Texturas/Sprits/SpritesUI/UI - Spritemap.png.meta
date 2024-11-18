@@ -1,0 +1,766 @@
+fileFormatVersion: 2
+guid: 6262de2fd5f16ac4c93821ab2b1c8081
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: UI - Spritemap_0
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 942
+        width: 645
+        height: 132
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28e7bb1e622777e48948e981d7c05d0c
+      internalID: -819258503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI - Spritemap_1
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 942
+        width: 644
+        height: 132
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25674b61840b8e141b0b8de2d114462a
+      internalID: -1902664366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI - Spritemap_2
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 408
+        width: 587
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c0233d3cfdf13a46ba4607cf3fa94ab
+      internalID: 194259833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI - Spritemap_3
+      rect:
+        serializedVersion: 2
+        x: 1501
+        y: 846
+        width: 204
+        height: 196
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 979ca5e0bf70ffb43b14564a38386f88
+      internalID: 1839558130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI - Spritemap_4
+      rect:
+        serializedVersion: 2
+        x: 1709
+        y: 846
+        width: 197
+        height: 196
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa86832f233c4834682758914c316a5e
+      internalID: -1891527909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI - Spritemap_5
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 511
+        width: 326
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b69fedebf70d9c4fae30d938191e2a2
+      internalID: -1543560913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI - Spritemap_6
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 817
+        width: 564
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66f1fa24305421048b3e219de1e3996b
+      internalID: -199405789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI - Spritemap_7
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 717
+        width: 109
+        height: 106
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4a9c6258981fdf4cb306ef84655c224
+      internalID: -739623860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI - Spritemap_8
+      rect:
+        serializedVersion: 2
+        x: 590
+        y: 817
+        width: 564
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad78bfa4b08414e4fb31bcac48b4aa4d
+      internalID: 2121353910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI - Spritemap_9
+      rect:
+        serializedVersion: 2
+        x: 1155
+        y: 817
+        width: 168
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90115b08d1d731d45a2124e24498f911
+      internalID: -657711027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI - Spritemap_10
+      rect:
+        serializedVersion: 2
+        x: 1326
+        y: 817
+        width: 167
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf7d8c242acbe324d93a8ea765068d32
+      internalID: -740204199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI - Spritemap_11
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 515
+        width: 44
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b7511506f2b23d43a7d5dd2b054fb8b
+      internalID: 1825599481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI - Spritemap_12
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 518
+        width: 49
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67848bdc5e3cb8d4f9e85f185cdd7305
+      internalID: 1460683397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI - Spritemap_13
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 726
+        width: 759
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 301f281a768f5a449bdf3902e4cbcfa4
+      internalID: -234377493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI - Spritemap_14
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 726
+        width: 758
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b810c276379ad894fb54251866d18f54
+      internalID: 1477298481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI - Spritemap_15
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 515
+        width: 41
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a6a75eca12911f41991c4029bd286da
+      internalID: -2029398161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI - Spritemap_16
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 517
+        width: 44
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bfcaaf4c2c8829459308f1d1c70848c
+      internalID: -848089860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI - Spritemap_19
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 614
+        width: 115
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c6ff50d95d6ff745ab157a095ebcc4f
+      internalID: -10216253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI - Spritemap_20
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 629
+        width: 758
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07b1c4104cfb4074990390fde7ae771f
+      internalID: -283928153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI - Spritemap_23
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 302
+        width: 587
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0405fc9e9a062d42b5b47dc8bdaf628
+      internalID: 831653118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI - Spritemap_32
+      rect:
+        serializedVersion: 2
+        x: 629
+        y: 389
+        width: 38
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cdfc710c1bc2d84cbcfb86ffd40f9bd
+      internalID: 1728995797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI - Spritemap_45
+      rect:
+        serializedVersion: 2
+        x: 1326
+        y: 0
+        width: 594
+        height: 466
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11171e0753121ee44b598c7eed2c1a55
+      internalID: 724093458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI - Spritemap_73
+      rect:
+        serializedVersion: 2
+        x: 734
+        y: 1
+        width: 595
+        height: 400
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5c67398a19101a4aa89753cb6de1b8c
+      internalID: 1030615461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI - Spritemap_89
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 0
+        width: 152
+        height: 270
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44b04db9953e43748bb7aa459c1ea5da
+      internalID: -1547738124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI - Spritemap_90
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 6
+        width: 149
+        height: 264
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c6e6e2f6e19f3d4fad2ec5ae0b37193
+      internalID: 1317453507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI - Spritemap_92
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 29
+        width: 285
+        height: 241
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7606b7f20c62aa344b88b3146a5dc252
+      internalID: 401585577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 10cf717e8d1631943be5cfe6fda0ae61
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      UI - Spritemap_0: -819258503
+      UI - Spritemap_1: -1902664366
+      UI - Spritemap_10: 194259833
+      UI - Spritemap_11: 1839558130
+      UI - Spritemap_12: -1891527909
+      UI - Spritemap_13: -1543560913
+      UI - Spritemap_14: -199405789
+      UI - Spritemap_15: -739623860
+      UI - Spritemap_16: 2121353910
+      UI - Spritemap_17: -657711027
+      UI - Spritemap_18: -740204199
+      UI - Spritemap_19: 1825599481
+      UI - Spritemap_2: 1460683397
+      UI - Spritemap_20: -234377493
+      UI - Spritemap_21: 1477298481
+      UI - Spritemap_22: -2029398161
+      UI - Spritemap_23: -848089860
+      UI - Spritemap_24: 454783851
+      UI - Spritemap_25: 1585283490
+      UI - Spritemap_26: -10216253
+      UI - Spritemap_27: -283928153
+      UI - Spritemap_28: 2054572575
+      UI - Spritemap_29: -1167913731
+      UI - Spritemap_3: 831653118
+      UI - Spritemap_30: -550016716
+      UI - Spritemap_31: 1285636952
+      UI - Spritemap_32: 1795762749
+      UI - Spritemap_33: 762966082
+      UI - Spritemap_34: -312615587
+      UI - Spritemap_35: -1377016397
+      UI - Spritemap_36: -738713053
+      UI - Spritemap_37: -885901480
+      UI - Spritemap_38: 1728995797
+      UI - Spritemap_39: 1822360281
+      UI - Spritemap_4: 2021195596
+      UI - Spritemap_40: -973049560
+      UI - Spritemap_41: -2102097154
+      UI - Spritemap_42: -1066092837
+      UI - Spritemap_43: 1190080282
+      UI - Spritemap_44: 893782076
+      UI - Spritemap_45: -2132444301
+      UI - Spritemap_46: 936067931
+      UI - Spritemap_47: 223848152
+      UI - Spritemap_48: 1406925357
+      UI - Spritemap_49: -520310402
+      UI - Spritemap_5: 724093458
+      UI - Spritemap_50: -1973953859
+      UI - Spritemap_51: 118006946
+      UI - Spritemap_52: -2120698222
+      UI - Spritemap_53: -1098131912
+      UI - Spritemap_54: -181071957
+      UI - Spritemap_55: 557559280
+      UI - Spritemap_56: 739696767
+      UI - Spritemap_57: 1747795701
+      UI - Spritemap_58: 1819611783
+      UI - Spritemap_59: 1367880618
+      UI - Spritemap_6: -1698339193
+      UI - Spritemap_60: 169003496
+      UI - Spritemap_61: 365580439
+      UI - Spritemap_62: 830480894
+      UI - Spritemap_63: -986796981
+      UI - Spritemap_64: -591112952
+      UI - Spritemap_65: 657233953
+      UI - Spritemap_66: 1018657103
+      UI - Spritemap_67: -2001564914
+      UI - Spritemap_68: -2096898881
+      UI - Spritemap_69: -25267897
+      UI - Spritemap_7: 1386892341
+      UI - Spritemap_70: 1051095225
+      UI - Spritemap_71: -1398140391
+      UI - Spritemap_72: -1813905496
+      UI - Spritemap_73: 23481318
+      UI - Spritemap_74: -698718894
+      UI - Spritemap_75: 1030615461
+      UI - Spritemap_76: -1402092390
+      UI - Spritemap_77: 1360882050
+      UI - Spritemap_78: -1793653468
+      UI - Spritemap_79: 1096095793
+      UI - Spritemap_8: 736328061
+      UI - Spritemap_80: -796744259
+      UI - Spritemap_81: 1116675633
+      UI - Spritemap_82: 1994199602
+      UI - Spritemap_83: 686783151
+      UI - Spritemap_84: 1225969528
+      UI - Spritemap_85: 1061506385
+      UI - Spritemap_86: -1301457340
+      UI - Spritemap_87: 478081683
+      UI - Spritemap_88: -773596636
+      UI - Spritemap_89: -1363136020
+      UI - Spritemap_9: -1547738124
+      UI - Spritemap_90: 1317453507
+      UI - Spritemap_91: 1446300582
+      UI - Spritemap_92: 401585577
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

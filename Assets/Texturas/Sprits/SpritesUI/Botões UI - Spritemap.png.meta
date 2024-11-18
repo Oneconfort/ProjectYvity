@@ -1,0 +1,423 @@
+fileFormatVersion: 2
+guid: 7e3d33406fa24df4198c49bd0745baad
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "Bot\xF5es UI - Spritemap_1"
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 825
+        width: 340
+        height: 165
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 986942d010ec2b84d89bcbeaa8f32526
+      internalID: -1724035233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Bot\xF5es UI - Spritemap_2"
+      rect:
+        serializedVersion: 2
+        x: 382
+        y: 837
+        width: 324
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72fbed59ff93312428d1f4ce19b7adaa
+      internalID: -1375738577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Bot\xF5es UI - Spritemap_3"
+      rect:
+        serializedVersion: 2
+        x: 846
+        y: 869
+        width: 308
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43d4ee363cf5e0946a247c301afb1532
+      internalID: 355979352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Bot\xF5es UI - Spritemap_4"
+      rect:
+        serializedVersion: 2
+        x: 1165
+        y: 869
+        width: 310
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f455ffc94b3f35d46b7c19b3825c2799
+      internalID: 125251441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Bot\xF5es UI - Spritemap_6"
+      rect:
+        serializedVersion: 2
+        x: 846
+        y: 726
+        width: 308
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c05fff8844b35a24f944fb5845edb18b
+      internalID: -1671280657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Bot\xF5es UI - Spritemap_8"
+      rect:
+        serializedVersion: 2
+        x: 1165
+        y: 726
+        width: 310
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80d7e4d1d24edd646bee30ce4832692d
+      internalID: 999627343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Bot\xF5es UI - Spritemap_10"
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 661
+        width: 388
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c978329bcd88dda4383c8f79a7fd9ddb
+      internalID: 862719661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Bot\xF5es UI - Spritemap_11"
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 661
+        width: 392
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da9be9ebb5939494c98c4adbecef7d60
+      internalID: -1876837584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Bot\xF5es UI - Spritemap_16"
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 501
+        width: 390
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 1, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86c98bdd4975ba94481304f5a64bc34c
+      internalID: -1145383198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Bot\xF5es UI - Spritemap_17"
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 502
+        width: 392
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 295d4f307482d324c8dfdd98c612a8ad
+      internalID: 454021485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Bot\xF5es UI - Spritemap_18"
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 518
+        width: 314
+        height: 196
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a76d4ffa36e741a4ab2b4e2324b4bc6b
+      internalID: 1261450041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Bot\xF5es UI - Spritemap_20"
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 342
+        width: 388
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbe3de3cfd75e2a4d862a0fb2346c233
+      internalID: 980276245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Bot\xF5es UI - Spritemap_21"
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 342
+        width: 389
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c91c7acc220fe3428284eecece8c413
+      internalID: -1083775978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 1537655665
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      "Bot\xF5es UI - Spritemap_0": -1924629022
+      "Bot\xF5es UI - Spritemap_1": -1724035233
+      "Bot\xF5es UI - Spritemap_10": 862719661
+      "Bot\xF5es UI - Spritemap_11": -1876837584
+      "Bot\xF5es UI - Spritemap_12": -1967108969
+      "Bot\xF5es UI - Spritemap_13": 279415922
+      "Bot\xF5es UI - Spritemap_14": 1115147201
+      "Bot\xF5es UI - Spritemap_15": -131226309
+      "Bot\xF5es UI - Spritemap_16": -1145383198
+      "Bot\xF5es UI - Spritemap_17": 454021485
+      "Bot\xF5es UI - Spritemap_18": 1261450041
+      "Bot\xF5es UI - Spritemap_19": -552091784
+      "Bot\xF5es UI - Spritemap_2": -1375738577
+      "Bot\xF5es UI - Spritemap_20": 980276245
+      "Bot\xF5es UI - Spritemap_21": -1083775978
+      "Bot\xF5es UI - Spritemap_22": 610574102
+      "Bot\xF5es UI - Spritemap_3": 355979352
+      "Bot\xF5es UI - Spritemap_4": 125251441
+      "Bot\xF5es UI - Spritemap_5": -560372021
+      "Bot\xF5es UI - Spritemap_6": -1671280657
+      "Bot\xF5es UI - Spritemap_7": 2010148515
+      "Bot\xF5es UI - Spritemap_8": 999627343
+      "Bot\xF5es UI - Spritemap_9": 1631253186
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

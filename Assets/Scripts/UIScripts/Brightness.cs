@@ -6,7 +6,6 @@ using TMPro;
 
 public class ExposureController : MonoBehaviour
 {
-    public TMP_Text brightnessText;
     public RawImage brightnessImage;
 
     [SerializeField] private Slider exposureSlider;
@@ -24,7 +23,6 @@ public class ExposureController : MonoBehaviour
             exposureSlider.onValueChanged.AddListener(OnSliderValueChanged);
         }
 
-        brightnessText.text = MapValueToText(exposureSlider.value).ToString();
         AlterarBrilho(exposureSlider.value);
     }
 
@@ -32,7 +30,6 @@ public class ExposureController : MonoBehaviour
     {
        
             colorAdjustments.postExposure.value = value;
-            brightnessText.text = MapValueToText(value).ToString();
             AlterarBrilho(value);
             PlayerPrefs.SetFloat("exposureSlider", value);
         
@@ -54,7 +51,6 @@ public class ExposureController : MonoBehaviour
         }
 
         brightnessImage.color = novaCor;
-        brightnessText.text = MapValueToText(value).ToString();
     }
 
     private int MapValueToText(float value)

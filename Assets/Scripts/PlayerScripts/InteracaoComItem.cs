@@ -1,21 +1,19 @@
-using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.InputSystem.XR;
-using UnityEngine.UIElements;
+
 
 public class InteracaoComItem : MonoBehaviour
 {
     public static InteracaoComItem interacaoComItem;
     float dropForce = 1.0f;
+    private BoxCollider boxCollider;
     public GameObject holdPosition;
     GameObject heldItem;
     private Rigidbody heldItemRigidbody;
     public GameObject inimigo;
     public bool pegouLanterna = false, pegouItem = false, pegouCaixa = false;
-
+    Animator animator;
     //tirolesa
     public Transform startPoint;
     public Transform endPoint;
@@ -34,8 +32,10 @@ public class InteracaoComItem : MonoBehaviour
     {
         if (SaveGame.data.hasFlashlight)
         {
-            ProcessarInteracao(LanternaPlayer.lanternaPlayer.gameObject);
+           // ProcessarInteracao(LanternaPlayer.lanternaPlayer.gameObject);
         }
+        animator = GetComponent<Animator>();
+        boxCollider = GetComponent<BoxCollider>();
     }
 
     public void InteracaoCenario()
@@ -76,11 +76,14 @@ public class InteracaoComItem : MonoBehaviour
                 {
                     PegarItem(alvo);
                     pegouCaixa = true;
+                    animator.SetLayerWeight(2, 1f);
+                    boxCollider.enabled = true;
                 }
                 break;
             case "Lanterna":
-                PegarItem(alvo);
                 pegouLanterna = true;
+                PegarItem(alvo);
+                animator.SetLayerWeight(1, 1f);
                 LanternaPlayer.lanternaPlayer.LigarLanterna();
                 break;
             case "Tirolesa":
@@ -131,7 +134,9 @@ public class InteracaoComItem : MonoBehaviour
             pegouItem = true;
             heldItemRigidbody = heldItem.GetComponent<Rigidbody>();
             heldItemRigidbody.isKinematic = true;
-            heldItem.transform.SetParent(holdPosition.transform);
+           
+                heldItem.transform.SetParent(holdPosition.transform);
+            
             heldItem.transform.localPosition = Vector3.zero;
             heldItem.transform.localRotation = Quaternion.identity;
         }
@@ -149,11 +154,15 @@ public class InteracaoComItem : MonoBehaviour
             heldItemRigidbody.AddForce(holdPosition.transform.forward * dropForce, ForceMode.Impulse);
             pegouItem = false;
             pegouCaixa = false;
+            animator.SetLayerWeight(2, 0f);
+            boxCollider.enabled = false;
+
             heldItem = null;
 
             if (pegouLanterna == true)
             {
                 LanternaPlayer.lanternaPlayer.LigarLuminaria();
+                animator.SetLayerWeight(1, 0f);
                 pegouLanterna = false;
             }
 
@@ -161,6 +170,7 @@ public class InteracaoComItem : MonoBehaviour
             {
                 PegarItem(LanternaPlayer.lanternaPlayer.lanterna);
                 pegouLanterna = true;
+                animator.SetLayerWeight(1, 1f);
                 LanternaPlayer.lanternaPlayer.LigarLanterna();
                 LanternaPlayer.lanternaPlayer.naPosicao = false;
             }

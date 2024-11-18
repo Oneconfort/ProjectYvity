@@ -20,7 +20,7 @@ public class PlataformadoMecanismo : MonoBehaviour
 
     private void AtualizarPlataforma()
     {
-        if (LanternaPlayer.lanternaPlayer.detectedPlataformas.Contains(gameObject)) // Check if the platform is in the detected list
+        if (LanternaPlayer.lanternaPlayer.detectedPlataformas.Contains(gameObject)) 
         {
             rendererPlataforma.material.color = Color.green;
             boxCollider.isTrigger = false;

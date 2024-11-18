@@ -5,12 +5,12 @@ using UnityEngine;
 public class Caixa : MonoBehaviour
 {
 
-    private Renderer rendererCaixa;
+    private BoxCollider box;
+    public GameObject gelo;
 
     void Start()
     {
-        rendererCaixa = GetComponent<Renderer>();
-        rendererCaixa.material.color = Color.magenta;
+        box = GetComponent<BoxCollider>();
     }
 
     private void Update()
@@ -22,11 +22,19 @@ public class Caixa : MonoBehaviour
     {
         if (LanternaPlayer.lanternaPlayer.caixaDetectada)
         {
-            rendererCaixa.material.color = Color.green;
+            gelo.SetActive(false);
         }
         else
         {
-            rendererCaixa.material.color = Color.white;
+            gelo.SetActive(true);
+        }
+        if (InteracaoComItem.interacaoComItem.pegouCaixa)
+        {
+            box.enabled = false;
+        }
+        else
+        {
+            box.enabled = true;
         }
     }
 }
