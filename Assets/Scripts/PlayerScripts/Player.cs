@@ -246,7 +246,7 @@ public class Player : MonoBehaviour
     {
         if (ctxt.performed && IsGrounded() && InteracaoComItem.interacaoComItem?.pegouCaixa == false)
         {
-            rb.velocity = new Vector3(rb.velocity.x, jumpSpeed, rb.velocity.z);
+            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y+jumpSpeed, rb.velocity.z);
             animator.SetTrigger("Jump");
         }
     }
