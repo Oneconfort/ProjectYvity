@@ -49,6 +49,8 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+       
+        SetJumpVar();
 
         GameController.controller.lifePlayer = SaveGame.data.playerLives;
         lastSavePointReached = GameController.controller.campFires[SaveGame.data.lastSavePointReached];
@@ -137,7 +139,6 @@ public class Player : MonoBehaviour
 
         //AddForce
         Vector3 force = dir * speed;
-        Vector3 newVelocity = new Vector3(force.x, rb.velocity.y, force.z) - rb.velocity;
         if (rb.velocity.magnitude < maxSpeed)
         {
             rb.AddForce(new Vector3(force.x, 0, force.z), ForceMode.Acceleration);
@@ -156,8 +157,6 @@ public class Player : MonoBehaviour
         }
 
     }
-
-
 
     void MoverJogadorComObjeto()
     {
@@ -190,9 +189,9 @@ public class Player : MonoBehaviour
     }
     void Gravidade()
     {
-        if (IsGrounded())
+        if (!IsGrounded())
         {
-            rb.velocity += new Vector3(0, gravity * 3 * Time.deltaTime, 0);
+            rb.velocity += new Vector3(0, gravity * 5 * Time.fixedDeltaTime, 0);
         }
     }
 
@@ -246,7 +245,8 @@ public class Player : MonoBehaviour
     {
         if (ctxt.performed && IsGrounded() && InteracaoComItem.interacaoComItem?.pegouCaixa == false)
         {
-            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y+jumpSpeed, rb.velocity.z);
+            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y + jumpSpeed, rb.velocity.z);
+
             animator.SetTrigger("Jump");
         }
     }
