@@ -30,7 +30,7 @@ public class SetInteractiveShaderEffects : MonoBehaviour
         {
             var mainModule = particlesystem.main;
 
-            if (GameController.controller.Player.isGrounded)
+            if (GameController.controller.Player.IsGrounded())
             {
                 mainModule.maxParticles = 1000;
             }

@@ -15,6 +15,7 @@ public class UiController : MonoBehaviour
     bool visivel;
     public bool visivelpause = false;
     public TextMeshProUGUI lifePlayer, numFosforo;
+    public Slider All, Music, VFX;
 
     public Slider batterySlider;
 
@@ -127,4 +128,18 @@ public class UiController : MonoBehaviour
         PlayerPrefs.Save();
         Application.Quit();
     }
+
+    public void ChangeAllVolume()
+    {
+        AudioController.audioController.ChangeAllVolume(All.value);
+    }
+    public void ChangeMUsicVolume()
+    {
+        AudioController.audioController.ChangeMusicVolume(Music.value);
+    }
+    public void ChangeVFXVolume()
+    {
+        AudioController.audioController.ChangeVFXVolume(VFX.value);
+    }
+
 }

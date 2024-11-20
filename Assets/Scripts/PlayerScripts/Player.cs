@@ -1,24 +1,31 @@
 
 
-//using System.Drawing;
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 
 public class Player : MonoBehaviour
 {
     // [SerializeField] private LayerMask Default;
 
-    [SerializeField] private Transform spherePoint;
+    public Transform spherePoint;
 
+    [SerializeField] private float maxJumpTime;
+    [SerializeField] private float maxJumpHeight;
     [SerializeField] private float speed, maxSpeed;
     [SerializeField] private float rotateSpeed;
-
-    [SerializeField] public bool caverna = true, isGrounded = true;
-
-    private float gravity = -9.81f;
+    [SerializeField] private float jumpSpeed;
+    private float gravity;
     private float initialJumpSpeed;
+
+    [SerializeField] public bool caverna = true;
+    private bool isPaused = false;
+
+
+    
 
 
     private Vector3 dir = Vector3.zero;
@@ -34,13 +41,16 @@ public class Player : MonoBehaviour
     bool insideLadder = false;
     public CampFire lastSavePointReached;
 
-    private bool isPaused = false;
+
+    public LayerMask mask;
 
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+       
+        SetJumpVar();
 
         GameController.controller.lifePlayer = SaveGame.data.playerLives;
         lastSavePointReached = GameController.controller.campFires[SaveGame.data.lastSavePointReached];
@@ -110,19 +120,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    void IsGrounded()
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, -transform.up, out hit, 1.1f))
-        {
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
-        }
-    }
-
     void RotacionarJogador()
     {
         if (dir.z != 0)
@@ -141,14 +138,25 @@ public class Player : MonoBehaviour
         move.Normalize();
 
         //AddForce
-        Vector3 force = move * speed;
-        Vector3 newVelocity = new Vector3(force.x, rb.velocity.y, force.z) - rb.velocity;
+        Vector3 force = dir * speed;
+        if (rb.velocity.magnitude < maxSpeed)
+        {
+            rb.AddForce(new Vector3(force.x, 0, force.z), ForceMode.Acceleration);
+        }
+        
+        Vector3 dirRot = new Vector3(dir.x, 0, dir.z);
+        Quaternion rot;
+        float t = Time.fixedDeltaTime;
 
-        rb.AddForce(new Vector3(newVelocity.x, 0, newVelocity.z), ForceMode.VelocityChange);
+        if (dirRot != Vector3.zero)
+        {
+            rot = Quaternion.LookRotation(dirRot);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rot, t * rotateSpeed);
+         
+
+        }
 
     }
-
-
 
     void MoverJogadorComObjeto()
     {
@@ -181,9 +189,9 @@ public class Player : MonoBehaviour
     }
     void Gravidade()
     {
-        if (!isGrounded)
+        if (!IsGrounded())
         {
-            rb.velocity += new Vector3(0, gravity * 3 * Time.deltaTime, 0);
+            rb.velocity += new Vector3(0, gravity * 5 * Time.fixedDeltaTime, 0);
         }
     }
 
@@ -192,13 +200,12 @@ public class Player : MonoBehaviour
         if (insideLadder && dir.z > 0)
         {
             GameController.controller.Player.transform.position += Vector3.up / 10;
-            isGrounded = false;
         }
         else if (insideLadder && dir.z < 0)
         {
             GameController.controller.Player.transform.position += Vector3.down / 10;
 
-            if (isGrounded == true)
+            if (IsGrounded())
             {
                 insideLadder = false;
             }
@@ -233,11 +240,13 @@ public class Player : MonoBehaviour
         animator.SetFloat("Speed", dir.magnitude);
 
     }
+
     public void OnJump(InputAction.CallbackContext ctxt)
     {
-        if (ctxt.performed && isGrounded && InteracaoComItem.interacaoComItem?.pegouCaixa == false)
+        if (ctxt.performed && IsGrounded() && InteracaoComItem.interacaoComItem?.pegouCaixa == false)
         {
-            rb.velocity = new Vector3(rb.velocity.x, 38.5F, rb.velocity.z);
+            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y + jumpSpeed, rb.velocity.z);
+
             animator.SetTrigger("Jump");
         }
     }
@@ -371,8 +380,10 @@ public class Player : MonoBehaviour
                 break;
         }
     }
-
-
+    public bool IsGrounded()
+    {
+        return Physics.CheckSphere(spherePoint.position, 0.5f, mask);
+    }
 
     void OnTriggerExit(Collider collider)
     {
@@ -403,6 +414,13 @@ public class Player : MonoBehaviour
         transform.rotation = savePoint.spawnPoint.rotation;
     }
 
+    void SetJumpVar()
+    {
+        float timeApex = maxJumpTime / 2.0f;
+        gravity = (-2.0f * maxJumpHeight) / Mathf.Pow(timeApex, 2.0f);
+        initialJumpSpeed = (2.0f * maxJumpHeight) / timeApex;
+    }
+
     void SpawFlor()
     {
         flor.SetActive(true);
@@ -411,5 +429,10 @@ public class Player : MonoBehaviour
     void Velocidade()
     {
         speed = 11;
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = UnityEngine.Color.yellow;
+        Gizmos.DrawWireSphere(spherePoint.position, 0.5f);
     }
 }
