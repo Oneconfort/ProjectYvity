@@ -9,12 +9,16 @@ public class GameController : MonoBehaviour
 {
     public static GameController controller;
     public UiController uiController;
+    public AudioController audioController;
     public Player Player;
     public int lifeMax, lifePlayer, fosforo = 0;
     public CampFire[] campFires;
     public string currentLevel;
 
-
+    
+    [Header("Config Audio")]
+    public AudioClip audioClip; // Arraste o AudioClip no Inspector
+    public AudioSource audioSource;
 
     [ContextMenu("Find All Camp Fires")]
     public void FindAllCampFires()
@@ -31,6 +35,10 @@ public class GameController : MonoBehaviour
 
         currentLevel = SceneManager.GetActiveScene().name;
     }
+
+    void Start(){
+        audioSource = GetComponent<AudioSource>();
+    }
   
 
     public void UpdateHearts()
@@ -45,6 +53,10 @@ public class GameController : MonoBehaviour
 
     public void TomaDano(int damage)
     {
+        if (audioSource != null && audioClip != null)
+        {
+            audioSource.Play();
+        }
         lifePlayer += damage;
         UpdateHearts();
         if (lifePlayer <= 0)

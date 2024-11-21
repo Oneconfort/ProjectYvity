@@ -5,14 +5,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 
 public class Player : MonoBehaviour
 {
     // [SerializeField] private LayerMask Default;
-
     public Transform spherePoint;
-
     [SerializeField] private float maxJumpTime;
     [SerializeField] private float maxJumpHeight;
     [SerializeField] private float speed, maxSpeed;
@@ -23,11 +22,6 @@ public class Player : MonoBehaviour
 
     [SerializeField] public bool caverna = true;
     private bool isPaused = false;
-
-
-    
-
-
     private Vector3 dir = Vector3.zero;
     private Vector3 moveDir = Vector3.zero;
 
@@ -40,9 +34,15 @@ public class Player : MonoBehaviour
 
     bool insideLadder = false;
     public CampFire lastSavePointReached;
-
-
     public LayerMask mask;
+
+    [Header("Config Audio")]
+    public AudioClip audioClip;
+    public AudioClip jump;
+    public AudioClip deadScream;
+    //public AudioSource audioSourcePassos;
+    public AudioSource audioSource;
+    public float delay = 2f;
 
 
     void Start()
@@ -60,6 +60,14 @@ public class Player : MonoBehaviour
         }
 
         GameController.controller.UpdateHearts();
+
+        //audioSourcePassos = GetComponent<AudioSource>();
+
+        
+        if (audioClip != null)
+        {
+            //audioSourcePassos.clip = audioClip;
+        }
     }
 
 
@@ -152,9 +160,12 @@ public class Player : MonoBehaviour
         {
             rot = Quaternion.LookRotation(dirRot);
             transform.rotation = Quaternion.Lerp(transform.rotation, rot, t * rotateSpeed);
-         
-
         }
+
+        // if (audioSourcePassos != null && audioClip != null)
+        // {
+        //     audioSourcePassos.PlayDelayed(delay);
+        // }
 
     }
 
@@ -224,11 +235,11 @@ public class Player : MonoBehaviour
     {
         if (isPaused)
         {
-            animator.speed = 1; // Retomar a animação
+            animator.speed = 1; // Retomar a animaï¿½ï¿½o
         }
         else
         {
-            animator.speed = 0; // Pausar a animação
+            animator.speed = 0; // Pausar a animaï¿½ï¿½o
         }
         isPaused = !isPaused;
     }
@@ -248,6 +259,11 @@ public class Player : MonoBehaviour
             rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y + jumpSpeed, rb.velocity.z);
 
             animator.SetTrigger("Jump");
+            audioSource.clip = jump;
+            if (audioSource != null && audioClip != null)
+            {
+                audioSource.Play();
+            }
         }
     }
     public void OnInteraction(InputAction.CallbackContext ctxt)
@@ -302,6 +318,11 @@ public class Player : MonoBehaviour
                 Invoke("Velocidade", 1.2f);
                 break;
             case "ParedeFim":
+                audioSource.clip = deadScream;
+                if (audioSource != null && audioClip != null)
+                {
+                    audioSource.Play();
+                }
                 GameController.controller.TomaDano(collider.gameObject.GetComponent<Inimigo>().GetDamage());
                 CameraController.cameraController.cave = false;
                 caverna = true;

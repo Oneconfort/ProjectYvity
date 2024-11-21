@@ -22,7 +22,7 @@ public class UiController : MonoBehaviour
     public Image[] hearts; 
 
 
-    private void Start()
+    void Start()
     {
         GameController.controller.uiController = this;
     }
@@ -108,7 +108,7 @@ public class UiController : MonoBehaviour
         painelVitoria.SetActive(true);
         Time.timeScale = 0.0f;
     }
-    public void Reset(int num)
+    public void Resets(int num)
     {
         Time.timeScale = 1.0f;
         SaveGame.ResetRunData();
@@ -120,6 +120,8 @@ public class UiController : MonoBehaviour
     public void ChangeScene(string levelToGo)
     {
         SceneManager.LoadScene(levelToGo);
+        AudioController.audioController.ChangeMusic(levelToGo);
+        Debug.Log("Nome" + levelToGo);
         Time.timeScale = 1.0f;
         Cheats.campFireIndex = 0;
     }
