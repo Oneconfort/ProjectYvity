@@ -116,7 +116,11 @@ public class LanternaPlayer : MonoBehaviour
                 break;
             case "ParedeFalsa":
                 paredeFalsa = alvo;
-                Destroy(alvo);
+                if (paredeFalsa != null)
+                {
+                    paredeFalsa.SendMessage("Ativar", SendMessageOptions.DontRequireReceiver);
+                    paredeFalsa = null;
+                }
                 break;
         }
     }

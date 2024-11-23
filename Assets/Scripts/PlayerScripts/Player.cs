@@ -1,33 +1,25 @@
-
-
 using System.Drawing;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 
 public class Player : MonoBehaviour
 {
     // [SerializeField] private LayerMask Default;
-
     public Transform spherePoint;
-
     [SerializeField] private float maxJumpTime;
     [SerializeField] private float maxJumpHeight;
-    [SerializeField] private float speed, maxSpeed;
+    [SerializeField] private float speed, speedMove, maxSpeed;
     [SerializeField] private float rotateSpeed;
     [SerializeField] private float jumpSpeed;
     private float gravity;
     private float initialJumpSpeed;
 
     [SerializeField] public bool caverna = true;
-    private bool isPaused = false;
-
-
-    
-
-
+   // private bool isPaused = false;
     private Vector3 dir = Vector3.zero;
     private Vector3 moveDir = Vector3.zero;
 
@@ -40,16 +32,21 @@ public class Player : MonoBehaviour
 
     bool insideLadder = false;
     public CampFire lastSavePointReached;
-
-
     public LayerMask mask;
 
+    [Header("Config Audio")]
+    public AudioClip audioClip;
+    public AudioClip jump;
+    public AudioClip deadScream;
+    //public AudioSource audioSourcePassos;
+    public AudioSource audioSource;
+    public float delay = 2f;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-       
+
         SetJumpVar();
 
         GameController.controller.lifePlayer = SaveGame.data.playerLives;
@@ -60,6 +57,14 @@ public class Player : MonoBehaviour
         }
 
         GameController.controller.UpdateHearts();
+
+        //audioSourcePassos = GetComponent<AudioSource>();
+
+
+        if (audioClip != null)
+        {
+            //audioSourcePassos.clip = audioClip;
+        }
     }
 
 
@@ -69,13 +74,6 @@ public class Player : MonoBehaviour
 
         Mover();
         CheckCheatInput();
-    }
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P)) // Pressione "P" para pausar/retomar
-        {
-            // AnimacaoPause();
-        }
     }
 
 
@@ -138,12 +136,12 @@ public class Player : MonoBehaviour
         move.Normalize();
 
         //AddForce
-        Vector3 force = dir * speed;
-        if (rb.velocity.magnitude < maxSpeed)
-        {
-            rb.AddForce(new Vector3(force.x, 0, force.z), ForceMode.Acceleration);
-        }
-        
+        Vector3 force = move * speed;
+        Vector3 newVelocity = new Vector3(force.x, rb.velocity.y, force.z) - rb.velocity;
+        rb.AddForce(new Vector3(newVelocity.x, 0, newVelocity.z), ForceMode.Acceleration);
+
+
+
         Vector3 dirRot = new Vector3(dir.x, 0, dir.z);
         Quaternion rot;
         float t = Time.fixedDeltaTime;
@@ -152,9 +150,12 @@ public class Player : MonoBehaviour
         {
             rot = Quaternion.LookRotation(dirRot);
             transform.rotation = Quaternion.Lerp(transform.rotation, rot, t * rotateSpeed);
-         
-
         }
+
+        // if (audioSourcePassos != null && audioClip != null)
+        // {
+        //     audioSourcePassos.PlayDelayed(delay);
+        // }
 
     }
 
@@ -162,7 +163,7 @@ public class Player : MonoBehaviour
     {
         if (InteracaoComItem.interacaoComItem.pegouCaixa)
         {
-            Vector3 moveComObj = transform.TransformDirection(dir) * speed;
+            Vector3 moveComObj = transform.TransformDirection(dir) * speedMove;
             moveComObj.y = rb.velocity.y;
             rb.velocity = moveComObj;
         }
@@ -172,7 +173,7 @@ public class Player : MonoBehaviour
     {
         if (caverna == false)
         {
-            Vector3 move = new Vector3(-dir.x, 0, -dir.z) * speed;
+            Vector3 move = new Vector3(-dir.x, 0, -dir.z) * speedMove;
             move.y = rb.velocity.y;
 
             rb.velocity = move;
@@ -210,7 +211,7 @@ public class Player : MonoBehaviour
                 insideLadder = false;
             }
         }
-        if(dir.magnitude <= 0 && insideLadder)
+        if (dir.magnitude <= 0 && insideLadder)
         {
             animator.speed = 0;
         }
@@ -220,18 +221,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    void AnimacaoPause()
-    {
-        if (isPaused)
-        {
-            animator.speed = 1; // Retomar a animação
-        }
-        else
-        {
-            animator.speed = 0; // Pausar a animação
-        }
-        isPaused = !isPaused;
-    }
     public void OnMove(InputAction.CallbackContext ctxt)
     {
         Vector2 NewMoveDir = ctxt.ReadValue<Vector2>();
@@ -248,6 +237,11 @@ public class Player : MonoBehaviour
             rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y + jumpSpeed, rb.velocity.z);
 
             animator.SetTrigger("Jump");
+            audioSource.clip = jump;
+            if (audioSource != null && audioClip != null)
+            {
+                audioSource.Play();
+            }
         }
     }
     public void OnInteraction(InputAction.CallbackContext ctxt)
@@ -302,6 +296,11 @@ public class Player : MonoBehaviour
                 Invoke("Velocidade", 1.2f);
                 break;
             case "ParedeFim":
+                audioSource.clip = deadScream;
+                if (audioSource != null && audioClip != null)
+                {
+                    audioSource.Play();
+                }
                 GameController.controller.TomaDano(collider.gameObject.GetComponent<Inimigo>().GetDamage());
                 CameraController.cameraController.cave = false;
                 caverna = true;
@@ -316,6 +315,8 @@ public class Player : MonoBehaviour
                 break;
             case "Cabana":
                 GameController.controller.Vitoria();
+
+                GerenciadorDeConquistas.instance.Camping();
                 break;
             case "Fosforo":
                 GameController.controller.fosforo++;
@@ -391,8 +392,8 @@ public class Player : MonoBehaviour
         {
             animator.SetLayerWeight(3, 0f);
 
-           
-            insideLadder = !insideLadder;   
+
+            insideLadder = !insideLadder;
         }
     }
     public void Morrer()

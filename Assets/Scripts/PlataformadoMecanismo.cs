@@ -20,15 +20,16 @@ public class PlataformadoMecanismo : MonoBehaviour
 
     private void AtualizarPlataforma()
     {
-        if (LanternaPlayer.lanternaPlayer.detectedPlataformas.Contains(gameObject)) 
+        if (LanternaPlayer.lanternaPlayer.detectedPlataformas.Contains(gameObject))
         {
-            rendererPlataforma.material.color = Color.green;
-            boxCollider.isTrigger = false;
+            //pode ficar em ci
+            rendererPlataforma.enabled = false;
+            boxCollider.isTrigger = true;
         }
         else
         {
-            rendererPlataforma.material.color = Color.white;
-            boxCollider.isTrigger = true;
+            rendererPlataforma.enabled = true;
+            boxCollider.isTrigger = false;
         }
     }
 
