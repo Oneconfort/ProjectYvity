@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   texto: Beware! Enemies ahead. Use the flashlight to defeat them.
   sprite: {fileID: 21300000, guid: f9c842caae74ad946a4e86a1ddaa36af, type: 3}
-  proxDialogo: {fileID: 11400000}
+  proxDialogo: {fileID: 11400000, guid: a49019910bcf6684ea9eb7e762f5be4b, type: 2}
