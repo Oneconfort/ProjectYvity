@@ -96,9 +96,9 @@ public class LanternaPlayer : MonoBehaviour
     {
         switch (alvo.tag)
         {
-            /* case "Inimigo1":
-                 Destroy(alvo, 0.5f);
-                 break;*/
+            case "Inimigo":
+                Destroy(alvo, 0.5f);
+                break;
             case "Bau":
                 bauInteracao = alvo;
                 if (bauInteracao != null)

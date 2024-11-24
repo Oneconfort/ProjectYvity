@@ -290,10 +290,11 @@ public class Player : MonoBehaviour
                 insideLadder = !insideLadder;
                 break;
             case "Inimigo":
-                GameController.controller.TomaDano(collider.gameObject.GetComponent<Inimigo>().GetDamage());
+                GameController.controller.TomaDano(collider.gameObject.GetComponent<Enemy>().GetDamage());
                 animator.SetTrigger("Dano");
                 speed = 0f;
                 Invoke("Velocidade", 1.2f);
+                Destroy(collider.gameObject);
                 break;
             case "ParedeFim":
                 audioSource.clip = deadScream;

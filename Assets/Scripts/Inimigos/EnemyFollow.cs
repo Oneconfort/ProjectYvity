@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class EnemyFollow : Enemy
 {
-   // public GameObject player;
     NavMeshAgent enemyFollow;
     public float detectionRange = 10f;
 

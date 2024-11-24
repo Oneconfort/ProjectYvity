@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.27239513, g: 0.565015, b: 0.71933806, a: 1}
+  m_IndirectSpecularColor: {r: 0.27239686, g: 0.5650145, b: 0.7193488, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7133,7 +7133,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 6038941112369912001}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6038941112369912002}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65f50ae32c9a89a48b3026f5060fcd31, type: 3}
@@ -60999,7 +60999,7 @@ GameObject:
   - component: {fileID: 1375158535942228244}
   m_Layer: 0
   m_Name: Lanterna Spot Light
-  m_TagString: Untagged
+  m_TagString: Luz
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63915,7 +63915,7 @@ PrefabInstance:
     - target: {fileID: 978016336152092144, guid: cc511f289f39dd94b90957ecff4c441b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.44323117
+      value: -0.77
       objectReference: {fileID: 0}
     - target: {fileID: 978016336152092144, guid: cc511f289f39dd94b90957ecff4c441b,
         type: 3}
@@ -66219,21 +66219,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1688896435159346967, guid: 0f38db968d91a9e48a2dd3463fba385d,
+    - target: {fileID: 1174851111064186991, guid: 0f38db968d91a9e48a2dd3463fba385d,
         type: 3}
-      propertyPath: speed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1688896435159346967, guid: 0f38db968d91a9e48a2dd3463fba385d,
-        type: 3}
-      propertyPath: speedMove
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1688896435159346967, guid: 0f38db968d91a9e48a2dd3463fba385d,
-        type: 3}
-      propertyPath: deadScream
+      propertyPath: image
       value: 
-      objectReference: {fileID: 8300000, guid: 340305edff911fc42ba52f8479a6fa65, type: 3}
+      objectReference: {fileID: 1758238927347763073}
+    - target: {fileID: 1174851111064186991, guid: 0f38db968d91a9e48a2dd3463fba385d,
+        type: 3}
+      propertyPath: texto
+      value: 
+      objectReference: {fileID: 802488318682593050}
+    - target: {fileID: 1174851111064186991, guid: 0f38db968d91a9e48a2dd3463fba385d,
+        type: 3}
+      propertyPath: painelDialogo
+      value: 
+      objectReference: {fileID: 7932702099713375705}
     - target: {fileID: 1688896435159346967, guid: 0f38db968d91a9e48a2dd3463fba385d,
         type: 3}
       propertyPath: audioSource
@@ -66241,34 +66241,9 @@ PrefabInstance:
       objectReference: {fileID: 30574818}
     - target: {fileID: 1688896435159346967, guid: 0f38db968d91a9e48a2dd3463fba385d,
         type: 3}
-      propertyPath: mask.m_Bits
-      value: 520
-      objectReference: {fileID: 0}
-    - target: {fileID: 1688896435159346967, guid: 0f38db968d91a9e48a2dd3463fba385d,
-        type: 3}
       propertyPath: lastSavePointReached
       value: 
       objectReference: {fileID: 1475754149}
-    - target: {fileID: 1817034500016500603, guid: 0f38db968d91a9e48a2dd3463fba385d,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 2.0550108
-      objectReference: {fileID: 0}
-    - target: {fileID: 1817034500016500603, guid: 0f38db968d91a9e48a2dd3463fba385d,
-        type: 3}
-      propertyPath: m_Size.z
-      value: 2.3490086
-      objectReference: {fileID: 0}
-    - target: {fileID: 1817034500016500603, guid: 0f38db968d91a9e48a2dd3463fba385d,
-        type: 3}
-      propertyPath: m_Center.x
-      value: -0.18000007
-      objectReference: {fileID: 0}
-    - target: {fileID: 1817034500016500603, guid: 0f38db968d91a9e48a2dd3463fba385d,
-        type: 3}
-      propertyPath: m_Center.y
-      value: 0.38351148
-      objectReference: {fileID: 0}
     - target: {fileID: 2704937762093582218, guid: 0f38db968d91a9e48a2dd3463fba385d,
         type: 3}
       propertyPath: endPoint
@@ -66334,38 +66309,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2872145451332876046, guid: 0f38db968d91a9e48a2dd3463fba385d, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6418736902897824608, guid: 0f38db968d91a9e48a2dd3463fba385d,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6038941112369912003}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f38db968d91a9e48a2dd3463fba385d, type: 3}
---- !u!1 &6038941112369912002 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6418736902897824608, guid: 0f38db968d91a9e48a2dd3463fba385d,
-    type: 3}
-  m_PrefabInstance: {fileID: 6038941112369912001}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6038941112369912003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6038941112369912002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9503c142f6004a2409d5047c4152d6a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  painelDialogo: {fileID: 7932702099713375705}
-  image: {fileID: 1758238927347763073}
-  texto: {fileID: 802488318682593050}
-  dialogo: {fileID: 11400000, guid: ba91ea62613d7414381502710413caf1, type: 2}
 --- !u!1 &6056825485865156245
 GameObject:
   m_ObjectHideFlags: 0
@@ -69049,13 +68997,35 @@ GameObject:
   - component: {fileID: 1679194238566797832}
   - component: {fileID: 4540430389233940679}
   - component: {fileID: 2083904311645489142}
+  - component: {fileID: 8703163470677264538}
   m_Layer: 0
   m_Name: LuzLanternaSpot
-  m_TagString: Untagged
+  m_TagString: Luz
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &8703163470677264538
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8703163470677264537}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.9796427, y: 2, z: 0.7859789}
+  m_Center: {x: 0, y: -0.00000010305409, z: 1.6070265}
 --- !u!114 &8754711577671333450
 MonoBehaviour:
   m_ObjectHideFlags: 0

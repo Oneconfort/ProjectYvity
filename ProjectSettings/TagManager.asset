@@ -24,6 +24,9 @@ TagManager:
   - Caverna2
   - Estalactite
   - Caverna
+  - Tutorial
+  - Inimigo
+  - Luz
   layers:
   - Default
   - TransparentFX
