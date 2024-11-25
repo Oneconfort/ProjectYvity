@@ -7,10 +7,13 @@ public class Caixa : MonoBehaviour
 
     private BoxCollider box;
     public GameObject gelo;
-
+    int blendShapeIndex = 0;
+    SkinnedMeshRenderer skinnedMeshRenderer;
+   
     void Start()
     {
         box = GetComponent<BoxCollider>();
+        skinnedMeshRenderer = gelo.GetComponent<SkinnedMeshRenderer>();
     }
 
     private void Update()
@@ -22,11 +25,11 @@ public class Caixa : MonoBehaviour
     {
         if (LanternaPlayer.lanternaPlayer.caixaDetectada)
         {
-            gelo.SetActive(false);
+            Escalar();
         }
         else
         {
-            gelo.SetActive(true);
+            Desescalar();
         }
         if (InteracaoComItem.interacaoComItem.pegouCaixa)
         {
@@ -35,6 +38,27 @@ public class Caixa : MonoBehaviour
         else
         {
             box.enabled = true;
+        }
+    }
+
+    void Escalar()
+    {
+        float currentBlendShapeWeight = skinnedMeshRenderer.GetBlendShapeWeight(blendShapeIndex);
+
+        if (currentBlendShapeWeight < 100)
+        {
+            float newBlendShapeWeight = Mathf.Min(currentBlendShapeWeight + (60 * Time.deltaTime), 100);
+            skinnedMeshRenderer.SetBlendShapeWeight(blendShapeIndex, newBlendShapeWeight);
+        }
+    }
+    void Desescalar()
+    {
+        float currentBlendShapeWeight = skinnedMeshRenderer.GetBlendShapeWeight(blendShapeIndex);
+
+        if (currentBlendShapeWeight > 0)
+        {
+            float newBlendShapeWeight = Mathf.Max(currentBlendShapeWeight - (60 * Time.deltaTime), 0);
+            skinnedMeshRenderer.SetBlendShapeWeight(blendShapeIndex, newBlendShapeWeight);
         }
     }
 }

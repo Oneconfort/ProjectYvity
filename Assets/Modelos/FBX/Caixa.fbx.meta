@@ -19,6 +19,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: MaterialTentaculo
     second: {fileID: 2100000, guid: b13365ac1824ed04e8f333c67535801f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MaterialTentaculo.001
+    second: {fileID: 2100000, guid: b13365ac1824ed04e8f333c67535801f, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

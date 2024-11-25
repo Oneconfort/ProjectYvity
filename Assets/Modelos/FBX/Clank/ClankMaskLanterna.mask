@@ -1,0 +1,151 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ClankMaskLanterna
+  m_Mask: 00000000000000000000000000000000000000000100000000000000010000000000000000000000000000000100000000000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Clank_1
+    m_Weight: 0
+  - m_Path: Clank_1_Armature
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Flower
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Flower/Flower_end
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Lantern
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Lantern/Lantern_end
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/IK_Leg.L
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/IK_Leg.L/Foot.L
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/IK_Leg.L/Foot.L/Toes.L
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/IK_Leg.L/Foot.L/Toes.L/Toes.L_end
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/IK_Leg.L/PoleLeg.L
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/IK_Leg.L/PoleLeg.L/PoleLeg.L_end
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/IK_Leg.R
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/IK_Leg.R/Foot.R
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/IK_Leg.R/Foot.R/Toes.R
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/IK_Leg.R/Foot.R/Toes.R/Toes.R_end
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/IK_Leg.R/PoleLeg.R
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/IK_Leg.R/PoleLeg.R/PoleLeg.R_end
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Belly
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.L
+    m_Weight: 1
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.L/Arm.L
+    m_Weight: 1
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.L/Arm.L/Elbow.L
+    m_Weight: 1
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.L/Arm.L/Elbow.L/Hand.L
+    m_Weight: 1
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.L/Arm.L/Elbow.L/Hand.L/Fingers.L
+    m_Weight: 1
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.L/Arm.L/Elbow.L/Hand.L/Fingers.L/FlowerHandler.L
+    m_Weight: 1
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.L/Arm.L/Elbow.L/Hand.L/Fingers.L/FlowerHandler.L/FlowerHandler.L_end
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.L/Arm.L/Elbow.L/Hand.L/Tumb.L
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.L/Arm.L/Elbow.L/Hand.L/Tumb.L/Tumb.L_end
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.R
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.R/Arm.R
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.R/Arm.R/Elbow.R
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.R/Arm.R/Elbow.R/Hand.R
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.R/Arm.R/Elbow.R/Hand.R/Fingers.R
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.R/Arm.R/Elbow.R/Hand.R/Fingers.R/FlowerHandler.R
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.R/Arm.R/Elbow.R/Hand.R/Fingers.R/FlowerHandler.R/FlowerHandler.R_end
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.R/Arm.R/Elbow.R/Hand.R/Tumb.R
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest/Clavicle.R/Arm.R/Elbow.R/Hand.R/Tumb.R/Tumb.R_end
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest/Neck
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest/Neck/Head
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest/Neck/Head/Eye.L
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest/Neck/Head/Eye.L/Eye.L_end
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest/Neck/Head/Eye.R
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest/Neck/Head/Eye.R/Eye.R_end
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest/Neck/Head/Hat
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest/Neck/Head/Hat/Hat_end
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest/Neck/Head/Nose
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest/Neck/Head/Nose/Nose_end
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest/Neck/ScarfBack
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest/Neck/ScarfBack/ScarfBack_end
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest/Neck/ScarfFront
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest/Neck/ScarfFront/ScarfLenghtBeg
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest/Neck/ScarfFront/ScarfLenghtBeg/ScarfLenghtEnd
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Chest/Neck/ScarfFront/ScarfLenghtBeg/ScarfLenghtEnd/ScarfLenghtEnd_end
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Suspensor.L
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Suspensor.L/Suspensor.L_end
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Suspensor.R
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Belly/Suspensor.R/Suspensor.R_end
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Hips
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Hips/Tigh.L
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Hips/Tigh.L/Knee.L
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Hips/Tigh.L/Knee.L/Knee.L_end
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Hips/Tigh.R
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Hips/Tigh.R/Knee.R
+    m_Weight: 0
+  - m_Path: Clank_1_Armature/Root/Master/Hips/Tigh.R/Knee.R/Knee.R_end
+    m_Weight: 0
+  - m_Path: Clank_Hat
+    m_Weight: 0
+  - m_Path: Clank_Scarf
+    m_Weight: 0

@@ -21,7 +21,7 @@ MonoBehaviour:
     m_Value: 1.1
   intensity:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 1.42
   scatter:
     m_OverrideState: 1
     m_Value: 0.47
@@ -68,10 +68,10 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.25
+    m_Value: 0.33
   smoothness:
     m_OverrideState: 1
-    m_Value: 0.697
+    m_Value: 0.73
   rounded:
     m_OverrideState: 0
     m_Value: 0
@@ -89,14 +89,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   redOutRedIn:
-    m_OverrideState: 0
-    m_Value: 100
+    m_OverrideState: 1
+    m_Value: 138
   redOutGreenIn:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: -2
   redOutBlueIn:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 4
   greenOutRedIn:
     m_OverrideState: 0
     m_Value: 0
@@ -195,7 +195,7 @@ MonoBehaviour:
     m_Value: {x: 1, y: 1, z: 1, w: 0}
   highlights:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_Value: {x: 0.97736263, y: 0.95472544, z: 1, w: 0}
   shadowsStart:
     m_OverrideState: 0
     m_Value: 0
@@ -229,10 +229,10 @@ MonoBehaviour:
     m_Value: 0
   colorFilter:
     m_OverrideState: 0
-    m_Value: {r: 1, g: 0, b: 0, a: 1}
+    m_Value: {r: 0.990566, g: 0.990566, b: 0.990566, a: 1}
   hueShift:
     m_OverrideState: 0
-    m_Value: -20
+    m_Value: 2
   saturation:
     m_OverrideState: 0
-    m_Value: 31
+    m_Value: 24

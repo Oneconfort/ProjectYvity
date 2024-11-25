@@ -18,6 +18,7 @@ public class InteracaoComItem : MonoBehaviour
     public Transform startPoint;
     public Transform endPoint;
     bool isZipping = false;
+    int interagiu = 0;
 
 
     void Awake()
@@ -97,9 +98,12 @@ public class InteracaoComItem : MonoBehaviour
             case "Fogueira":
                 LanternaPlayer.lanternaPlayer.RecargaBateria(100);
                 GameController.controller.Player.lastSavePointReached = alvo.GetComponent<CampFire>();
+                interagiu++;
+                GerenciadorDeConquistas.instance.Heated(interagiu);
                 break;
             case "Alavanca":
                 var buttonScript = alvo.GetComponent<ButtonScript>();
+               animator.SetTrigger("Alavanca");
                 if (buttonScript != null)
                 {
                     buttonScript.AlternarBotao();
@@ -176,6 +180,7 @@ public class InteracaoComItem : MonoBehaviour
             }
         }
     }
+   
 
     IEnumerator ZiplineMovement()
     {

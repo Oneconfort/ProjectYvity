@@ -96,9 +96,9 @@ public class LanternaPlayer : MonoBehaviour
     {
         switch (alvo.tag)
         {
-            /* case "Inimigo1":
-                 Destroy(alvo, 0.5f);
-                 break;*/
+            case "Inimigo":
+                Destroy(alvo, 0.5f);
+                break;
             case "Bau":
                 bauInteracao = alvo;
                 if (bauInteracao != null)
@@ -116,7 +116,11 @@ public class LanternaPlayer : MonoBehaviour
                 break;
             case "ParedeFalsa":
                 paredeFalsa = alvo;
-                Destroy(alvo);
+                if (paredeFalsa != null)
+                {
+                    paredeFalsa.SendMessage("Ativar", SendMessageOptions.DontRequireReceiver);
+                    paredeFalsa = null;
+                }
                 break;
         }
     }

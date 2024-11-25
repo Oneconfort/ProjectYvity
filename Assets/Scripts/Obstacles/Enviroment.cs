@@ -10,11 +10,11 @@ public class Enviroment : MonoBehaviour
     //Alem dos spawns não presisa mexer em mais nada, FUNCIONA!!!
     //Da para otimizar melhor para instanciar com corotina, vou fazer depois to com preguiça
 
-
+    // Cloquei o cooldown pra ser aleatorio
     [SerializeField] private GameObject effect;
     [SerializeField] private Transform[] spawns;
     [SerializeField] private float cooldown;
-
+   
     void Start()
     {
         InvokeRepeating("Spawn", 1, cooldown);
@@ -27,6 +27,7 @@ public class Enviroment : MonoBehaviour
         {
             Instantiate(effect, spawns[i].transform.position, spawns[i].transform.rotation);
         }
+        float cooldown = Random.Range(15, 20);
     }
 
 
