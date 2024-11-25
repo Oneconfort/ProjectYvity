@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6994026329309124039
+--- !u!1 &822173548041692012
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 771784531092779098}
-  - component: {fileID: 4418815434706087545}
+  - component: {fileID: 9156705798245096139}
+  - component: {fileID: 945592646756388172}
   m_Layer: 0
-  m_Name: 'Windcontroller '
+  m_Name: 'ObstaclesController '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &771784531092779098
+--- !u!4 &9156705798245096139
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6994026329309124039}
+  m_GameObject: {fileID: 822173548041692012}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.08, y: 19.11, z: 32.51}
@@ -32,18 +32,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4418815434706087545
+--- !u!114 &945592646756388172
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6994026329309124039}
+  m_GameObject: {fileID: 822173548041692012}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f05b4126e368764099649f96c539d0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effect: {fileID: 2619788803940549881, guid: ceb34413cc7665c40a4b56f976da7113, type: 3}
+  effectType: {fileID: 0}
   spawns: []
   cooldown: 12

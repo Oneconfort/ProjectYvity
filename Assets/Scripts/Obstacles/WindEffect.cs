@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WindEffect : Obstacles
 {
+
     //O vento adiciona uma força no player e joga ele longe
 
     [SerializeField] float force;
@@ -15,5 +16,10 @@ public class WindEffect : Obstacles
 
             rigidbody.AddForce(0, 0, force, ForceMode.Impulse);
         }
+    }
+
+    public override float SetLifetime()
+    {
+        return 8;
     }
 }
