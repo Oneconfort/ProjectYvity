@@ -88,6 +88,7 @@ public class InteracaoComItem : MonoBehaviour
                 LanternaPlayer.lanternaPlayer.LigarLanterna();
                 break;
             case "Tirolesa":
+                animator.SetLayerWeight(4, 1f);
                 if (!isZipping)
                 {
                     transform.position = gameObject.transform.position;
@@ -197,6 +198,8 @@ public class InteracaoComItem : MonoBehaviour
 
                 yield return null;
             }
+            animator.SetLayerWeight(4, 0f);
+
         }
     }
 }

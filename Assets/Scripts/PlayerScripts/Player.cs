@@ -342,7 +342,7 @@ public class Player : MonoBehaviour
                 if (caverna == false)
                 {
                     CameraController.cameraController.cave = false;
-                    speed = 11;
+                    speed = 20;
                     transform.position = new Vector3(246.1f, -0.11f, 355.8f);
                     caverna = true;
                 }
@@ -363,7 +363,7 @@ public class Player : MonoBehaviour
                 {
                     CameraController.cameraController.cave = false;
                     transform.position = new Vector3(291.07f, 1.25f, 429.254f);
-                    speed = 11;
+                    speed = 20;
                     caverna = true;
                 }
                 else
