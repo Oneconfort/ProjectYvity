@@ -9,6 +9,8 @@ public class ItemPainelConquista : MonoBehaviour
     [SerializeField] private Text _text;
     [SerializeField] private string _dscTexto;
     [SerializeField] private Button btn;
+    [SerializeField] private Sprite _spriteInteragivel;
+    [SerializeField] private Image _spriteT;
 
 
 
@@ -16,15 +18,26 @@ public class ItemPainelConquista : MonoBehaviour
     public void Setup(Sprite sprite, string text, string dscTxt, bool ativado)
     {
         gameObject.SetActive(true);
-        _sprite.sprite = sprite;
         _text.text = text;
         _dscTexto = dscTxt;
         btn.interactable = ativado;
+        if (ativado)
+        {
+            _sprite.sprite = _spriteInteragivel; // Use o sprite interagível
+        }
+        else
+        {
+            _sprite.sprite = sprite; // Use o sprite padrão
+        }
 
     }
 
     public void AtualizarTextoDsc(Text texto)
     {
         texto.text = _dscTexto;
+    }
+    public void AtualizarSprite(Sprite novoSprite)
+    {
+        _spriteT.sprite = novoSprite;
     }
 }
