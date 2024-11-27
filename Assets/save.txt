@@ -1,6 +1,6 @@
 {
     "playerLives": 3,
-    "level": "Nivel2",
+    "level": "Menu",
     "lastSavePointReached": 0,
     "hasFlashlight": false,
     "flashlightBattery": 0.0
