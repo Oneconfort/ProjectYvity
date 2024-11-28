@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float speed, speedMove, maxSpeed;
     [SerializeField] private float rotateSpeed;
     [SerializeField] private float jumpSpeed;
+    private float speedBuffer;
     private float gravity;
     private float initialJumpSpeed;
 
@@ -46,7 +47,7 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-
+        speedBuffer = speed;
         SetJumpVar();
 
         GameController.controller.lifePlayer = SaveGame.data.playerLives;
@@ -192,7 +193,7 @@ public class Player : MonoBehaviour
     {
         if (!IsGrounded())
         {
-            rb.velocity += new Vector3(0, gravity * 5 * Time.fixedDeltaTime, 0);
+            rb.velocity += new Vector3(0, gravity * 10 * Time.fixedDeltaTime, 0);
         }
     }
 
@@ -388,9 +389,38 @@ public class Player : MonoBehaviour
                 break;
         }
     }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Icy"))
+        {
+            rb.drag = 0.25f;
+            speed = speed * 0.25f;
+        }
+    }
+    private void OnCollisionStay(Collision other)
+    {
+        if (other.gameObject.CompareTag("Icy"))
+        {
+
+            if (rb.velocity.magnitude <= 0)
+            {
+                rb.AddForce(0, 0, 0.5f * Time.deltaTime, ForceMode.Impulse);
+            }
+        }
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.CompareTag("Icy"))
+        {
+            rb.drag = 1.5f;
+            speed = speedBuffer;
+        }
+    }
     public bool IsGrounded()
     {
-        return Physics.CheckSphere(spherePoint.position, 0.5f, mask);
+        return Physics.CheckSphere(spherePoint.position, 0.1f, mask);
     }
 
     void OnTriggerExit(Collider collider)
@@ -441,6 +471,6 @@ public class Player : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = UnityEngine.Color.yellow;
-        Gizmos.DrawWireSphere(spherePoint.position, 0.5f);
+        Gizmos.DrawWireSphere(spherePoint.position, 0.1f);
     }
 }
