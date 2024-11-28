@@ -355,13 +355,13 @@ public class Player : MonoBehaviour
                 }
                 else//entra
                 {
-                    CameraController.cameraController.transform.position = new Vector3(812.039f, 11.930f, 284.75f);
+                    CameraController.cameraController.transform.position = new Vector3(812.03f, 9.77f, 289.86f);
 
 
                     CameraController.cameraController.cave = true;
                     speed = 6;
                     transform.position = new Vector3(829.92f, -2.36f, 262.84f);
-                    CameraController.cameraController.transform.rotation = Quaternion.Euler(11.763f, -180, 0);
+                    CameraController.cameraController.transform.rotation = Quaternion.Euler(7f, -180, 0);
                     caverna = false;
                 }
                 break;
@@ -375,11 +375,11 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    CameraController.cameraController.transform.position = new Vector3(812.039f, 11.930f, 284.75f);
+                    CameraController.cameraController.transform.position = new Vector3(812.03f, 9.77f, 289.8f);
                     CameraController.cameraController.cave = true;
                     speed = 6;
                     transform.position = new Vector3(793.53f, 11.02f, 262.84f);
-                    CameraController.cameraController.transform.rotation = Quaternion.Euler(11.763f, -180, 0);
+                    CameraController.cameraController.transform.rotation = Quaternion.Euler(7f, -180, 0);
                     caverna = false;
                 }
                 break;

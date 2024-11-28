@@ -1,5 +1,5 @@
 {
-    "playerLives": 0,
+    "playerLives": 1,
     "level": "Nivel2",
     "lastSavePointReached": 0,
     "hasFlashlight": false,
