@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
     public AudioClip audioClip;
     public AudioClip jump;
     public AudioClip deadScream;
-    //public AudioSource audioSourcePassos;
+    public AudioSource audioSourcePassos;
     public AudioSource audioSource;
     public float delay = 2f;
 
@@ -58,12 +58,12 @@ public class Player : MonoBehaviour
 
         GameController.controller.UpdateHearts();
 
-        //audioSourcePassos = GetComponent<AudioSource>();
+        audioSourcePassos = GetComponent<AudioSource>();
 
 
         if (audioClip != null)
         {
-            //audioSourcePassos.clip = audioClip;
+            audioSourcePassos.clip = audioClip;
         }
     }
 
@@ -152,10 +152,10 @@ public class Player : MonoBehaviour
             transform.rotation = Quaternion.Lerp(transform.rotation, rot, t * rotateSpeed);
         }
 
-        // if (audioSourcePassos != null && audioClip != null)
-        // {
-        //     audioSourcePassos.PlayDelayed(delay);
-        // }
+        if (audioSourcePassos != null && audioClip != null)
+        {
+        
+        }
 
     }
 
@@ -227,6 +227,12 @@ public class Player : MonoBehaviour
         dir.x = NewMoveDir.x;
         dir.z = NewMoveDir.y;
         animator.SetFloat("Speed", dir.magnitude);
+        if(dir.magnitude >= 1){
+            audioSourcePassos.Play();
+        }
+        else{
+            audioSourcePassos.Pause();
+        }
 
     }
 
