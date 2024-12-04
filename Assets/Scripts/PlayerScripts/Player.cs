@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
 
     private Animator animator;
 
+    [SerializeField] private GameObject particle;
     public Transform pivot;
     public GameObject flor;
 
@@ -68,7 +69,17 @@ public class Player : MonoBehaviour
         }
     }
 
-
+    void Update()
+    {
+        if (IsGrounded())
+        {
+            particle.SetActive(true);
+        }
+        else
+        {
+            particle.SetActive(false);
+        }
+    }
     void FixedUpdate()
     {
         if (GameController.controller.uiController.visivelpause == true) return;
@@ -245,6 +256,8 @@ public class Player : MonoBehaviour
 
             animator.SetTrigger("Jump");
             audioSource.clip = jump;
+            particle.SetActive(false);
+
             if (audioSource != null && audioClip != null)
             {
                 audioSource.Play();
