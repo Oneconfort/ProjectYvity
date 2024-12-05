@@ -7,10 +7,10 @@ public abstract class Obstacles : MonoBehaviour
     //Eu criei essa clase abstrata caso a gente queira adicionar mais efeitos do tipo
     public float lifeTime;
 
-    BoxCollider colider;
+    Collider colider;
     private void Start()
     {
-        colider = GetComponent<BoxCollider>();
+        colider = GetComponent<Collider>();
 
         Invoke("TurnOff", lifeTime);
         Destroy(gameObject, lifeTime + 3);

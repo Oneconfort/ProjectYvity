@@ -88,7 +88,10 @@ public class LanternaPlayer : MonoBehaviour
                 ProcessarAlvo(alvoLanterna);
             }
         }
-        caixaDetectada = detectedInIteration == DetectedType.Caixa;
+        if (ligar)
+        {
+            caixaDetectada = detectedInIteration == DetectedType.Caixa;
+        }
         plataformaDetectada = detectedInIteration == DetectedType.Plataforma;
     }
 
