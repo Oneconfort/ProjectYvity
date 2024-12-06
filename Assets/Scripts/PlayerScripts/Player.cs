@@ -246,8 +246,15 @@ public class Player : MonoBehaviour
 
             animator.SetTrigger("Jump");
             audioSource.clip = jump;
-            GameObject myParticle = Instantiate(jumpParticle, spherePoint.position, spherePoint.rotation);
-            Destroy(myParticle, 1);
+            if (jumpParticle)
+            {
+                GameObject myParticle = Instantiate(jumpParticle, spherePoint.position, spherePoint.rotation);
+                Destroy(myParticle, 1);
+            }
+            else
+            {
+                Debug.Assert(false, "'jumpParticle' reference is null!");
+            }
 
             if (audioSource != null && audioClip != null)
             {
@@ -273,6 +280,7 @@ public class Player : MonoBehaviour
     {
         if (ctxt.performed && GameController.controller?.fosforo != 0 && LanternaPlayer.lanternaPlayer?.bateriaAtual < 100)
         {
+            AudioController.audioController.PlaySoundEffectAtIndex(1);
             GameController.controller.fosforo--;
             GameController.controller.uiController.UpdateFosforo(GameController.controller.fosforo);
             LanternaPlayer.lanternaPlayer.RecargaBateria(100);
@@ -333,6 +341,7 @@ public class Player : MonoBehaviour
             case "Fosforo":
                 GameController.controller.fosforo++;
                 GameController.controller.uiController.UpdateFosforo(GameController.controller.fosforo);
+                AudioController.audioController.PlaySoundEffectAtIndex(16);
                 Destroy(collider.gameObject);
                 break;
             case "Caverna":
@@ -340,9 +349,11 @@ public class Player : MonoBehaviour
                 {
                     transform.position = new Vector3(222.5f, 1.1f, 395.8f);
                     caverna = true;
+                    AudioController.audioController.ChangeMusic(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
                 }
                 else
                 {
+                    AudioController.audioController.ChangeMusic("Caverna");
                     transform.position = new Vector3(62.17f, 0.79f, 702.57f);
                     CameraController.cameraController.transform.rotation = Quaternion.Euler(0, -180, 0);
                     caverna = false;
@@ -356,6 +367,7 @@ public class Player : MonoBehaviour
                     speed = 20;
                     transform.position = new Vector3(246.1f, -0.11f, 355.8f);
                     caverna = true;
+                    AudioController.audioController.ChangeMusic(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
                 }
                 else//entra
                 {
@@ -367,6 +379,7 @@ public class Player : MonoBehaviour
                     transform.position = new Vector3(829.92f, -2.36f, 262.84f);
                     CameraController.cameraController.transform.rotation = Quaternion.Euler(7f, -180, 0);
                     caverna = false;
+                    AudioController.audioController.ChangeMusic("Caverna");
                 }
                 break;
             case "CavernaSaida2":
@@ -376,6 +389,7 @@ public class Player : MonoBehaviour
                     transform.position = new Vector3(291.07f, 1.25f, 429.254f);
                     speed = 20;
                     caverna = true;
+                    AudioController.audioController.ChangeMusic(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
                 }
                 else
                 {
@@ -385,6 +399,7 @@ public class Player : MonoBehaviour
                     transform.position = new Vector3(793.53f, 11.02f, 262.84f);
                     CameraController.cameraController.transform.rotation = Quaternion.Euler(7f, -180, 0);
                     caverna = false;
+                    AudioController.audioController.ChangeMusic("Caverna");
                 }
                 break;
             case "Estalactite":
@@ -454,6 +469,7 @@ public class Player : MonoBehaviour
 
         transform.position = savePoint.spawnPoint.position;
         transform.rotation = savePoint.spawnPoint.rotation;
+        AudioController.audioController.ChangeMusic(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 
     void SetJumpVar()

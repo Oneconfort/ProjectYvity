@@ -81,6 +81,7 @@ public class GameController : MonoBehaviour
     public void Vitoria()
     {
         Time.timeScale = 0.0f;
+        AudioController.audioController.PlaySoundEffectAtIndex(3);
         uiController.MostrarPainelVitoria();
     }
 

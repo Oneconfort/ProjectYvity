@@ -47,6 +47,7 @@ public class PuzzleManager : MonoBehaviour
             puzzle.alavancasAtivadas.Add(scriptBotao);
             if (puzzle.passoAtual == puzzle.ordemCorreta.Length)
             {
+                AudioController.audioController.PlaySoundEffectAtIndex(2);
                 AtivarPlataforma(indicePlataforma);
             }
         }
@@ -54,6 +55,7 @@ public class PuzzleManager : MonoBehaviour
         {
             ResetarPuzzle(indicePlataforma);
             scriptBotao.AtivarEEsperar();
+            AudioController.audioController.PlaySoundEffectAtIndex(9);
         }
     }
 

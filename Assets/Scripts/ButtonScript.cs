@@ -23,6 +23,7 @@ public class ButtonScript : MonoBehaviour
             ativado = true;
             gerenciadorDePuzzle.BotaoPressionado(ordemBotao, this, indicePlataforma);
             AtualizarAparenciaDoBotao();
+            AudioController.audioController.PlaySoundEffectAtIndex(11);
         }
     }
 

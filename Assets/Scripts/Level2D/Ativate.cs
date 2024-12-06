@@ -10,13 +10,14 @@ public class Ativate : MonoBehaviour
 
     private void Start()
     {
-        SpawnObject(); 
+        SpawnObject();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && currentObject != null)
         {
+            AudioController.audioController.PlaySoundEffectAtIndex(4);
             Rigidbody rb = currentObject.GetComponent<Rigidbody>();
             if (rb != null)
             {
@@ -30,7 +31,5 @@ public class Ativate : MonoBehaviour
     private void SpawnObject()
     {
         currentObject = Instantiate(objectToDrop, transform.position, Quaternion.identity);
-
-
     }
 }

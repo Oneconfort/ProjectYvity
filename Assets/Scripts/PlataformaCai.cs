@@ -47,5 +47,6 @@ public class PlataformaCai : MonoBehaviour
     void DerrubarPlataforma()
     {
         rb.isKinematic = false;
+        AudioController.audioController.PlaySoundEffectAtIndex(33);
     }
 }

@@ -192,6 +192,7 @@ public class InteracaoComItem : MonoBehaviour
             int velocity = 15;
             isZipping = true;
             float progress = 0f;
+            AudioController.audioController.PlaySoundEffectAtIndex(5);
             while (progress < 1f)
             {
                 progress += Time.deltaTime * velocity / Vector3.Distance(startPoint.position, endPoint.position);

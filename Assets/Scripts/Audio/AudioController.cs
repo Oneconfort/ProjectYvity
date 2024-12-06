@@ -10,6 +10,44 @@ public class AudioController : MonoBehaviour
     public AudioClip[] myAudios;
     private AudioSource gameMusic;
     public AudioMixer audios;
+    public AudioMixerGroup soundEffectsMixerGroup;
+    public AudioClip[] soundEffects;
+    public AudioSource[] soundEffectsSources;
+
+    [ContextMenu("Generate audio sources for all SFX")]
+    public void GenerateAudioSourcesForAllSoundEffects()
+    {
+        // Destroys all previous audio sources
+        while (transform.childCount > 0) // Needs this "while" because Unity does not destroy all children even when we ask for it
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                DestroyImmediate(transform.GetChild(i).gameObject);
+            }
+        }
+
+        Debug.Assert(transform.childCount <= 0);
+
+#if UNITY_EDITOR
+        UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+        UnityEditor.EditorUtility.SetDirty(gameObject);
+#endif
+
+        soundEffectsSources = new AudioSource[soundEffects.Length];
+        for (int i = 0; i < soundEffects.Length; i++)
+        {
+            GameObject go = new GameObject(soundEffects[i].name);
+            go.transform.SetParent(transform);
+            go.transform.position = Vector3.zero;
+
+            go.AddComponent<AudioSource>().clip = soundEffects[i];
+            go.GetComponent<AudioSource>().playOnAwake = false;
+            go.GetComponent<AudioSource>().outputAudioMixerGroup = soundEffectsMixerGroup;
+            go.transform.SetSiblingIndex(i);
+
+            soundEffectsSources[i] = go.GetComponent<AudioSource>();
+        }
+    }
 
     private void Awake()
     {
@@ -62,6 +100,9 @@ public class AudioController : MonoBehaviour
             case "Nivel2":
                 gameMusic.clip = myAudios[2];
                 break;
+            case "Caverna":
+                gameMusic.clip = myAudios[3];
+                break;
             default:
                 Debug.LogWarning($"Nenhuma música configurada para a cena: {levelToGo}");
                 return;
@@ -82,5 +123,16 @@ public class AudioController : MonoBehaviour
     public void ChangeVFXVolume(float volume)
     {
         audios.SetFloat("VFXVolume", volume);
+    }
+
+    public void PlaySoundEffectAtIndex(int index)
+    {
+        if (index >= soundEffectsSources.Length)
+        {
+            Debug.Assert(false, "This sound effect does not exist!");
+            return;
+        }
+
+        soundEffectsSources[index].Play();
     }
 }

@@ -14,6 +14,7 @@ public class DropBau : MonoBehaviour
     {
         if(functionActivated == true)
         {
+            AudioController.audioController.PlaySoundEffectAtIndex(10);
             gelo.SetActive(false);
            tampaBau.transform.Rotate(0, 0, -120);
 
