@@ -68,6 +68,7 @@ public class InteracaoComItem : MonoBehaviour
             case "ObjetoI":
                 PegarItem(alvo);
                 break;
+           
             case "Caixa":
                 if (LanternaPlayer.lanternaPlayer.ligar)
                 {
@@ -88,6 +89,7 @@ public class InteracaoComItem : MonoBehaviour
                 LanternaPlayer.lanternaPlayer.LigarLanterna();
                 break;
             case "Tirolesa":
+                if (!pegouLanterna)
                 animator.SetLayerWeight(4, 1f);
                 if (!isZipping)
                 {

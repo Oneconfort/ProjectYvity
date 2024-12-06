@@ -207,7 +207,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 20
+  m_Radius: 6
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1342529151419943068
 MonoBehaviour:
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_IsGlobal: 0
   priority: 0
   blendDistance: 4
-  weight: 1
+  weight: 0.574
   sharedProfile: {fileID: 11400000, guid: 46301355c4afb634ea470a62b24de05f, type: 2}
 --- !u!1 &6792294145286894139
 GameObject:

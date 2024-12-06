@@ -69,7 +69,7 @@ public class LanternaPlayer : MonoBehaviour
 
     void InteragirLanterna()
     {
-        string[] tags = { "Bau", "Caixa", "ParedeFalsa", "Plataforma" };
+        string[] tags = { "Bau", "Caixa", "ParedeFalsa", "Plataforma","Inimigo" };
         List<GameObject> alvos = new List<GameObject>();
 
         foreach (string tag in tags)

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7281c541d8ced1f4283737446e5a9ae5, type: 3}
   m_Name: Mecanismo
   m_EditorClassIdentifier: 
-  texto: The lever activates the hook and raises the lantern.
+  texto: The lever activates the hook and raises the flashlight.
   sprite: {fileID: 21300000, guid: f9c842caae74ad946a4e86a1ddaa36af, type: 3}
   proxDialogo: {fileID: 11400000, guid: 0e6e1f7abdc761a4db9c5b8dea050f64, type: 2}

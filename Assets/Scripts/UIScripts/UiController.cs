@@ -14,7 +14,7 @@ public class UiController : MonoBehaviour
     public GameObject painelVitoria, painelDerrota, painelInicio, uiPause, painelOptions;
     bool visivel;
     public bool visivelpause = false;
-    public TextMeshProUGUI lifePlayer, numFosforo;
+    public TextMeshProUGUI  numFosforo;
     public Slider All, Music, VFX;
 
     public Slider batterySlider;
@@ -72,10 +72,7 @@ public class UiController : MonoBehaviour
             GameController.controller.ControlCursor(true);
         }
     }
-    public void UpdateVida(int life)
-    {
-        lifePlayer.text = $"Life: {life}";
-    }
+    
     public void UpdateFosforo(int fosforo)
     {
         numFosforo.text = $"{fosforo}";

@@ -28,7 +28,6 @@ public class Player : MonoBehaviour
 
     private Animator animator;
 
-    [SerializeField] private GameObject stepParticle;
     [SerializeField] private GameObject jumpParticle;
     public Transform pivot;
     public GameObject flor;
@@ -70,17 +69,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        if (IsGrounded())
-        {
-            stepParticle.SetActive(true);
-        }
-        else
-        {
-            stepParticle.SetActive(false);
-        }
-    }
+ 
     void FixedUpdate()
     {
         if (GameController.controller.uiController.visivelpause == true) return;
@@ -481,7 +470,7 @@ public class Player : MonoBehaviour
 
     void Velocidade()
     {
-        speed = 11;
+        speed = 20;
     }
     private void OnDrawGizmos()
     {

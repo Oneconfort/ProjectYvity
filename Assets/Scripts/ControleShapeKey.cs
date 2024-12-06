@@ -38,7 +38,7 @@ public class ControleShapeKey : MonoBehaviour
         ativar = true;
         Destroy(gameObject, 5);
     }
-    /*private void OnDestroy()
+    private void OnDestroy()
     {
         if (SceneManager.GetActiveScene().name == "Nivel1")
         {
@@ -50,5 +50,5 @@ public class ControleShapeKey : MonoBehaviour
             int tentaculo = +1;
             GerenciadorDeConquistas.instance.Tentacles(tentaculo);
         }
-    }*/
+    }
 }

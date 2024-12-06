@@ -426,7 +426,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: Tirolesa
     m_StateMachine: {fileID: 6212799883618127312}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: 311ca197f23eead45bbfdc319cc12152, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -662,7 +662,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 1720044940414973752, guid: 7b7162be6b2839647af326ce60b144c1,
+  m_Motion: {fileID: -4972728281319211904, guid: b3247285d15820349a8d5337982caf66,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
