@@ -38,8 +38,8 @@ public class GerenciadorDeConquistas : MonoBehaviour
     }
     private void Start()
     {
-        //  ResetarConquistas();
-        Conquistas = Application.persistentDataPath + "/Conquistas.json";
+       //  ResetarConquistas();
+        Conquistas = Application.persistentDataPath + "/YVYTYConquistas.json";
         CarregarConquistas();
     }
 

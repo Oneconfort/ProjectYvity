@@ -43,12 +43,12 @@ public class ControleShapeKey : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Nivel1")
         {
             int gelo = +1;
-            GerenciadorDeConquistas.instance.Melting(gelo);
+            GerenciadorDeConquistas.instance?.Melting(gelo);
         }
         if (SceneManager.GetActiveScene().name == "Nivel2")
         {
             int tentaculo = +1;
-            GerenciadorDeConquistas.instance.Tentacles(tentaculo);
+            GerenciadorDeConquistas.instance?.Tentacles(tentaculo);
         }
     }
 }

@@ -38,7 +38,6 @@ public class Player : MonoBehaviour
 
     [Header("Config Audio")]
     public AudioClip audioClip;
-    public AudioClip jump;
     public AudioClip deadScream;
     public AudioSource audioSourcePassos;
     public AudioSource audioSource;
@@ -69,7 +68,22 @@ public class Player : MonoBehaviour
         }
     }
 
- 
+    private void Update()
+    {
+        if (dir.magnitude >= 1 && IsGrounded())
+        {
+            if (!audioSourcePassos.isPlaying)
+            {
+                audioSourcePassos.Play();
+            }
+            audioSourcePassos.loop = true;
+        }
+        else
+        {
+            audioSourcePassos.Pause();
+            audioSourcePassos.loop = false;
+        }
+    }
     void FixedUpdate()
     {
         if (GameController.controller.uiController.visivelpause == true) return;
@@ -154,11 +168,6 @@ public class Player : MonoBehaviour
             transform.rotation = Quaternion.Lerp(transform.rotation, rot, t * rotateSpeed);
         }
 
-        if (audioSourcePassos != null && audioClip != null)
-        {
-        
-        }
-
     }
 
     void MoverJogadorComObjeto()
@@ -229,13 +238,7 @@ public class Player : MonoBehaviour
         dir.x = NewMoveDir.x;
         dir.z = NewMoveDir.y;
         animator.SetFloat("Speed", dir.magnitude);
-        if(dir.magnitude >= 1){
-            audioSourcePassos.Play();
-        }
-        else{
-            audioSourcePassos.Pause();
-        }
-
+       
     }
 
     public void OnJump(InputAction.CallbackContext ctxt)
@@ -245,7 +248,7 @@ public class Player : MonoBehaviour
             rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y + jumpSpeed, rb.velocity.z);
 
             animator.SetTrigger("Jump");
-            audioSource.clip = jump;
+           // audioSourcePassos.Play();
             if (jumpParticle)
             {
                 GameObject myParticle = Instantiate(jumpParticle, spherePoint.position, spherePoint.rotation);
@@ -256,10 +259,7 @@ public class Player : MonoBehaviour
                 Debug.Assert(false, "'jumpParticle' reference is null!");
             }
 
-            if (audioSource != null && audioClip != null)
-            {
-                audioSource.Play();
-            }
+          
         }
     }
     public void OnInteraction(InputAction.CallbackContext ctxt)
@@ -316,11 +316,11 @@ public class Player : MonoBehaviour
                 Destroy(collider.gameObject);
                 break;
             case "ParedeFim":
-                audioSource.clip = deadScream;
+              /*  audioSource.clip = deadScream;
                 if (audioSource != null && audioClip != null)
                 {
                     audioSource.Play();
-                }
+                }*/
                 GameController.controller.TomaDano(collider.gameObject.GetComponent<Inimigo>().GetDamage());
                 CameraController.cameraController.cave = false;
                 caverna = true;

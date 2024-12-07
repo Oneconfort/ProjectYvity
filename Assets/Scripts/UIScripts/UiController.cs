@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using TMPro;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using Unity.VisualScripting.FullSerializer;
 
 public class UiController : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class UiController : MonoBehaviour
     void Start()
     {
         GameController.controller.uiController = this;
+        SetValores();
     }
 
 
@@ -127,7 +129,17 @@ public class UiController : MonoBehaviour
         PlayerPrefs.Save();
         Application.Quit();
     }
+    void SetValores()
+    {
+        AudioController.audioController.audios.GetFloat("MasterVolume", out float auxiliar);
+        if (All != null) All.value = auxiliar;
+        AudioController.audioController.audios.GetFloat("MusicVolume", out float auxiliar2);
+        if (Music != null) Music.value = auxiliar2;
+        AudioController.audioController.audios.GetFloat("VFXVolume", out float auxiliar3);
+        if (VFX != null) VFX.value = auxiliar3;
 
+       // if (uiConfig != null) uiConfig.SetActive(false);
+    }
     public void ChangeAllVolume()
     {
         AudioController.audioController.ChangeAllVolume(All.value);

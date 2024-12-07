@@ -150,7 +150,7 @@ public class LanternaPlayer : MonoBehaviour
         else if (InteracaoComItem.interacaoComItem.pegouLanterna == false)
         {
             Vector3 dir = posicaoAlvo - transform.position;
-            bool isInSphere = dir.magnitude < 3.5f;
+            bool isInSphere = dir.magnitude < 4f;
             return isInSphere;
         }
         return false;
