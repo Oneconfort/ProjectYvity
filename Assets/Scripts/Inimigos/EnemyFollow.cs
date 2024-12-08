@@ -27,7 +27,7 @@ public class EnemyFollow : Enemy
 
         if (distanceToPlayer <= detectionRange)
         {
-            Vector3 playerPosition = GameController.controller.Player.transform.position;
+            Vector3 playerPosition = new Vector3(GameController.controller.Player.transform.position.x, transform.position.y, GameController.controller.Player.transform.position.z);
             enemyFollow.SetDestination(playerPosition);
         }
         else

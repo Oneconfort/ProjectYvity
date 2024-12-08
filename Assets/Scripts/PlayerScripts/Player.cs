@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     private Animator animator;
 
     [SerializeField] private GameObject jumpParticle;
+    [SerializeField] private GameObject moveParticle;
     public Transform pivot;
     public GameObject flor;
 
@@ -88,8 +89,11 @@ public class Player : MonoBehaviour
     {
         if (GameController.controller.uiController.visivelpause == true) return;
 
+        
+
         Mover();
         CheckCheatInput();
+        
     }
 
 
@@ -238,7 +242,12 @@ public class Player : MonoBehaviour
         dir.x = NewMoveDir.x;
         dir.z = NewMoveDir.y;
         animator.SetFloat("Speed", dir.magnitude);
-       
+
+        if (!moveParticle.activeSelf && IsGrounded())
+        {
+            moveParticle.SetActive(true);
+        }
+
     }
 
     public void OnJump(InputAction.CallbackContext ctxt)
@@ -246,6 +255,7 @@ public class Player : MonoBehaviour
         if (ctxt.performed && IsGrounded() && InteracaoComItem.interacaoComItem?.pegouCaixa == false)
         {
             rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y + jumpSpeed, rb.velocity.z);
+            moveParticle.SetActive(false);
 
             animator.SetTrigger("Jump");
            // audioSourcePassos.Play();
@@ -259,6 +269,7 @@ public class Player : MonoBehaviour
                 Debug.Assert(false, "'jumpParticle' reference is null!");
             }
 
+            
           
         }
     }

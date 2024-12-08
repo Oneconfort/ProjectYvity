@@ -8,11 +8,9 @@ public class EnemyMove : Enemy
     NavMeshAgent enemyMove;
     [SerializeField] Transform[] waypoints;
     int index;
-    private Animator animator;
     void Start(){
         enemyMove = GetComponent<NavMeshAgent>();
         enemyMove.SetDestination(waypoints[0].position);
-        animator = GetComponent<Animator>();
     }
 
     void Update(){
